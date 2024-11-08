@@ -11,7 +11,7 @@ class Candidate_profile extends CI_Controller
 		{
 		   date_default_timezone_set('GMT');
 		} 
-		parent::__construct();
+		@parent::__construct();
 	    $this->check_user_login_check_candidate();
 		$this->load->model('recruiter/m_recruiter');
 		$this->load->model('dailyreport/m_dailyreport');
