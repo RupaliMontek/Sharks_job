@@ -28,6 +28,9 @@ class Candidate_profile extends CI_Controller
 		$this->load->model('permission/M_permission');
 	
 	}
+    public funxtion indexx(){
+        print_r("hii"); die();
+    }
     public function check_user_login_check_candidate()
 	{
 		
