@@ -376,18 +376,19 @@ public function send_otp_to_mobile()
 {
     $mobile = $this->input->post("mobile");
     
-    if ($mobile) {
-        $otp = random_string("numeric", 6);
-
+    if ($mobile != NULL) {
+        $otp = rand(100000, 999999);
+        // $otp = random_string("numeric", 6);
+        
         $sms_url = "https://api.msg91.com/api/v5/otp?template_id=6229cf167567d70749562aae&mobile=91" .
                    $mobile . "&authkey=374123A5ieHib0FG6226eca8P1&otp=" . $otp;
-
+        
         $response = $this->send_sms($sms_url);
-
+        
         $response_data = json_decode($response, true);
-
+        // print_r($response_data); die();
         if (isset($response_data['type']) && $response_data['type'] === "success") {
-            $this->session->set_userdata('verify_login_otp', $otp);
+            $this->session->set_userdata('verify_login_otp', $otp);  // Store OTP correctly
             $this->session->set_userdata('otp_mobile', $mobile);
 
             echo json_encode(['success' => true, 'message' => 'OTP sent successfully.']);
@@ -398,6 +399,7 @@ public function send_otp_to_mobile()
         echo json_encode(['success' => false, 'message' => 'Mobile number is required.']);
     }
 }
+
 public function send_sms($sms_url)
 {
     $curl = curl_init();

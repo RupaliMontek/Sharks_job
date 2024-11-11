@@ -109,6 +109,45 @@ class Candidate_profile_login extends CI_Controller
             redirect('Candidate_profile_login');
         }
     }
+	public function check_user_login_by_mobile_otp_candidate()
+{
+    $mobile = $this->input->post('mobile', true);
+    $otp = $this->input->post('otp', true);
+    
+    $session_otp = $this->session->userdata('verify_login_otp');  // Correct session key
+    $session_mobile = $this->session->userdata('otp_mobile');
+
+    if ($otp == $session_otp && $mobile == $session_mobile) {
+        // OTP is valid, proceed with login
+        $datas = $this->M_Candidate_profile_login->get_user_by_mobile($mobile);
+
+        if (!empty($datas)) {
+            $name = $datas[0]['name'];
+            $candidate_id = $datas[0]['user_admin_id'];
+
+            // Update last login time
+            $data = [
+                "last_login" => date("Y-m-d h:i:s"),
+            ];
+            $this->M_Candidate_profile->update_candidate_details($candidate_id, $data);
+
+            // Set session data
+            $this->session->set_userdata('candidate_id', $candidate_id);
+            $this->session->set_userdata('candidate_user_name', $name);
+            $this->session->set_userdata('candidate_user_mobile', $mobile);
+
+            $this->session->set_flashdata('success', 'You have successfully logged in');
+            redirect('candidate_profile');
+        } else {
+            redirect('recruitment/allready_register_account_login_here');
+        }
+    } else {
+        // Invalid OTP or mobile
+        $this->session->set_flashdata('error', 'Invalid OTP or mobile');
+        redirect('Candidate_profile_login');
+    }
+}
+
 	
 		public function check_email_exists()
 	{

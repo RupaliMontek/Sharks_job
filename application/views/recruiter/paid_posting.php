@@ -76,7 +76,7 @@ input:checked + .slider:before {
 <?php endif; ?>
 <div style="display:none;">
 <div class="container mt-5">
-    <p style="text-align: center; font-weight: 700;">Plase contact to Admin for further process<br>
+    <p style="text-align: center; font-weight: 700;">Please contact to Admin for further process<br>
     <!--<button style="margin-top: 20px; background:#135da8;border: none;border-radius: 5px; color: #fff; text-align:center;padding:1px 20px; line-height: 35px;">Check Here</button>-->
 </p>
 </div>

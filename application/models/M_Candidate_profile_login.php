@@ -23,6 +23,19 @@
             return false;
         }
     }
+    public function get_user_by_mobile($mobile) {
+        $this->db->select('*');
+        $this->db->from('user_admin');
+        $this->db->where('contact', $mobile);
+
+        $query = $this->db->get();
+        
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return false;
+        }
+    }
 	
 public function get_candidate_departments_candidate_registration()
 {

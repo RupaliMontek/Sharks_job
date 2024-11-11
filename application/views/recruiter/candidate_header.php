@@ -180,15 +180,22 @@ if (isset($blogs_meta) && $blogs_meta && isset($is_blog_details_page) && $is_blo
             </a>
  </button>
 </div>
-<form class="getotpform">
+<form class="getotpform" action="<?php echo base_url(); ?>Candidate_profile_login/check_user_login_by_mobile_otp_candidate"  method="post">
   <div class="form-group">
     <label for="mobile">Mobile Number</label>
-  <input type="phone" class="form-control" id="mobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter your 10 digit mobile no.">
+  <input type="phone" class="form-control" id="mobile" name="mobile" aria-describedby="mobileHelp" placeholder="Enter your 10 digit mobile no.">
     <small id="emailHelp" class="form-text text-muted">You will receive an OTP on this number.</small>
   </div>  
   <div class="forformbottombtns">
   <button type="button" class="btn btn-primary" id="send_otp_to_mobile">Get OTP</button> 
 </div>
+<div class="form-group">
+                <label for="otp">Enter OTP</label>
+                <input type="text" name="otp" id="otp" class="form-control" placeholder="Enter OTP">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div> 
 </form>
       </div>    
     </div>
@@ -255,32 +262,27 @@ if (isset($blogs_meta) && $blogs_meta && isset($is_blog_details_page) && $is_blo
     });
     </script>
     <script>
-    // Send OTP button click event
-    $('#send_otp_to_mobile').on('click', function() {
+    $(document).ready(function() {
+    $('#send_otp_to_mobile').click(function() {
         var mobile = $('#mobile').val();
-        var company_name = $('#company_name').val();
-        
-        if (mobile === "" || company_name === "") {
-            alert("Please fill in your company name and mobile.");
-            return;
-        }
-        
-        $.ajax({
-            url: '<?php echo base_url("job_post/send_otp_to_mobile"); ?>',
-            type: "POST",
-            data: { company_name: company_name, mobile: mobile },
-            success: function(response) {
-                var res = JSON.parse(response);
-                if (res.success) {
-                    alert("Please check your mobile for OTP.");
-                } else {
-                    alert(res.message || "Failed to send OTP.");
+
+        if(mobile.length == 10) { // Check if the mobile number is valid
+            $.ajax({
+                url: '<?php echo base_url(); ?>job_post/send_otp_to_mobile',
+                type: 'POST',
+                data: { mobile: mobile },
+                success: function(response) {
+                    if(response.success) {
+                        alert('OTP sent to your mobile!');
+                    } else {
+                        alert('Failed to send OTP. Please try again.');
+                    }
                 }
-            },
-            error: function(error) {
-                console.error("OTP request failed:", error);
-                alert("Something went wrong while sending OTP. Please try again.");
-            }
-        });
+            });
+        } else {
+            alert('Please enter a valid 10-digit mobile number.');
+        }
     });
+});
+
     </script>
