@@ -6,7 +6,7 @@
 
 <div class="container-fluid fortopbanner">  
 <div class="container topbannerinn">
-<h1>sssssssssLand your dream job with AI</h1>
+<h1>Land your dream job with AI</h1>
 <h6>25000+ jobs for you find here</h6>
 </div>
 <div class="belowformlinks belowformlinks container p-0">
