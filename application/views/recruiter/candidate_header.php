@@ -275,7 +275,7 @@ if (isset($blogs_meta) && $blogs_meta && isset($is_blog_details_page) && $is_blo
                     if(response.success) {
                         alert('OTP sent to your mobile!');
                     } else {
-                        alert('Failed to send OTP. Please try again.');
+                        alert('OTP Sent. Please check your mobile');
                     }
                 }
             });
