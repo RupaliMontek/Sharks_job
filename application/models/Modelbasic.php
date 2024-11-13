@@ -26,6 +26,14 @@ class Modelbasic extends CI_Model
             return null; // No job post found
     }
 }
+public function get_job_data($job_id)
+{
+    $this->db->where('job_id', $job_id);
+    $query = $this->db->get('tbl_candidate_job_post');
+    return $query->result_array();
+    // return $this->db->get_where('tbl_candidate_job_post', array('job_id' => $job_id))->row_array();
+}
+
     
     public function get_all_jobs_by_company($companyId) {
     $this->db->where('added_by', $companyId);

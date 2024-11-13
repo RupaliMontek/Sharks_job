@@ -71,3 +71,4 @@ $route['beware-of-fraud'] = 'recruitment/beware_of_fraud/';
 $route['job_post/index'] = 'job_post/index'; 
 /*$route['404_override'] = 'Error_404';*/
 $route['translate_uri_dashes'] = FALSE;
+$route['job_post/edit_index/(:num)'] = 'job_post/edit_index/$1';

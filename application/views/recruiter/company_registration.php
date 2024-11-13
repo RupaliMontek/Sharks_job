@@ -23,11 +23,11 @@
             <!--<texarea type="text" class="form-control"><?php echo $companyData; ?></textarea>-->
 
       <div class="form-group">
-    <label for="company_name">Company Name</label>
+    <label for="company_name">Company Name</label><span style="color: red;">*</span>
     <input type="text" name="company_name" id="company_name" class="form-control" placeholder="Enter your Company Name" required>
   </div>
   <div class="form-group">
-   <label for="email">Email</label>
+   <label for="email">Email</label><span style="color: red;">*</span>
         <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
   </div>
   <!--for offcial mail id-->
@@ -56,7 +56,7 @@
 <!--for offcial mail id-->
   
   <div class="form-group">
-    <label for="phone">Phone Number</label>
+    <label for="phone">Contact Number</label><span style="color: red;">*</span>
     <input type="tel" name="phone" id="phone" class="form-control" placeholder="Enter your phone number" required 
            pattern="\d{10,12}" title="Phone number must be between 10 to 12 digits">
     </div>
@@ -64,7 +64,7 @@
 
    
    <div class="form-group">
-        <label for="address">Address</label>
+        <label for="address">Address</label><span style="color: red;">*</span>
                 <input type="text" name="address" id="address" class="form-control" placeholder="Enter your address" required>
    </div>
    
@@ -74,11 +74,11 @@
    </div>
 
    <div class="form-group">
-        <label for="description">Company Description</label>
+        <label for="description">Company Description</label><span style="color: red;">*</span>
         <textarea name="description" id="description" class="form-control" rows="4" placeholder="Describe your company"></textarea>
    </div>
    <div class="form-group">
-        <label for="logo">Company Logo</label>
+        <label for="logo">Company Logo</label><span style="color: red;">*</span>
         <input type="file" name="logo" id="logo" class="form-control" rows="4" placeholder="upload logo" required>
    </div>
    <div class="form-group">

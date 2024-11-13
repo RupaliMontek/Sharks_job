@@ -72,76 +72,77 @@
                     <div class="box-body">
                         <div class="box box-warning">
         <form action="<?php echo base_url("job_post/company_registration"); ?>" method="POST" id="form_job_postss" name="form_job_post" >
-        
-        <input type="hidden" name="company_id" id="company_id" value="<?php echo $companyId; ?>"/>  
-        <input type="hidden" name="user_admin_id" value="<?php echo $user_admin_id; ?>">
-        
-        <div class="mb-3">
-        <label class="form-label"  for="profile">Job Title<span style="color: red;">*</span></label>
-        <input autocomplete="off" type="text" class="form-control" type="profile" name="profile" id="profile" required>
-        </div>
-        
+        <?php if (!empty($job_data) && isset($job_data[0])): ?>
+    <input type="hidden" name="company_id" id="company_id" value="<?php echo htmlspecialchars($companyId); ?>"/>  
+    <input type="hidden" name="user_admin_id" value="<?php echo htmlspecialchars($user_admin_id); ?>">
+    
+    <div class="mb-3">
+        <label class="form-label" for="profile">Job Title<span style="color: red;">*</span></label>
+        <input type="text" class="form-control" name="profile" id="profile" value="<?php echo htmlspecialchars($job_data[0]['profile']); ?>" required>
+    </div>
+
         <div class="mb-3">
         <label class="form-label"  for="key_skills">key skills<span style="color: red;">*</span></label>
-        <input autocomplete="off" class="form-control" type="text" name="key_skills" id="key_skills" required >
+        <input autocomplete="off" class="form-control" type="text" name="key_skills" id="key_skills" value="<?php echo htmlspecialchars($job_data[0]['key_skills']); ?>" required >
         </div> 
         
         <div class="mb-3">
-        <label class="form-label"  for="min_exp_candidate">Min Exp Candidate<span style="color: red;">*</span></label>
-        <select class="form-control" name="min_exp_candidate" id="min_exp_candidate" required>
-            <option  value="" selected>Select Min Exp</option>
-            <option value="0">0 Year</option>
-            <option value="1">1 Year</option>
-            <option value="2">2 Years</option>
-            <option value="3">3 Years</option>
-            <option value="4">4 Years</option>
-            <option value="5">5 Years</option>
-            <option value="6">6 Years</option>
-            <option value="7">7 Years</option>
-            <option value="8">8 Years</option>
-            <option value="9">9 Years</option>
-            <option value="10">10 Years</option>
-            <option value="11">11 Years</option>
-            <option value="12">12 Years</option>
-            <option value="13">13 Years</option>
-            <option value="14">14 Years</option>
-            <option value="15">15 Years</option>
-            <option value="16">16 Years</option>
-            <option value="17">17 Years</option>
-            <option value="18">18 Years</option>
-         </select>
-        </div>  
+    <label class="form-label" for="min_exp_candidate">Min Exp Candidate<span style="color: red;">*</span></label>
+    <select class="form-control" name="min_exp_candidate" id="min_exp_candidate" required>
+        <option value="" <?php echo ($job_data[0]['min_exp_candidate'] === '') ? 'selected' : ''; ?>>Select Min Exp</option>
+        <option value="0" <?php echo ($job_data[0]['min_exp_candidate'] == '0') ? 'selected' : ''; ?>>0 Year</option>
+        <option value="1" <?php echo ($job_data[0]['min_exp_candidate'] == '1') ? 'selected' : ''; ?>>1 Year</option>
+        <option value="2" <?php echo ($job_data[0]['min_exp_candidate'] == '2') ? 'selected' : ''; ?>>2 Years</option>
+        <option value="3" <?php echo ($job_data[0]['min_exp_candidate'] == '3') ? 'selected' : ''; ?>>3 Years</option>
+        <option value="4" <?php echo ($job_data[0]['min_exp_candidate'] == '4') ? 'selected' : ''; ?>>4 Years</option>
+        <option value="5" <?php echo ($job_data[0]['min_exp_candidate'] == '5') ? 'selected' : ''; ?>>5 Years</option>
+        <option value="6" <?php echo ($job_data[0]['min_exp_candidate'] == '6') ? 'selected' : ''; ?>>6 Years</option>
+        <option value="7" <?php echo ($job_data[0]['min_exp_candidate'] == '7') ? 'selected' : ''; ?>>7 Years</option>
+        <option value="8" <?php echo ($job_data[0]['min_exp_candidate'] == '8') ? 'selected' : ''; ?>>8 Years</option>
+        <option value="9" <?php echo ($job_data[0]['min_exp_candidate'] == '9') ? 'selected' : ''; ?>>9 Years</option>
+        <option value="10" <?php echo ($job_data[0]['min_exp_candidate'] == '10') ? 'selected' : ''; ?>>10 Years</option>
+        <option value="11" <?php echo ($job_data[0]['min_exp_candidate'] == '11') ? 'selected' : ''; ?>>11 Years</option>
+        <option value="12" <?php echo ($job_data[0]['min_exp_candidate'] == '12') ? 'selected' : ''; ?>>12 Years</option>
+        <option value="13" <?php echo ($job_data[0]['min_exp_candidate'] == '13') ? 'selected' : ''; ?>>13 Years</option>
+        <option value="14" <?php echo ($job_data[0]['min_exp_candidate'] == '14') ? 'selected' : ''; ?>>14 Years</option>
+        <option value="15" <?php echo ($job_data[0]['min_exp_candidate'] == '15') ? 'selected' : ''; ?>>15 Years</option>
+        <option value="16" <?php echo ($job_data[0]['min_exp_candidate'] == '16') ? 'selected' : ''; ?>>16 Years</option>
+        <option value="17" <?php echo ($job_data[0]['min_exp_candidate'] == '17') ? 'selected' : ''; ?>>17 Years</option>
+        <option value="18" <?php echo ($job_data[0]['min_exp_candidate'] == '18') ? 'selected' : ''; ?>>18 Years</option>
+    </select>
+</div>
+  
       
-       <div class="mb-3">
-        <label class="form-label"  for="max_exp_candidate">Max Exp Candidate<span style="color: red;">*</span></label>
-        <select class="form-control" name="max_exp_candidate" id="max_exp_candidate" required>
-            <option  value="" selected>Select Max Exp</option>
-            <option value="0">0 Year</option>
-            <option value="1">1 Year</option>
-            <option value="2">2 Years</option>
-            <option value="3">3 Years</option>
-            <option value="4">4 Years</option>
-            <option value="5">5 Years</option>
-            <option value="6">6 Years</option>
-            <option value="7">7 Years</option>
-            <option value="8">8 Years</option>
-            <option value="9">9 Years</option>
-            <option value="10">10 Years</option>
-            <option value="11">11 Years</option>
-            <option value="12">12 Years</option>
-            <option value="13">13 Years</option>
-            <option value="14">14 Years</option>
-            <option value="15">15 Years</option>
-            <option value="16">16 Years</option>
-            <option value="17">17 Years</option>
-            <option value="18">18 Years</option>
-            
-        </select>
-      </div> 
+<div class="mb-3">
+    <label class="form-label" for="max_exp_candidate">Max Exp Candidate<span style="color: red;">*</span></label>
+    <select class="form-control" name="max_exp_candidate" id="max_exp_candidate" required>
+        <option value="" <?php echo ($job_data[0]['max_exp_candidate'] === '') ? 'selected' : ''; ?>>Select Max Exp</option>
+        <option value="0" <?php echo ($job_data[0]['max_exp_candidate'] == '0') ? 'selected' : ''; ?>>0 Year</option>
+        <option value="1" <?php echo ($job_data[0]['max_exp_candidate'] == '1') ? 'selected' : ''; ?>>1 Year</option>
+        <option value="2" <?php echo ($job_data[0]['max_exp_candidate'] == '2') ? 'selected' : ''; ?>>2 Years</option>
+        <option value="3" <?php echo ($job_data[0]['max_exp_candidate'] == '3') ? 'selected' : ''; ?>>3 Years</option>
+        <option value="4" <?php echo ($job_data[0]['max_exp_candidate'] == '4') ? 'selected' : ''; ?>>4 Years</option>
+        <option value="5" <?php echo ($job_data[0]['max_exp_candidate'] == '5') ? 'selected' : ''; ?>>5 Years</option>
+        <option value="6" <?php echo ($job_data[0]['max_exp_candidate'] == '6') ? 'selected' : ''; ?>>6 Years</option>
+        <option value="7" <?php echo ($job_data[0]['max_exp_candidate'] == '7') ? 'selected' : ''; ?>>7 Years</option>
+        <option value="8" <?php echo ($job_data[0]['max_exp_candidate'] == '8') ? 'selected' : ''; ?>>8 Years</option>
+        <option value="9" <?php echo ($job_data[0]['max_exp_candidate'] == '9') ? 'selected' : ''; ?>>9 Years</option>
+        <option value="10" <?php echo ($job_data[0]['max_exp_candidate'] == '10') ? 'selected' : ''; ?>>10 Years</option>
+        <option value="11" <?php echo ($job_data[0]['max_exp_candidate'] == '11') ? 'selected' : ''; ?>>11 Years</option>
+        <option value="12" <?php echo ($job_data[0]['max_exp_candidate'] == '12') ? 'selected' : ''; ?>>12 Years</option>
+        <option value="13" <?php echo ($job_data[0]['max_exp_candidate'] == '13') ? 'selected' : ''; ?>>13 Years</option>
+        <option value="14" <?php echo ($job_data[0]['max_exp_candidate'] == '14') ? 'selected' : ''; ?>>14 Years</option>
+        <option value="15" <?php echo ($job_data[0]['max_exp_candidate'] == '15') ? 'selected' : ''; ?>>15 Years</option>
+        <option value="16" <?php echo ($job_data[0]['max_exp_candidate'] == '16') ? 'selected' : ''; ?>>16 Years</option>
+        <option value="17" <?php echo ($job_data[0]['max_exp_candidate'] == '17') ? 'selected' : ''; ?>>17 Years</option>
+        <option value="18" <?php echo ($job_data[0]['max_exp_candidate'] == '18') ? 'selected' : ''; ?>>18 Years</option>
+    </select>
+</div>
+
       
       <div class="mb-3">
         <label class="form-label"  for="min_salary">Min Salary</label>
-        <select class="form-control" name="min_salary" id="min_salary">
+        <select class="form-control" name="min_salary" id="min_salary" value="<?php echo htmlspecialchars($job_data[0]['min_salary']); ?>">
             <option  value="" selected>Select Min Salary</option>
             <option value="less_50000_per_year">Less than ₹ 50,000/Year</option>
             <option value="50000_per_year">₹ 50,000/Year</option>
@@ -195,7 +196,7 @@
       
       <div class="mb-3">
         <label class="form-label"  for="max_salary">Max Salary</label>
-        <select class="form-control" name="max_salary" id="max_salary">
+        <select class="form-control" name="max_salary" id="max_salary" value="<?php echo htmlspecialchars($job_data[0]['max_salary']); ?>">
             <option  value="" selected>Select Max Salary</option>
             <option value="less_50000_per_year">Less than ₹ 50,000/Year</option>
             <option value="50000_per_year">₹ 50,000/Year</option>
@@ -248,36 +249,36 @@
       </div>
       <div class="mb-3">
     <label class="form-label" for="job_country">Job Country<span style="color: red;">*</span></label>
-    <select onchange="get_state_list(this.value); updatePreview();" class="form-control" name="job_country" id="job_country" required>
+    <select onchange="get_state_list(this.value); updatePreview();" class="form-control" name="job_country" id="job_country" value="<?php echo htmlspecialchars($job_data[0]['job_country']); ?>" required>
         <option value="" selected>Select Country</option>
         <?php foreach($country_list as $row) { ?>
             <option value="<?= $row['id']; ?>"><?= $row['name']; ?></option>
             <?php } ?>
         </select>
     </div>
-
         
         <div class="mb-3">
         <label class="form-label"  for="job_state">Job State<span style="color: red;">*</span></label>
-        <select onchange="get_city_list(this.value); updateStatePreview();"class="form-control" name="job_state" id="job_state" required>
+        <select onchange="get_city_list(this.value); updateStatePreview();"class="form-control" name="job_state" id="job_state"  value="<?php echo htmlspecialchars($job_data[0]['job_state']); ?>" required>
             <option value="" selected>Select State</option>
         </select>
         </div> 
         
       <div class="mb-3">
             <label class="form-label"  for="job_location">Job City<span style="color: red;">*</span></label>
-        <select onchange="updateCityPreview();"  class="form-control" name="job_location" id="job_location" required>
+        <select onchange="updateCityPreview();"  class="form-control" name="job_location" id="job_location"  value="<?php echo htmlspecialchars($job_data[0]['job_location']); ?>" required>
             <option value="" selected>Select Job Location</option>
         </select>
       </div> 
       <div class="mb-3">
-        <label class="form-label"  for="job_opening_address">Job Opening Address<span style="color: red;">*</span></label>
-       <textarea autocomplete="off" type="text" class="form-control" type="job_opening_address" name="job_opening_address" id="job_opening_address" required></textarea>
-        </div>
+    <label class="form-label" for="job_opening_address">Job Opening Address<span style="color: red;">*</span></label>
+    <textarea autocomplete="off" class="form-control" name="job_opening_address" id="job_opening_address" required><?php echo htmlspecialchars($job_data[0]['job_opening_address']); ?></textarea>
+</div>
+
         
         <div class="mb-3">
         <label class="form-label"  for="job_opening_area_pincode">Job Opening Area Pin Code<span style="color: red;">*</span></label>
-        <input autocomplete="off" type="text" class="form-control" type="job_opening_area_pincode" name="job_opening_area_pincode" id="job_opening_area_pincode" required>
+        <input autocomplete="off" type="text" class="form-control" type="job_opening_area_pincode" name="job_opening_area_pincode" id="job_opening_area_pincode"  value="<?php echo htmlspecialchars($job_data[0]['job_opening_area_pincode']); ?>" required>
         </div>
       <!-- <div class="mb-3">
             <label class="form-label"  for="job_pincode">Job Pincode</label>
@@ -285,7 +286,7 @@
       </div> -->
       <div class="mb-3">
         <label class="form-label"  for="shift_type">Shift Type<span style="color: red;">*</span></label>
-        <select class="form-control" name="shift_type" id="shift_type" required>
+        <select class="form-control" name="shift_type" id="shift_type"  value="<?php echo htmlspecialchars($job_data[0]['shift_type']); ?>" required>
             <option  value="" selected>Select Shift Type</option>
             <option value="Morning">Morning</option>
             <option value="Noon">Noon</option>
@@ -299,7 +300,7 @@
 
 <div class="mb-3">
     <label class="form-label" for="job_descriptions">Job Descriptions<span style="color: red;">*</span></label>
-    <input name="job_descriptions" type="text" class="form-control" id="job_descriptions">
+    <input name="job_descriptions" type="text" class="form-control" id="job_descriptions"  value="<?php echo htmlspecialchars($job_data[0]['job_descriptions']); ?>">
 </div>
 
 <script src="https://cdn.tiny.cloud/1/bqpg1i47n6cdlqccyer835q7nirw6kmgegc9yyprprxowv19/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -331,11 +332,11 @@
 
         <div class="mb-3">
         <label class="form-label"  for="industry_type">Industry Type<span style="color: red;">*</span></label>
-        <input autocomplete="off" type="text" class="form-control" type="industry_type" name="industry_type" id="industry_type" required>
+        <input autocomplete="off" type="text" class="form-control" type="industry_type" name="industry_type" id="industry_type"  value="<?php echo htmlspecialchars($job_data[0]['industry_type']); ?>" required>
         </div>
         <div class="mb-3">
         <label class="form-label" for="department">Department<span style="color: red;">*</span></label>
-            <select class="form-control" name="department" id="department" required>
+            <select class="form-control" name="department" id="department"  value="<?php echo htmlspecialchars($job_data[0]['department']); ?>" required>
                 <option value="" selected>Select Department</option>
                 <?php foreach($department_list as $row) { ?>
                     <option value="<?= $row['dept_id']; ?>"><?= $row['dept_name']; ?></option>
@@ -345,7 +346,7 @@
         
         <div class="mb-3">
         <label class="form-label"  for="job_type">Job Type<span style="color: red;">*</span></label>
-        <select class="form-control" name="job_type" id="job_type" required>
+        <select class="form-control" name="job_type" id="job_type"  value="<?php echo htmlspecialchars($job_data[0]['job_type']); ?>" required>
             <option value="" selected>Select Job Type</option>
             <option value="Full_Time">Full Time</option>
             <option value="Part_Time">Part Time</option>
@@ -355,11 +356,11 @@
         
         <div class="mb-3">
         <label class="form-label"  for="no_of_vacancies">No. of vacancies<span style="color: red;">*</span></label>
-        <input autocomplete="off" type="text" class="form-control" type="no_of_vacancies" name="no_of_vacancies" id="no_of_vacancies" required>
+        <input autocomplete="off" type="text" class="form-control" type="no_of_vacancies" name="no_of_vacancies" id="no_of_vacancies"  value="<?php echo htmlspecialchars($job_data[0]['no_of_vacancies']); ?>" required>
         </div>
         <div class="mb-3">
         <label class="form-label"  for="work_mode">Employment Type</label>
-        <select class="form-control" name="work_mode" id="work_mode">
+        <select class="form-control" name="work_mode" id="work_mode"  value="<?php echo htmlspecialchars($job_data[0]['job_country']); ?>">
             <option  value="" selected>Select Employment Type</option>
             <option value="Permanent">Permanent</option>
             <option value="Contractual">Contractual</option>
@@ -369,7 +370,7 @@
         <br>
         <div class="mb-3 freducationnnn">
             <label class="form-label" for="education">Education<span style="color: red;">*</span></label>
-            <select class="form-control" name="education" id="education" multiple="multiple" required 
+            <select class="form-control" name="education" id="education" multiple="multiple"  value="<?php echo htmlspecialchars($job_data[0]['education']); ?>" required 
                     multiselect-search="true" multiselect-select-all="true" 
                     multiselect-max-items="3" size="10" 
                     onchange="showSelectedEducation()">
@@ -383,20 +384,23 @@
        
         <div class="mb-3">
         <label class="form-label"  for="new_company_name">Company Name<span style="color: red;">*</span></label>
-        <input autocomplete="off" type="text" class="form-control" name="new_company_name" id="new_company_name" required>
+        <input autocomplete="off" type="text" class="form-control" name="new_company_name" id="new_company_name"  value="<?php echo htmlspecialchars($job_data[0]['new_company_name']); ?>" required>
         </div>
         <div class="mb-3">
         <label class="form-label"  for="company_telephone">Company Telephone</label>
-        <input autocomplete="off" type="text" class="form-control" name="company_telephone" id="company_telephone">
+        <input autocomplete="off" type="text" class="form-control" name="company_telephone" id="company_telephone"  value="<?php echo htmlspecialchars($job_data[0]['company_telephone']); ?>">
         </div>
         <div class="mb-3">
         <label class="form-label"  for="company_email">Company Email<span style="color: red;">*</span></label>
-        <input autocomplete="off" type="text" class="form-control" name="company_email" id="company_email" required>
+        <input autocomplete="off" type="text" class="form-control" name="company_email" id="company_email"   value="<?php echo htmlspecialchars($job_data[0]['company_email']); ?>" required>
         </div>
         <div class="mb-3">
-        <label class="form-label"  for="company_about">Company About<span style="color: red;">*</span></label>
-         <textarea id="company_about" name="company_about" class="form-control" required></textarea>
-        </div>
+    <label class="form-label" for="company_about">Company About<span style="color: red;">*</span></label>
+    <textarea id="company_about" name="company_about" class="form-control" required>
+        <?php echo htmlspecialchars($job_data[0]['company_about']); ?>
+    </textarea>
+</div>
+
         
         <!--<div class="form-group">-->
         <!--    <label for="exampleFormControlFile1">Upload video</label>-->
@@ -431,7 +435,9 @@
           <button type="submit" class="btn btn-secondary">Save</button>
           
         </div>
-        
+        <?php else: ?>
+    <p>No profile information available.</p>
+<?php endif; ?>  
     </form> 
                 </div>
               </div>

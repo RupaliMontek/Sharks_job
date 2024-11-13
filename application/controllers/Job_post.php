@@ -169,6 +169,35 @@ public function send_reset_link()
        $this->load->view("recruiter/free_job_post_index.php",$data);
        $this->load->view("recruiter/free_job_post_footer",$data);
     }
+//     public function edit_index($job_id = null)
+// {
+//     if ($job_id) {
+//         echo "Job ID: " . $job_id; // Debugging: check if job_id is passed correctly
+//         $data['job_id'] = $job_id;
+//     } else {
+//         $data['job_id'] = $this->session->userdata('job_id');
+//         echo "Session Job ID: " . $data['job_id'];
+//     }
+//     die(); // Stop execution to verify job_id
+// }
+    public function edit_index($job_id = null)
+    { 
+        $data['job_id'] = $this->session->userdata('job_id');
+
+       $data['job_data'] = $this->modelbasic->get_job_data($job_id);
+    //    print_r($data['job_data']); die();
+       $data['user_admin_id'] = $this->session->userdata('user_admin_id');       
+       $data['companyId'] = $this->session->userdata('company');
+       $data['siderbar_menus']   = $this->M_permission->list_labels('internal user');
+       $data["education_list"]   =  $this->modelbasic->get_all_courses();
+       $data['list_cities']      =  $this->modelbasic->get_indian_state_cities();
+       $data["country_list"]     = $this->modelbasic->get_country_list();
+       $data["department_list"]     = $this->modelbasic->get_department_list();
+
+       $this->load->view("recruiter/free_job_post_header");
+       $this->load->view("recruiter/edit_free_job_post_index.php",$data);
+       $this->load->view("recruiter/free_job_post_footer",$data);
+    }
     public function recruiter_login()
 {
     $data['siderbar_menus'] = $this->M_permission->list_labels('internal user');
@@ -180,6 +209,7 @@ public function comp_dashboard() {
     $user = $this->session->userdata('user_admin_id');
     $data['companyDataList'] = $this->modelbasic->get_all_jobs_by_company($user);
     $data['jobCount'] = count($data['companyDataList']);
+    $data['profile'] = $this->m_admin_user->getUserProfileById($user);
     $data['siderbar_menus'] = $this->M_permission->list_labels('internal user');
     $this->load->view("recruiter/free_job_post_header");
     $this->load->view("recruiter/comp_dashboard", $data);
@@ -559,7 +589,7 @@ public function company_registration()
         } else {
             $this->modelbasic->save_company_data($companyId, $jobData);
             $this->session->set_flashdata('success', 'Job posted successfully.');
-            redirect('job_post/index');
+            redirect('job_post/comp_dashboard');
         }
     }
 }
@@ -581,7 +611,7 @@ private function prepareJobData($companyId, $file_name = null)
             "country_id"                    => $this->input->post("job_country"),
             "state_id"                      => $this->input->post("job_state"),
             "job_location"                  => $this->input->post("job_location"),
-            "job_pincode"                   => $this->input->post("job_pin"),
+            // "job_pincode"                   => $this->input->post("job_pin"),
             "shift_type"                    => $this->input->post("shift_type"),
             "job_descriptions"              => $this->input->post("job_descriptions"),
             "industry_type"                 => $this->input->post("industry_type"),
@@ -697,7 +727,7 @@ public function saveRegistration() {
     //     $this->PostJobOnSocialSite($job_data_array['profile'], $job_data_array['job_descriptions'], $selectedPlatforms);
     // }
     $this->session->set_flashdata('success', 'Successfully posted job.');
-    redirect('job_post/index');
+    redirect('job_post/comp_dashboard');
 }
 
     public function recruiter_registration()
