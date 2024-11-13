@@ -15,28 +15,29 @@
                 <a class="frviewprImg" href="<?php echo base_url('job_post/view_profile') ?>" class="btn btn-secondary">
                     <img src="<?php echo base_url()?>frontend/images/profilePic.jpg" width="40px" height="40px">
                 </a>
-                <!--<a href="javascript:void(0);" class="btn btn-secondary" onclick="checkJobCountAndPost()">Post Job</a>-->
+                <a href="javascript:void(0);" class="btn btn-secondary" onclick="checkJobCountAndPost()">Post Job</a>
+            <!-- Modal -->
+            <div class="modal fade" id="jobLimitModal" tabindex="-1" role="dialog" aria-labelledby="jobLimitModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="jobLimitModalLabel">Job Posting Limit Reached</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            You have reached the maximum number of free job postings. Please contact admin for paid posting.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
                 <!-- Button trigger modal -->
-<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#Postjobalertt">
-  Post Job
-</button>
 
- <!-- job post modal start here -->
-<div class="modal fade" id="Postjobalertt" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        You have reached the maximum number of free job postings.<br>Please contact admin for paid posting.
-      </div>
-    </div>
-  </div>
-</div>
             <!-- job post modal end here -->
             </div>
             <form class="formShopSearch form-inline" id="searchForm"><br>
@@ -45,15 +46,17 @@
         </div>
         
         <script>
-            function checkJobCountAndPost() {
-                var jobCount = <?php echo $jobCount; ?>;
-                if (jobCount > 5) {
-                    window.location.href = "<?php echo base_url('job_post/index/' . $this->session->userdata('user_admin_id')); ?>";
-                } else {
-                    alert('You have reached the maximum number of free job postings. Please contact admin for paid posting.');
-                }
-            }
-        </script>
+    function checkJobCountAndPost() {
+        var jobCount = <?php echo $jobCount; ?>;
+        if (jobCount < 5) {
+            window.location.href = "<?php echo base_url('job_post/index/' . $this->session->userdata('user_admin_id')); ?>";
+        } else {
+            // Show modal instead of alert
+            $('#jobLimitModal').modal('show');
+        }
+    }
+</script>
+
 
         <div class="row outerOfBox">
             <?php if (!empty($companyDataList) && is_array($companyDataList)) : ?>
