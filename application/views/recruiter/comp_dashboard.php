@@ -47,7 +47,7 @@
         <script>
             function checkJobCountAndPost() {
                 var jobCount = <?php echo $jobCount; ?>;
-                if (jobCount < 5) {
+                if (jobCount > 5) {
                     window.location.href = "<?php echo base_url('job_post/index/' . $this->session->userdata('user_admin_id')); ?>";
                 } else {
                     alert('You have reached the maximum number of free job postings. Please contact admin for paid posting.');
