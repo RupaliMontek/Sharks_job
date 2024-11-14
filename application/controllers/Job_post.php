@@ -121,9 +121,9 @@ public function send_reset_link()
     {
         $token = $this->input->get('token');
         $data['siderbar_menus'] = $this->M_permission->list_labels('internal user');
-        $this->load->view("recruiter/free_job_post_header");
+        $this->load->view("recruiter/company_header");
         $this->load->view("recruiter/reset_password", ['token' => $token]);
-        $this->load->view("recruiter/free_job_post_footer",$data);
+        $this->load->view("recruiter/company_footer",$data);
     }
 
     public function reset_password()
@@ -165,9 +165,9 @@ public function send_reset_link()
        $data["country_list"]     = $this->modelbasic->get_country_list();
        $data["department_list"]     = $this->modelbasic->get_department_list();
 
-       $this->load->view("recruiter/free_job_post_header");
+       $this->load->view("recruiter/company_header");
        $this->load->view("recruiter/free_job_post_index.php",$data);
-       $this->load->view("recruiter/free_job_post_footer",$data);
+       $this->load->view("recruiter/company_footer",$data);
     }
 //     public function edit_index($job_id = null)
 // {
@@ -201,9 +201,9 @@ public function send_reset_link()
     public function recruiter_login()
 {
     $data['siderbar_menus'] = $this->M_permission->list_labels('internal user');
-    $this->load->view("recruiter/free_job_post_header");
+    $this->load->view("recruiter/company_header");
     $this->load->view("recruiter/recruiter_login", $data);
-    $this->load->view('recruiter/free_job_post_footer', $data);
+    $this->load->view('recruiter/company_footer', $data);
 }
 public function comp_dashboard() {
     $user = $this->session->userdata('user_admin_id');
@@ -211,9 +211,10 @@ public function comp_dashboard() {
     $data['jobCount'] = count($data['companyDataList']);
     $data['profile'] = $this->m_admin_user->getUserProfileById($user);
     $data['siderbar_menus'] = $this->M_permission->list_labels('internal user');
-    $this->load->view("recruiter/free_job_post_header");
+    
+    $this->load->view("recruiter/company_header", $data);
     $this->load->view("recruiter/comp_dashboard", $data);
-    $this->load->view('recruiter/free_job_post_footer', $data);
+    $this->load->view('recruiter/company_footer', $data);
 }
 public function search_jobs_in_application()
 {
@@ -224,9 +225,9 @@ public function search_jobs_in_application()
     $search_results = $this->m_admin_user->search_job_applications($query);
     $data['job_search'] = $search_results;
         $data['siderbar_menus'] = $this->M_permission->list_labels('internal user');
-    $this->load->view("recruiter/free_job_post_header");
+    $this->load->view("recruiter/company_header");
     $this->load->view("recruiter/comp_dashboard", $data);
-    $this->load->view('recruiter/free_job_post_footer');
+    $this->load->view('recruiter/company_footer');
 }
 public function view_profile()
 {
@@ -234,9 +235,9 @@ public function view_profile()
     // $companyId = $this->session->userdata('company');
     $data['profile'] = $this->m_admin_user->getUserProfileById($user);
     $data['siderbar_menus'] = $this->M_permission->list_labels('internal user');
-    $this->load->view("recruiter/free_job_post_header");
+    $this->load->view("recruiter/company_header", $data);
     $this->load->view("recruiter/view_company_profile", $data);
-    $this->load->view('recruiter/free_job_post_footer', $data);
+    $this->load->view('recruiter/company_footer', $data);
 }
 
 public function view_applications($job_id)
@@ -249,9 +250,9 @@ public function view_applications($job_id)
 
     if ($job_data) {
         $data['job'] = $job_data;
-        $this->load->view("recruiter/free_job_post_header");
+        $this->load->view("recruiter/company_header");
         $this->load->view("recruiter/view_applications", $data);
-        $this->load->view('recruiter/free_job_post_footer', $data);
+        $this->load->view('recruiter/company_footer', $data);
     }
 }
 public function update() {
@@ -313,17 +314,17 @@ public function search_candidate_in_application()
     $search_results = $this->m_admin_user->search_applications($query);
     $data['job_application'] = $search_results;
         $data['siderbar_menus'] = $this->M_permission->list_labels('internal user');
-    $this->load->view("recruiter/free_job_post_header");
+    $this->load->view("recruiter/company_header");
     $this->load->view("recruiter/view_applications", $data);
-    $this->load->view('recruiter/free_job_post_footer');
+    $this->load->view('recruiter/company_footer');
 }
 
 public function verification()
 {
     $data['siderbar_menus'] = $this->M_permission->list_labels('internal user');
-    $this->load->view("recruiter/free_job_post_header");
+    $this->load->view("recruiter/company_header");
     $this->load->view("recruiter/verification", $data);
-    $this->load->view('recruiter/free_job_post_footer');
+    $this->load->view('recruiter/company_footer');
 }
 public function save_short_registration() {
     $data = array(
@@ -516,26 +517,26 @@ public function send_sms($sms_url)
     {  
     $data['siderbar_menus'] = $this->M_permission->list_labels('internal user');
     $data["job_post_list"] = $this->modelbasic->get_list_job_post();
-    $this->load->view("recruiter/free_job_post_header");
+    $this->load->view("recruiter/company_header");
     $this->load->view("recruiter/company_short_registration", $data);
-    $this->load->view("recruiter/free_job_post_footer", $data);
+    $this->load->view("recruiter/company_footer", $data);
     }
 public function company_login()
     {  
     $data['siderbar_menus'] = $this->M_permission->list_labels('internal user');
     $data["job_post_list"] = $this->modelbasic->get_list_job_post();
-    $this->load->view("recruiter/free_job_post_header");
+    $this->load->view("recruiter/company_header");
     $this->load->view("recruiter/company_login", $data);
-    $this->load->view("recruiter/free_job_post_footer", $data);
+    $this->load->view("recruiter/company_footer", $data);
     }
     
     public function paid_posting()
     {  
     $data['siderbar_menus'] = $this->M_permission->list_labels('internal user');
     $data["job_post_list"] = $this->modelbasic->get_list_job_post();
-    $this->load->view("recruiter/free_job_post_header");
+    $this->load->view("recruiter/company_header");
     $this->load->view("recruiter/paid_posting", $data);
-    $this->load->view("recruiter/free_job_post_footer", $data);
+    $this->load->view("recruiter/company_footer", $data);
     }
     
 public function company_registration()
@@ -559,9 +560,9 @@ public function company_registration()
         $data["job_post_list"] = $this->modelbasic->get_list_job_post();
         $data['company_data'] = $this->m_admin_user->get_company_data($companyId);
         
-        $this->load->view("recruiter/free_job_post_header");
+        $this->load->view("recruiter/company_header");
         $this->load->view("recruiter/company_registration", $data);
-        $this->load->view("recruiter/free_job_post_footer", $data);
+        $this->load->view("recruiter/company_footer", $data);
         
         // Save the initial job data only once
         // $this->modelbasic->save_company_data($companyId, $jobData);
@@ -733,9 +734,9 @@ public function saveRegistration() {
     public function recruiter_registration()
 {
     $data['siderbar_menus'] = $this->M_permission->list_labels('internal user');
-    $this->load->view("recruiter/free_job_post_header");
+    $this->load->view("recruiter/company_header");
     $this->load->view("recruiter/recruiter_login", $data);
-    $this->load->view('recruiter/free_job_post_footer');
+    $this->load->view('recruiter/company_footer');
 }
 // public function PostJobOnSocialSite($profile, $job_description, $selectedPlatforms)
 // {

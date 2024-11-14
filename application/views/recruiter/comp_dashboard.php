@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css" integrity="sha384-NvKbDTEnL+A8F/AA5Tc5kmMLSJHUO868P+lDtTpJIeQdGYaUIuLr4lVGOEA1OcMy" crossorigin="anonymous">
-</head>
-<body>
+
 <div class="container-fluid dashboardOuterrrr">
     <div class="container frCompDashboarddddD">
         <div class="frCompDashboarddddDTop">
         <?php if (!empty($profile)): ?>
             <div>
-                <a class="frviewprImg" href="<?php echo base_url('job_post/view_profile') ?>" class="btn btn-secondary">
+                <!-- <a class="frviewprImg" href="<?php echo base_url('job_post/view_profile') ?>" class="btn btn-secondary">
                     <img src="<?= base_url('uploads/company_logos/' . $profile['company_logo']); ?>" width="40px" height="40px">
                 </a>
-                <a href="javascript:void(0);" class="btn btn-secondary" onclick="checkJobCountAndPost()">Post Job</a>
+                <a href="javascript:void(0);" class="btn btn-secondary" onclick="checkJobCountAndPost()">Post Job</a> -->
             <!-- Modal -->
             <div class="modal fade" id="jobLimitModal" tabindex="-1" role="dialog" aria-labelledby="jobLimitModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -113,6 +103,5 @@ $(document).ready(function() {
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
