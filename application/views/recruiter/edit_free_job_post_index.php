@@ -138,61 +138,59 @@
         <option value="18" <?php echo ($job_data[0]['max_exp_candidate'] == '18') ? 'selected' : ''; ?>>18 Years</option>
     </select>
 </div>
-
       
-      <div class="mb-3">
-        <label class="form-label"  for="min_salary">Min Salary</label>
-        <select class="form-control" name="min_salary" id="min_salary" value="<?php echo htmlspecialchars($job_data[0]['min_salary']); ?>">
-            <option  value="" selected>Select Min Salary</option>
-            <option value="less_50000_per_year">Less than ₹ 50,000/Year</option>
-            <option value="50000_per_year">₹ 50,000/Year</option>
-            <option value="1.0_lakh_per_year">₹ 1.0 Lakh /Year</option>
-            <option value="1.5_lakh_per_year">₹ 1.5 Lakh /Year</option>
-            <option value="2.0_lakh_per_year">₹ 2.0 Lakh /Year</option>
-            <option value="2.5_lakh_per_year">₹ 2.5 Lakh /Year</option>
-            <option value="3.0_lakh_per_year">₹ 3.0 Lakh /Year</option>
-            <option value="3.5_lakh_per_year">₹ 3.5 Lakh /Year</option>
-            <option value="4.0_lakh_per_year">₹ 4.0 Lakh /Year</option>
-            <option value="4.5_lakh_per_year">₹ 4.5 Lakh /Year</option>
-            <option value="5_lakh_per_year">₹ 5 Lakh /Year</option>
-            <option value="6_lakh_per_year">₹ 6 Lakh /Year</option>
-            <option value="7_lakh_per_year">₹ 7 Lakh /Year</option>
-            <option value="8_lakh_per_year">₹ 8 Lakh /Year</option>
-            <option value="9_lakh_per_year">₹ 9 Lakh /Year</option>
-            <option value="10_lakh_per_year">₹ 10 Lakh /Year</option>
-            <option value="11_lakh_per_year">₹ 11 Lakh /Year</option>
-            <option value="12_lakh_per_year">₹ 12 Lakh /Year</option>
-            <option value="13_lakh_per_year">₹ 13 Lakh /Year</option>
-            <option value="14_lakh_per_year">₹ 14 Lakh /Year</option>
-            <option value="15_lakh_per_year">₹ 15 Lakh /Year</option>
-            <option value="16_lakh_per_year">₹ 16 Lakh /Year</option>
-            <option value="17_lakh_per_year">₹ 17 Lakh /Year</option>
-            <option value="18_lakh_per_year">₹ 18 Lakh /Year</option>
-            <option value="19_lakh_per_year">₹ 19 Lakh /Year</option>
-            <option value="20_lakh_per_year">₹ 20 Lakh /Year</option>
-            <option value="21_lakh_per_year">₹ 21 Lakh /Year</option>
-            <option value="22_lakh_per_year">₹ 22 Lakh /Year</option>
-            <option value="23_lakh_per_year">₹ 23 Lakh /Year</option>
-            <option value="24_lakh_per_year">₹ 24 Lakh /Year</option>
-            <option value="25_lakh_per_year">₹ 25 Lakh /Year</option>
-            <option value="26_lakh_per_year">₹ 26 Lakh /Year</option>
-            <option value="27_lakh_per_year">₹ 27 Lakh /Year</option>
-            <option value="28_lakh_per_year">₹ 28 Lakh /Year</option>
-            <option value="29_lakh_per_year">₹ 29 Lakh /Year</option>
-            <option value="30_lakh_per_year">₹ 30 Lakh /Year</option>
-            <option value="31_lakh_per_year">₹ 31 Lakh /Year</option>
-            <option value="32_lakh_per_year">₹ 32 Lakh /Year</option>
-            <option value="33_lakh_per_year">₹ 33 Lakh /Year</option>
-            <option value="34_lakh_per_year">₹ 34 Lakh /Year</option>
-            <option value="35_lakh_per_year">₹ 35 Lakh /Year</option>
-            <option value="36_lakh_per_year">₹ 36 Lakh /Year</option>
-            <option value="37_lakh_per_year">₹ 37 Lakh /Year</option>
-            <option value="38_lakh_per_year">₹ 38 Lakh /Year</option>
-            <option value="39_lakh_per_year">₹ 39 Lakh /Year</option>
-            <option value="40_lakh_per_year">₹ 40 Lakh /Year</option>
-            
-        </select>
-      </div>
+<div class="mb-3">
+    <label class="form-label" for="min_salary">Min Salary</label>
+    <select class="form-control" name="min_salary" id="min_salary" required>
+        <option value="" <?php echo ($job_data[0]['min_salary'] === '') ? 'selected' : ''; ?>>Select Min Salary</option>
+        <option value="less_50000_per_year" <?php echo ($job_data[0]['min_salary'] == 'less_50000_per_year') ? 'selected' : ''; ?>>Less than ₹ 50,000/Year</option>
+        <option value="50000_per_year" <?php echo ($job_data[0]['min_salary'] == '50000_per_year') ? 'selected' : ''; ?>>₹ 50,000/Year</option>
+        <option value="1.0_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '1.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 1.0 Lakh /Year</option>
+        <option value="1.5_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '1.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 1.5 Lakh /Year</option>
+        <option value="2.0_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '2.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 2.0 Lakh /Year</option>
+        <option value="2.5_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '2.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 2.5 Lakh /Year</option>
+        <option value="3.0_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '3.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 3.0 Lakh /Year</option>
+        <option value="3.5_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '3.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 3.5 Lakh /Year</option>
+        <option value="4.0_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '4.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 4.0 Lakh /Year</option>
+        <option value="4.5_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '4.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 4.5 Lakh /Year</option>
+        <option value="5_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '5_lakh_per_year') ? 'selected' : ''; ?>>₹ 5 Lakh /Year</option>
+        <option value="6_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '6_lakh_per_year') ? 'selected' : ''; ?>>₹ 6 Lakh /Year</option>
+        <option value="7_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '7_lakh_per_year') ? 'selected' : ''; ?>>₹ 7 Lakh /Year</option>
+        <option value="8_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '8_lakh_per_year') ? 'selected' : ''; ?>>₹ 8 Lakh /Year</option>
+        <option value="9_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '9_lakh_per_year') ? 'selected' : ''; ?>>₹ 9 Lakh /Year</option>
+        <option value="10_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '10_lakh_per_year') ? 'selected' : ''; ?>>₹ 10 Lakh /Year</option>
+        <option value="11_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '11_lakh_per_year') ? 'selected' : ''; ?>>₹ 11 Lakh /Year</option>
+        <option value="12_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '12_lakh_per_year') ? 'selected' : ''; ?>>₹ 12 Lakh /Year</option>
+        <option value="13_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '13_lakh_per_year') ? 'selected' : ''; ?>>₹ 13 Lakh /Year</option>
+        <option value="14_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '14_lakh_per_year') ? 'selected' : ''; ?>>₹ 14 Lakh /Year</option>
+        <option value="15_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '15_lakh_per_year') ? 'selected' : ''; ?>>₹ 15 Lakh /Year</option>
+        <option value="16_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '16_lakh_per_year') ? 'selected' : ''; ?>>₹ 16 Lakh /Year</option>
+        <option value="17_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '17_lakh_per_year') ? 'selected' : ''; ?>>₹ 17 Lakh /Year</option>
+        <option value="18_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '18_lakh_per_year') ? 'selected' : ''; ?>>₹ 18 Lakh /Year</option>
+        <option value="19_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '19_lakh_per_year') ? 'selected' : ''; ?>>₹ 19 Lakh /Year</option>
+        <option value="20_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '20_lakh_per_year') ? 'selected' : ''; ?>>₹ 20 Lakh /Year</option>
+        <option value="21_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '21_lakh_per_year') ? 'selected' : ''; ?>>₹ 21 Lakh /Year</option>
+        <option value="22_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '22_lakh_per_year') ? 'selected' : ''; ?>>₹ 22 Lakh /Year</option>
+        <option value="23_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '23_lakh_per_year') ? 'selected' : ''; ?>>₹ 23 Lakh /Year</option>
+        <option value="24_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '24_lakh_per_year') ? 'selected' : ''; ?>>₹ 24 Lakh /Year</option>
+        <option value="25_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '25_lakh_per_year') ? 'selected' : ''; ?>>₹ 25 Lakh /Year</option>
+        <option value="26_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '26_lakh_per_year') ? 'selected' : ''; ?>>₹ 26 Lakh /Year</option>
+        <option value="27_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '27_lakh_per_year') ? 'selected' : ''; ?>>₹ 27 Lakh /Year</option>
+        <option value="28_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '28_lakh_per_year') ? 'selected' : ''; ?>>₹ 28 Lakh /Year</option>
+        <option value="29_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '29_lakh_per_year') ? 'selected' : ''; ?>>₹ 29 Lakh /Year</option>
+        <option value="30_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '30_lakh_per_year') ? 'selected' : ''; ?>>₹ 30 Lakh /Year</option>
+        <option value="31_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '31_lakh_per_year') ? 'selected' : ''; ?>>₹ 31 Lakh /Year</option>
+        <option value="32_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '32_lakh_per_year') ? 'selected' : ''; ?>>₹ 32 Lakh /Year</option>
+        <option value="33_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '33_lakh_per_year') ? 'selected' : ''; ?>>₹ 33 Lakh /Year</option>
+        <option value="34_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '34_lakh_per_year') ? 'selected' : ''; ?>>₹ 34 Lakh /Year</option>
+        <option value="35_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '35_lakh_per_year') ? 'selected' : ''; ?>>₹ 35 Lakh /Year</option>
+        <option value="36_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '36_lakh_per_year') ? 'selected' : ''; ?>>₹ 36 Lakh /Year</option>
+        <option value="37_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '37_lakh_per_year') ? 'selected' : ''; ?>>₹ 37 Lakh /Year</option>
+        <option value="38_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '38_lakh_per_year') ? 'selected' : ''; ?>>₹ 38 Lakh /Year</option>
+        <option value="39_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '39_lakh_per_year') ? 'selected' : ''; ?>>₹ 39 Lakh /Year</option>
+        <option value="40_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '40_lakh_per_year') ? 'selected' : ''; ?>>₹ 40 Lakh /Year</option>
+    </select>
+</div>
       
       <div class="mb-3">
         <label class="form-label"  for="max_salary">Max Salary</label>
@@ -247,15 +245,23 @@
             
         </select>
       </div>
-      <div class="mb-3">
-    <label class="form-label" for="job_country">Job Country<span style="color: red;">*</span></label>
-    <select onchange="get_state_list(this.value); updatePreview();" class="form-control" name="job_country" id="job_country" value="<?php echo htmlspecialchars($job_data[0]['job_country']); ?>" required>
-        <option value="" selected>Select Country</option>
-        <?php foreach($country_list as $row) { ?>
-            <option value="<?= $row['id']; ?>"><?= $row['name']; ?></option>
+    <div class="mb-3">
+        <label class="form-label" for="job_country">Job Country<span style="color: red;">*</span></label>
+        <select onchange="get_state_list(this.value); updatePreview();" class="form-control" name="job_country" id="job_country" required>
+            <option value="" selected>Select Country</option>
+            <?php 
+            $selectedCountry = $job_data[0]['job_country'] ?? ''; // Get the job country or default to an empty string
+            foreach ($country_list as $row) { 
+                $isSelected = ($row['id'] == $selectedCountry) ? 'selected' : ''; // Check if this option should be selected
+            ?>
+                <option value="<?= htmlspecialchars($row['id']); ?>" <?= $isSelected; ?>>
+                    <?= htmlspecialchars($row['name']); ?>
+                </option>
             <?php } ?>
         </select>
     </div>
+
+
         
         <div class="mb-3">
         <label class="form-label"  for="job_state">Job State<span style="color: red;">*</span></label>
@@ -285,18 +291,18 @@
         <input autocomplete="off" class="form-control" type="text" name="job_pincode" id="job_pincode">
       </div> -->
       <div class="mb-3">
-        <label class="form-label"  for="shift_type">Shift Type<span style="color: red;">*</span></label>
-        <select class="form-control" name="shift_type" id="shift_type"  value="<?php echo htmlspecialchars($job_data[0]['shift_type']); ?>" required>
-            <option  value="" selected>Select Shift Type</option>
-            <option value="Morning">Morning</option>
-            <option value="Noon">Noon</option>
-            <option value="Evening">Evening</option>
-            <option value="Night">Night</option>
-            <option value="Split">Split</option>
-            <option value="Rotating">Rotating</option>
-            
-         </select>
-      </div> 
+    <label class="form-label" for="shift_type">Shift Type<span style="color: red;">*</span></label>
+    <select class="form-control" name="shift_type" id="shift_type" required>
+        <option value="" selected>Select Shift Type</option>
+        <option value="Morning" <?= isset($job_data[0]['shift_type']) && $job_data[0]['shift_type'] === 'Morning' ? 'selected' : ''; ?>>Morning</option>
+        <option value="Noon" <?= isset($job_data[0]['shift_type']) && $job_data[0]['shift_type'] === 'Noon' ? 'selected' : ''; ?>>Noon</option>
+        <option value="Evening" <?= isset($job_data[0]['shift_type']) && $job_data[0]['shift_type'] === 'Evening' ? 'selected' : ''; ?>>Evening</option>
+        <option value="Night" <?= isset($job_data[0]['shift_type']) && $job_data[0]['shift_type'] === 'Night' ? 'selected' : ''; ?>>Night</option>
+        <option value="Split" <?= isset($job_data[0]['shift_type']) && $job_data[0]['shift_type'] === 'Split' ? 'selected' : ''; ?>>Split</option>
+        <option value="Rotating" <?= isset($job_data[0]['shift_type']) && $job_data[0]['shift_type'] === 'Rotating' ? 'selected' : ''; ?>>Rotating</option>
+    </select>
+</div>
+
 
 <div class="mb-3">
     <label class="form-label" for="job_descriptions">Job Descriptions<span style="color: red;">*</span></label>
@@ -330,26 +336,30 @@
     });
 </script>
 
-        <div class="mb-3">
-        <label class="form-label"  for="industry_type">Industry Type<span style="color: red;">*</span></label>
+<div class="mb-3">
+    <label class="form-label"  for="industry_type">Industry Type<span style="color: red;">*</span></label>
         <input autocomplete="off" type="text" class="form-control" type="industry_type" name="industry_type" id="industry_type"  value="<?php echo htmlspecialchars($job_data[0]['industry_type']); ?>" required>
-        </div>
+</div>
         <div class="mb-3">
-        <label class="form-label" for="department">Department<span style="color: red;">*</span></label>
-            <select class="form-control" name="department" id="department"  value="<?php echo htmlspecialchars($job_data[0]['department']); ?>" required>
-                <option value="" selected>Select Department</option>
-                <?php foreach($department_list as $row) { ?>
-                    <option value="<?= $row['dept_id']; ?>"><?= $row['dept_name']; ?></option>
-                    <?php } ?>
-                </select>
-        </div>
+    <label class="form-label" for="department">Department<span style="color: red;">*</span></label>
+    <select class="form-control" name="department" id="department" required>
+        <option value="" selected>Select Department</option>
+        <?php foreach($department_list as $row) { ?>
+            <option value="<?= $row['dept_name']; ?>" <?= isset($job_data[0]['department']) && $job_data[0]['department'] == $row['dept_name'] ? 'selected' : ''; ?>>
+                <?= $row['dept_name']; ?>
+            </option>
+        <?php } ?>
+    </select>
+</div>
+
+
         
         <div class="mb-3">
         <label class="form-label"  for="job_type">Job Type<span style="color: red;">*</span></label>
         <select class="form-control" name="job_type" id="job_type"  value="<?php echo htmlspecialchars($job_data[0]['job_type']); ?>" required>
             <option value="" selected>Select Job Type</option>
-            <option value="Full_Time">Full Time</option>
-            <option value="Part_Time">Part Time</option>
+            <option value="Full_Time" <?= isset($job_data[0]['job_type']) && $job_data[0]['job_type'] === 'Full_Time' ? 'selected' : ''; ?>>Full Time</option>
+            <option value="Part_Time" <?= isset($job_data[0]['job_type']) && $job_data[0]['job_type'] === 'Part_Time' ? 'selected' : ''; ?>>Part Time</option>
             
         </select>
         </div>
@@ -362,24 +372,32 @@
         <label class="form-label"  for="work_mode">Employment Type</label>
         <select class="form-control" name="work_mode" id="work_mode"  value="<?php echo htmlspecialchars($job_data[0]['job_country']); ?>">
             <option  value="" selected>Select Employment Type</option>
-            <option value="Permanent">Permanent</option>
-            <option value="Contractual">Contractual</option>
-            <option value="Internship">Internship</option>
+            <option value="Permanent" <?= isset($job_data[0]['work_mode']) && $job_data[0]['work_mode'] === 'Permanent' ? 'selected' : ''; ?>>Permanent</option>
+            <option value="Contractual" <?= isset($job_data[0]['work_mode']) && $job_data[0]['work_mode'] === 'Contractual' ? 'selected' : ''; ?>>Contractual</option>
+            <option value="Internship" <?= isset($job_data[0]['work_mode']) && $job_data[0]['work_mode'] === 'Internship' ? 'selected' : ''; ?>>Internship</option>
         </select>
         </div>
         <br>
         <div class="mb-3 freducationnnn">
-            <label class="form-label" for="education">Education<span style="color: red;">*</span></label>
-            <select class="form-control" name="education" id="education" multiple="multiple"  value="<?php echo htmlspecialchars($job_data[0]['education']); ?>" required 
-                    multiselect-search="true" multiselect-select-all="true" 
-                    multiselect-max-items="3" size="10" 
-                    onchange="showSelectedEducation()">
-                
-                <?php foreach($education_list as $row)  { ?>
-                <option class="form-control" value="<?= $row->course_id; ?>"><?= $row->course_name; ?></option>
-                <?php } ?>
-            </select>
-        </div>
+    <label class="form-label" for="education">Education<span style="color: red;">*</span></label>
+    <select class="form-control" name="education[]" id="education" multiple="multiple" 
+            required multiselect-search="true" multiselect-select-all="true" 
+            multiselect-max-items="3" size="10" onchange="showSelectedEducation()">
+        
+        <?php foreach($education_list as $row)  { ?>
+            <option class="form-control" value="<?= $row->course_id; ?>" 
+                <?php 
+                    // Check if this course is selected by comparing the course ID with $job_data['education']
+                    if (in_array($row->course_id, explode(',', $job_data[0]['education']))) { 
+                        echo 'selected'; 
+                    }
+                ?>>
+                <?= $row->course_name; ?>
+            </option>
+        <?php } ?>
+    </select>
+</div>
+
         <br>
        
         <div class="mb-3">
