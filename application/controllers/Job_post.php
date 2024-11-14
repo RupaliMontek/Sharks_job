@@ -194,9 +194,9 @@ public function send_reset_link()
        $data["country_list"]     = $this->modelbasic->get_country_list();
        $data["department_list"]     = $this->modelbasic->get_department_list();
 
-       $this->load->view("recruiter/free_job_post_header");
+       $this->load->view("recruiter/company_header");
        $this->load->view("recruiter/edit_free_job_post_index.php",$data);
-       $this->load->view("recruiter/free_job_post_footer",$data);
+       $this->load->view("recruiter/company_footer",$data);
     }
     public function recruiter_login()
 {
