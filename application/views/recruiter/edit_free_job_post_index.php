@@ -143,52 +143,52 @@
     <label class="form-label" for="min_salary">Min Salary</label>
     <select class="form-control" name="min_salary" id="min_salary" required>
         <option value="" <?php echo ($job_data[0]['min_salary'] === '') ? 'selected' : ''; ?>>Select Min Salary</option>
-        <option value="less_50000_per_year" <?php echo ($job_data[0]['min_salary'] == 'less_50000_per_year') ? 'selected' : ''; ?>>Less than ₹ 50,000/Year</option>
-        <option value="50000_per_year" <?php echo ($job_data[0]['min_salary'] == '50000_per_year') ? 'selected' : ''; ?>>₹ 50,000/Year</option>
-        <option value="1.0_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '1.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 1.0 Lakh /Year</option>
-        <option value="1.5_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '1.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 1.5 Lakh /Year</option>
-        <option value="2.0_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '2.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 2.0 Lakh /Year</option>
-        <option value="2.5_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '2.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 2.5 Lakh /Year</option>
-        <option value="3.0_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '3.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 3.0 Lakh /Year</option>
-        <option value="3.5_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '3.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 3.5 Lakh /Year</option>
-        <option value="4.0_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '4.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 4.0 Lakh /Year</option>
-        <option value="4.5_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '4.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 4.5 Lakh /Year</option>
-        <option value="5_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '5_lakh_per_year') ? 'selected' : ''; ?>>₹ 5 Lakh /Year</option>
-        <option value="6_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '6_lakh_per_year') ? 'selected' : ''; ?>>₹ 6 Lakh /Year</option>
-        <option value="7_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '7_lakh_per_year') ? 'selected' : ''; ?>>₹ 7 Lakh /Year</option>
-        <option value="8_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '8_lakh_per_year') ? 'selected' : ''; ?>>₹ 8 Lakh /Year</option>
-        <option value="9_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '9_lakh_per_year') ? 'selected' : ''; ?>>₹ 9 Lakh /Year</option>
-        <option value="10_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '10_lakh_per_year') ? 'selected' : ''; ?>>₹ 10 Lakh /Year</option>
-        <option value="11_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '11_lakh_per_year') ? 'selected' : ''; ?>>₹ 11 Lakh /Year</option>
-        <option value="12_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '12_lakh_per_year') ? 'selected' : ''; ?>>₹ 12 Lakh /Year</option>
-        <option value="13_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '13_lakh_per_year') ? 'selected' : ''; ?>>₹ 13 Lakh /Year</option>
-        <option value="14_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '14_lakh_per_year') ? 'selected' : ''; ?>>₹ 14 Lakh /Year</option>
-        <option value="15_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '15_lakh_per_year') ? 'selected' : ''; ?>>₹ 15 Lakh /Year</option>
-        <option value="16_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '16_lakh_per_year') ? 'selected' : ''; ?>>₹ 16 Lakh /Year</option>
-        <option value="17_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '17_lakh_per_year') ? 'selected' : ''; ?>>₹ 17 Lakh /Year</option>
-        <option value="18_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '18_lakh_per_year') ? 'selected' : ''; ?>>₹ 18 Lakh /Year</option>
-        <option value="19_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '19_lakh_per_year') ? 'selected' : ''; ?>>₹ 19 Lakh /Year</option>
-        <option value="20_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '20_lakh_per_year') ? 'selected' : ''; ?>>₹ 20 Lakh /Year</option>
-        <option value="21_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '21_lakh_per_year') ? 'selected' : ''; ?>>₹ 21 Lakh /Year</option>
-        <option value="22_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '22_lakh_per_year') ? 'selected' : ''; ?>>₹ 22 Lakh /Year</option>
-        <option value="23_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '23_lakh_per_year') ? 'selected' : ''; ?>>₹ 23 Lakh /Year</option>
-        <option value="24_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '24_lakh_per_year') ? 'selected' : ''; ?>>₹ 24 Lakh /Year</option>
-        <option value="25_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '25_lakh_per_year') ? 'selected' : ''; ?>>₹ 25 Lakh /Year</option>
-        <option value="26_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '26_lakh_per_year') ? 'selected' : ''; ?>>₹ 26 Lakh /Year</option>
-        <option value="27_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '27_lakh_per_year') ? 'selected' : ''; ?>>₹ 27 Lakh /Year</option>
-        <option value="28_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '28_lakh_per_year') ? 'selected' : ''; ?>>₹ 28 Lakh /Year</option>
-        <option value="29_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '29_lakh_per_year') ? 'selected' : ''; ?>>₹ 29 Lakh /Year</option>
-        <option value="30_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '30_lakh_per_year') ? 'selected' : ''; ?>>₹ 30 Lakh /Year</option>
-        <option value="31_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '31_lakh_per_year') ? 'selected' : ''; ?>>₹ 31 Lakh /Year</option>
-        <option value="32_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '32_lakh_per_year') ? 'selected' : ''; ?>>₹ 32 Lakh /Year</option>
-        <option value="33_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '33_lakh_per_year') ? 'selected' : ''; ?>>₹ 33 Lakh /Year</option>
-        <option value="34_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '34_lakh_per_year') ? 'selected' : ''; ?>>₹ 34 Lakh /Year</option>
-        <option value="35_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '35_lakh_per_year') ? 'selected' : ''; ?>>₹ 35 Lakh /Year</option>
-        <option value="36_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '36_lakh_per_year') ? 'selected' : ''; ?>>₹ 36 Lakh /Year</option>
-        <option value="37_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '37_lakh_per_year') ? 'selected' : ''; ?>>₹ 37 Lakh /Year</option>
-        <option value="38_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '38_lakh_per_year') ? 'selected' : ''; ?>>₹ 38 Lakh /Year</option>
-        <option value="39_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '39_lakh_per_year') ? 'selected' : ''; ?>>₹ 39 Lakh /Year</option>
-        <option value="40_lakh_per_year" <?php echo ($job_data[0]['min_salary'] == '40_lakh_per_year') ? 'selected' : ''; ?>>₹ 40 Lakh /Year</option>
+        <option value="less_50000_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == 'less_50000_per_year') ? 'selected' : ''; ?>>Less than ₹ 50,000/Year</option>
+        <option value="50000_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '50000_per_year') ? 'selected' : ''; ?>>₹ 50,000/Year</option>
+        <option value="1.0_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '1.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 1.0 Lakh /Year</option>
+        <option value="1.5_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '1.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 1.5 Lakh /Year</option>
+        <option value="2.0_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '2.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 2.0 Lakh /Year</option>
+        <option value="2.5_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '2.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 2.5 Lakh /Year</option>
+        <option value="3.0_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '3.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 3.0 Lakh /Year</option>
+        <option value="3.5_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '3.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 3.5 Lakh /Year</option>
+        <option value="4.0_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '4.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 4.0 Lakh /Year</option>
+        <option value="4.5_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '4.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 4.5 Lakh /Year</option>
+        <option value="5_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '5_lakh_per_year') ? 'selected' : ''; ?>>₹ 5 Lakh /Year</option>
+        <option value="6_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '6_lakh_per_year') ? 'selected' : ''; ?>>₹ 6 Lakh /Year</option>
+        <option value="7_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '7_lakh_per_year') ? 'selected' : ''; ?>>₹ 7 Lakh /Year</option>
+        <option value="8_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '8_lakh_per_year') ? 'selected' : ''; ?>>₹ 8 Lakh /Year</option>
+        <option value="9_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '9_lakh_per_year') ? 'selected' : ''; ?>>₹ 9 Lakh /Year</option>
+        <option value="10_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '10_lakh_per_year') ? 'selected' : ''; ?>>₹ 10 Lakh /Year</option>
+        <option value="11_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '11_lakh_per_year') ? 'selected' : ''; ?>>₹ 11 Lakh /Year</option>
+        <option value="12_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '12_lakh_per_year') ? 'selected' : ''; ?>>₹ 12 Lakh /Year</option>
+        <option value="13_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '13_lakh_per_year') ? 'selected' : ''; ?>>₹ 13 Lakh /Year</option>
+        <option value="14_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '14_lakh_per_year') ? 'selected' : ''; ?>>₹ 14 Lakh /Year</option>
+        <option value="15_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '15_lakh_per_year') ? 'selected' : ''; ?>>₹ 15 Lakh /Year</option>
+        <option value="16_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '16_lakh_per_year') ? 'selected' : ''; ?>>₹ 16 Lakh /Year</option>
+        <option value="17_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '17_lakh_per_year') ? 'selected' : ''; ?>>₹ 17 Lakh /Year</option>
+        <option value="18_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '18_lakh_per_year') ? 'selected' : ''; ?>>₹ 18 Lakh /Year</option>
+        <option value="19_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '19_lakh_per_year') ? 'selected' : ''; ?>>₹ 19 Lakh /Year</option>
+        <option value="20_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '20_lakh_per_year') ? 'selected' : ''; ?>>₹ 20 Lakh /Year</option>
+        <option value="21_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '21_lakh_per_year') ? 'selected' : ''; ?>>₹ 21 Lakh /Year</option>
+        <option value="22_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '22_lakh_per_year') ? 'selected' : ''; ?>>₹ 22 Lakh /Year</option>
+        <option value="23_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '23_lakh_per_year') ? 'selected' : ''; ?>>₹ 23 Lakh /Year</option>
+        <option value="24_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '24_lakh_per_year') ? 'selected' : ''; ?>>₹ 24 Lakh /Year</option>
+        <option value="25_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '25_lakh_per_year') ? 'selected' : ''; ?>>₹ 25 Lakh /Year</option>
+        <option value="26_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '26_lakh_per_year') ? 'selected' : ''; ?>>₹ 26 Lakh /Year</option>
+        <option value="27_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '27_lakh_per_year') ? 'selected' : ''; ?>>₹ 27 Lakh /Year</option>
+        <option value="28_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '28_lakh_per_year') ? 'selected' : ''; ?>>₹ 28 Lakh /Year</option>
+        <option value="29_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '29_lakh_per_year') ? 'selected' : ''; ?>>₹ 29 Lakh /Year</option>
+        <option value="30_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '30_lakh_per_year') ? 'selected' : ''; ?>>₹ 30 Lakh /Year</option>
+        <option value="31_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '31_lakh_per_year') ? 'selected' : ''; ?>>₹ 31 Lakh /Year</option>
+        <option value="32_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '32_lakh_per_year') ? 'selected' : ''; ?>>₹ 32 Lakh /Year</option>
+        <option value="33_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '33_lakh_per_year') ? 'selected' : ''; ?>>₹ 33 Lakh /Year</option>
+        <option value="34_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '34_lakh_per_year') ? 'selected' : ''; ?>>₹ 34 Lakh /Year</option>
+        <option value="35_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '35_lakh_per_year') ? 'selected' : ''; ?>>₹ 35 Lakh /Year</option>
+        <option value="36_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '36_lakh_per_year') ? 'selected' : ''; ?>>₹ 36 Lakh /Year</option>
+        <option value="37_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '37_lakh_per_year') ? 'selected' : ''; ?>>₹ 37 Lakh /Year</option>
+        <option value="38_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '38_lakh_per_year') ? 'selected' : ''; ?>>₹ 38 Lakh /Year</option>
+        <option value="39_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '39_lakh_per_year') ? 'selected' : ''; ?>>₹ 39 Lakh /Year</option>
+        <option value="40_lakh_per_year" <?php echo ($job_data[0]['comany_min_package_offer'] == '40_lakh_per_year') ? 'selected' : ''; ?>>₹ 40 Lakh /Year</option>
     </select>
 </div>
       
@@ -196,52 +196,52 @@
     <label class="form-label" for="max_salary">Max Salary</label>
     <select class="form-control" name="max_salary" id="max_salary">
         <option value="" <?php echo empty($job_data[0]['max_salary']) ? 'selected' : ''; ?>>Select Max Salary</option>
-        <option value="less_50000_per_year" <?php echo ($job_data[0]['max_salary'] == 'less_50000_per_year') ? 'selected' : ''; ?>>Less than ₹ 50,000/Year</option>
-        <option value="50000_per_year" <?php echo ($job_data[0]['max_salary'] == '50000_per_year') ? 'selected' : ''; ?>>₹ 50,000/Year</option>
-        <option value="1.0_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '1.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 1.0 Lakh /Year</option>
-        <option value="1.5_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '1.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 1.5 Lakh /Year</option>
-        <option value="2.0_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '2.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 2.0 Lakh /Year</option>
-        <option value="2.5_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '2.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 2.5 Lakh /Year</option>
-        <option value="3.0_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '3.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 3.0 Lakh /Year</option>
-        <option value="3.5_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '3.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 3.5 Lakh /Year</option>
-        <option value="4.0_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '4.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 4.0 Lakh /Year</option>
-        <option value="4.5_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '4.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 4.5 Lakh /Year</option>
-        <option value="5_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '5_lakh_per_year') ? 'selected' : ''; ?>>₹ 5 Lakh /Year</option>
-        <option value="6_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '6_lakh_per_year') ? 'selected' : ''; ?>>₹ 6 Lakh /Year</option>
-        <option value="7_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '7_lakh_per_year') ? 'selected' : ''; ?>>₹ 7 Lakh /Year</option>
-        <option value="8_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '8_lakh_per_year') ? 'selected' : ''; ?>>₹ 8 Lakh /Year</option>
-        <option value="9_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '9_lakh_per_year') ? 'selected' : ''; ?>>₹ 9 Lakh /Year</option>
-        <option value="10_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '10_lakh_per_year') ? 'selected' : ''; ?>>₹ 10 Lakh /Year</option>
-        <option value="11_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '11_lakh_per_year') ? 'selected' : ''; ?>>₹ 11 Lakh /Year</option>
-        <option value="12_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '12_lakh_per_year') ? 'selected' : ''; ?>>₹ 12 Lakh /Year</option>
-        <option value="13_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '13_lakh_per_year') ? 'selected' : ''; ?>>₹ 13 Lakh /Year</option>
-        <option value="14_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '14_lakh_per_year') ? 'selected' : ''; ?>>₹ 14 Lakh /Year</option>
-        <option value="15_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '15_lakh_per_year') ? 'selected' : ''; ?>>₹ 15 Lakh /Year</option>
-        <option value="16_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '16_lakh_per_year') ? 'selected' : ''; ?>>₹ 16 Lakh /Year</option>
-        <option value="17_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '17_lakh_per_year') ? 'selected' : ''; ?>>₹ 17 Lakh /Year</option>
-        <option value="18_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '18_lakh_per_year') ? 'selected' : ''; ?>>₹ 18 Lakh /Year</option>
-        <option value="19_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '19_lakh_per_year') ? 'selected' : ''; ?>>₹ 19 Lakh /Year</option>
-        <option value="20_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '20_lakh_per_year') ? 'selected' : ''; ?>>₹ 20 Lakh /Year</option>
-        <option value="21_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '21_lakh_per_year') ? 'selected' : ''; ?>>₹ 21 Lakh /Year</option>
-        <option value="22_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '22_lakh_per_year') ? 'selected' : ''; ?>>₹ 22 Lakh /Year</option>
-        <option value="23_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '23_lakh_per_year') ? 'selected' : ''; ?>>₹ 23 Lakh /Year</option>
-        <option value="24_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '24_lakh_per_year') ? 'selected' : ''; ?>>₹ 24 Lakh /Year</option>
-        <option value="25_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '25_lakh_per_year') ? 'selected' : ''; ?>>₹ 25 Lakh /Year</option>
-        <option value="26_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '26_lakh_per_year') ? 'selected' : ''; ?>>₹ 26 Lakh /Year</option>
-        <option value="27_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '27_lakh_per_year') ? 'selected' : ''; ?>>₹ 27 Lakh /Year</option>
-        <option value="28_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '28_lakh_per_year') ? 'selected' : ''; ?>>₹ 28 Lakh /Year</option>
-        <option value="29_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '29_lakh_per_year') ? 'selected' : ''; ?>>₹ 29 Lakh /Year</option>
-        <option value="30_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '30_lakh_per_year') ? 'selected' : ''; ?>>₹ 30 Lakh /Year</option>
-        <option value="31_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '31_lakh_per_year') ? 'selected' : ''; ?>>₹ 31 Lakh /Year</option>
-        <option value="32_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '32_lakh_per_year') ? 'selected' : ''; ?>>₹ 32 Lakh /Year</option>
-        <option value="33_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '33_lakh_per_year') ? 'selected' : ''; ?>>₹ 33 Lakh /Year</option>
-        <option value="34_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '34_lakh_per_year') ? 'selected' : ''; ?>>₹ 34 Lakh /Year</option>
-        <option value="35_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '35_lakh_per_year') ? 'selected' : ''; ?>>₹ 35 Lakh /Year</option>
-        <option value="36_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '36_lakh_per_year') ? 'selected' : ''; ?>>₹ 36 Lakh /Year</option>
-        <option value="37_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '37_lakh_per_year') ? 'selected' : ''; ?>>₹ 37 Lakh /Year</option>
-        <option value="38_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '38_lakh_per_year') ? 'selected' : ''; ?>>₹ 38 Lakh /Year</option>
-        <option value="39_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '39_lakh_per_year') ? 'selected' : ''; ?>>₹ 39 Lakh /Year</option>
-        <option value="40_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '40_lakh_per_year') ? 'selected' : ''; ?>>₹ 40 Lakh /Year</option>
+        <option value="less_50000_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == 'less_50000_per_year') ? 'selected' : ''; ?>>Less than ₹ 50,000/Year</option>
+        <option value="50000_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '50000_per_year') ? 'selected' : ''; ?>>₹ 50,000/Year</option>
+        <option value="1.0_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '1.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 1.0 Lakh /Year</option>
+        <option value="1.5_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '1.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 1.5 Lakh /Year</option>
+        <option value="2.0_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '2.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 2.0 Lakh /Year</option>
+        <option value="2.5_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '2.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 2.5 Lakh /Year</option>
+        <option value="3.0_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '3.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 3.0 Lakh /Year</option>
+        <option value="3.5_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '3.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 3.5 Lakh /Year</option>
+        <option value="4.0_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '4.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 4.0 Lakh /Year</option>
+        <option value="4.5_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '4.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 4.5 Lakh /Year</option>
+        <option value="5_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '5_lakh_per_year') ? 'selected' : ''; ?>>₹ 5 Lakh /Year</option>
+        <option value="6_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '6_lakh_per_year') ? 'selected' : ''; ?>>₹ 6 Lakh /Year</option>
+        <option value="7_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '7_lakh_per_year') ? 'selected' : ''; ?>>₹ 7 Lakh /Year</option>
+        <option value="8_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '8_lakh_per_year') ? 'selected' : ''; ?>>₹ 8 Lakh /Year</option>
+        <option value="9_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '9_lakh_per_year') ? 'selected' : ''; ?>>₹ 9 Lakh /Year</option>
+        <option value="10_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '10_lakh_per_year') ? 'selected' : ''; ?>>₹ 10 Lakh /Year</option>
+        <option value="11_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '11_lakh_per_year') ? 'selected' : ''; ?>>₹ 11 Lakh /Year</option>
+        <option value="12_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '12_lakh_per_year') ? 'selected' : ''; ?>>₹ 12 Lakh /Year</option>
+        <option value="13_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '13_lakh_per_year') ? 'selected' : ''; ?>>₹ 13 Lakh /Year</option>
+        <option value="14_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '14_lakh_per_year') ? 'selected' : ''; ?>>₹ 14 Lakh /Year</option>
+        <option value="15_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '15_lakh_per_year') ? 'selected' : ''; ?>>₹ 15 Lakh /Year</option>
+        <option value="16_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '16_lakh_per_year') ? 'selected' : ''; ?>>₹ 16 Lakh /Year</option>
+        <option value="17_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '17_lakh_per_year') ? 'selected' : ''; ?>>₹ 17 Lakh /Year</option>
+        <option value="18_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '18_lakh_per_year') ? 'selected' : ''; ?>>₹ 18 Lakh /Year</option>
+        <option value="19_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '19_lakh_per_year') ? 'selected' : ''; ?>>₹ 19 Lakh /Year</option>
+        <option value="20_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '20_lakh_per_year') ? 'selected' : ''; ?>>₹ 20 Lakh /Year</option>
+        <option value="21_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '21_lakh_per_year') ? 'selected' : ''; ?>>₹ 21 Lakh /Year</option>
+        <option value="22_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '22_lakh_per_year') ? 'selected' : ''; ?>>₹ 22 Lakh /Year</option>
+        <option value="23_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '23_lakh_per_year') ? 'selected' : ''; ?>>₹ 23 Lakh /Year</option>
+        <option value="24_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '24_lakh_per_year') ? 'selected' : ''; ?>>₹ 24 Lakh /Year</option>
+        <option value="25_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '25_lakh_per_year') ? 'selected' : ''; ?>>₹ 25 Lakh /Year</option>
+        <option value="26_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '26_lakh_per_year') ? 'selected' : ''; ?>>₹ 26 Lakh /Year</option>
+        <option value="27_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '27_lakh_per_year') ? 'selected' : ''; ?>>₹ 27 Lakh /Year</option>
+        <option value="28_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '28_lakh_per_year') ? 'selected' : ''; ?>>₹ 28 Lakh /Year</option>
+        <option value="29_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '29_lakh_per_year') ? 'selected' : ''; ?>>₹ 29 Lakh /Year</option>
+        <option value="30_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '30_lakh_per_year') ? 'selected' : ''; ?>>₹ 30 Lakh /Year</option>
+        <option value="31_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '31_lakh_per_year') ? 'selected' : ''; ?>>₹ 31 Lakh /Year</option>
+        <option value="32_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '32_lakh_per_year') ? 'selected' : ''; ?>>₹ 32 Lakh /Year</option>
+        <option value="33_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '33_lakh_per_year') ? 'selected' : ''; ?>>₹ 33 Lakh /Year</option>
+        <option value="34_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '34_lakh_per_year') ? 'selected' : ''; ?>>₹ 34 Lakh /Year</option>
+        <option value="35_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '35_lakh_per_year') ? 'selected' : ''; ?>>₹ 35 Lakh /Year</option>
+        <option value="36_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '36_lakh_per_year') ? 'selected' : ''; ?>>₹ 36 Lakh /Year</option>
+        <option value="37_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '37_lakh_per_year') ? 'selected' : ''; ?>>₹ 37 Lakh /Year</option>
+        <option value="38_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '38_lakh_per_year') ? 'selected' : ''; ?>>₹ 38 Lakh /Year</option>
+        <option value="39_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '39_lakh_per_year') ? 'selected' : ''; ?>>₹ 39 Lakh /Year</option>
+        <option value="40_lakh_per_year" <?php echo ($job_data[0]['comany_max_package_offer'] == '40_lakh_per_year') ? 'selected' : ''; ?>>₹ 40 Lakh /Year</option>
     </select>
 </div>
 
@@ -250,7 +250,7 @@
         <select onchange="get_state_list(this.value); updatePreview();" class="form-control" name="job_country" id="job_country" required>
             <option value="" selected>Select Country</option>
             <?php 
-            $selectedCountry = $job_data[0]['job_country'] ?? ''; 
+            $selectedCountry = $job_data[0]['country_id'] ?? ''; 
             foreach ($country_list as $row) { 
                 $isSelected = ($row['id'] == $selectedCountry) ? 'selected' : ''; 
             ?>
@@ -263,19 +263,38 @@
 
 
         
-        <div class="mb-3">
-        <label class="form-label"  for="job_state">Job State<span style="color: red;">*</span></label>
-        <select onchange="get_city_list(this.value); updateStatePreview();"class="form-control" name="job_state" id="job_state"  value="<?php echo htmlspecialchars($job_data[0]['job_state']); ?>" required>
-            <option value="" selected>Select State</option>
-        </select>
-        </div> 
+    <div class="mb-3">
+    <label class="form-label" for="job_state">Job State<span style="color: red;">*</span></label>
+    <select onchange="get_city_list(this.value); updateStatePreview();" class="form-control" name="job_state" id="job_state" required>
+        <option value="" selected>Select State</option>
+        <?php 
+        // Fetch states from the database
+        $states = $this->db->query("SELECT `id`, `name`, `country_id` FROM `states` WHERE 1")->result_array();
+        foreach ($states as $state) {
+            $selected = ($state['id'] == $job_data[0]['state_id']) ? 'selected' : '';
+            echo "<option value='" . $state['id'] . "' $selected>" . htmlspecialchars($state['name']) . "</option>";
+        }
+        ?>
+    </select>
+</div>
+
         
-      <div class="mb-3">
-            <label class="form-label"  for="job_location">Job City<span style="color: red;">*</span></label>
-        <select onchange="updateCityPreview();"  class="form-control" name="job_location" id="job_location"  value="<?php echo htmlspecialchars($job_data[0]['job_location']); ?>" required>
-            <option value="" selected>Select Job Location</option>
-        </select>
-      </div> 
+<div class="mb-3">
+    <label class="form-label" for="job_location">Job City<span style="color: red;">*</span></label>
+    <select onchange="updateCityPreview();" class="form-control" name="job_location" id="job_location" required>
+        <option value="" selected>Select Job Location</option>
+        <?php 
+        // Fetch cities for the selected state (assumed state_id is available as $job_data[0]['state_id'])
+        $cities = $this->db->query("SELECT `id`, `name` FROM `cities` WHERE `state_id` = ?", [$job_data[0]['state_id']])->result_array();
+        
+        foreach ($cities as $city) {
+            $selected = ($city['id'] == $job_data[0]['job_location']) ? 'selected' : '';
+            echo "<option value='" . $city['id'] . "' $selected>" . htmlspecialchars($city['name']) . "</option>";
+        }
+        ?>
+    </select>
+</div>
+
       <div class="mb-3">
     <label class="form-label" for="job_opening_address">Job Opening Address<span style="color: red;">*</span></label>
     <textarea autocomplete="off" class="form-control" name="job_opening_address" id="job_opening_address" required><?php echo htmlspecialchars($job_data[0]['job_opening_address']); ?></textarea>
