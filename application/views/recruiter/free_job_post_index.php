@@ -329,10 +329,132 @@
     });
 </script>
 
-        <div class="mb-3">
-        <label class="form-label"  for="industry_type">Industry Type<span style="color: red;">*</span></label>
-        <input autocomplete="off" type="text" class="form-control" type="industry_type" name="industry_type" id="industry_type" required>
-        </div>
+<div class="mb-3">
+    <label class="form-label" for="industry_type">Industry Type <span style="color: red;">*</span></label>
+    <select class="form-control" name="industry_type" id="industry_type" required>
+        <option value="">Select Industry Type</option>
+        
+        <optgroup label="IT Services">
+            <option value="IT Services">IT Services</option>
+            <option value="IT Services & Consulting">IT Services & Consulting</option>
+        </optgroup>
+        
+        <optgroup label="BPM">
+            <option value="BPO / Call Centre">BPO / Call Centre</option>
+            <option value="Analytics / KPO / Research">Analytics / KPO / Research</option>
+        </optgroup>
+
+        <optgroup label="Professional Services">
+            <option value="Recruitment / Staffing">Recruitment / Staffing</option>
+            <option value="Management Consulting">Management Consulting</option>
+            <option value="Law Enforcement / Security Services">Law Enforcement / Security Services</option>
+            <option value="Architecture / Interior Design">Architecture / Interior Design</option>
+            <option value="Accounting / Auditing">Accounting / Auditing</option>
+            <option value="Facility Management Services">Facility Management Services</option>
+            <option value="Legal">Legal</option>
+            <option value="Design">Design</option>
+            <option value="Content Development / Language">Content Development / Language</option>
+        </optgroup>
+
+        <optgroup label="Manufacturing & Production">
+            <option value="Industrial Equipment / Machinery">Industrial Equipment / Machinery</option>
+            <option value="Chemicals">Chemicals</option>
+            <option value="Industrial Automation">Industrial Automation</option>
+            <option value="Automobile">Automobile</option>
+            <option value="Building Material">Building Material</option>
+            <option value="Petrochemical / Plastics / Rubber">Petrochemical / Plastics / Rubber</option>
+            <option value="Iron & Steel">Iron & Steel</option>
+            <option value="Auto Components">Auto Components</option>
+            <option value="Electrical Equipment">Electrical Equipment</option>
+            <option value="Packaging & Containers">Packaging & Containers</option>
+            <option value="Metals & Mining">Metals & Mining</option>
+            <option value="Fertilizers / Pesticides / Agro chemicals">Fertilizers / Pesticides / Agro chemicals</option>
+            <option value="Defence & Aerospace">Defence & Aerospace</option>
+            <option value="Pulp & Paper">Pulp & Paper</option>
+        </optgroup>
+
+        <optgroup label="BFSI">
+            <option value="Banking">Banking</option>
+            <option value="Financial Services">Financial Services</option>
+            <option value="Insurance">Insurance</option>
+            <option value="Investment Banking / Venture Capital / Private Equity">Investment Banking / Venture Capital / Private Equity</option>
+            <option value="NBFC">NBFC</option>
+            <option value="FinTech / Payments">FinTech / Payments</option>
+        </optgroup>
+
+        <optgroup label="Education">
+            <option value="Education / Training">Education / Training</option>
+            <option value="E-Learning / EdTech">E-Learning / EdTech</option>
+        </optgroup>
+
+        <optgroup label="Infrastructure, Transport & Real Estate">
+            <option value="Engineering & Construction">Engineering & Construction</option>
+            <option value="Real Estate">Real Estate</option>
+            <option value="Power">Power</option>
+            <option value="Courier / Logistics">Courier / Logistics</option>
+            <option value="Oil & Gas">Oil & Gas</option>
+            <option value="Water Treatment / Waste Management">Water Treatment / Waste Management</option>
+            <option value="Aviation">Aviation</option>
+            <option value="Ports & Shipping">Ports & Shipping</option>
+            <option value="Urban Transport">Urban Transport</option>
+            <option value="Railways">Railways</option>
+        </optgroup>
+
+        <optgroup label="Technology">
+            <option value="Internet">Internet</option>
+            <option value="Software Product">Software Product</option>
+            <option value="Electronics Manufacturing">Electronics Manufacturing</option>
+            <option value="Electronic Components / Semiconductors">Electronic Components / Semiconductors</option>
+            <option value="Hardware & Networking">Hardware & Networking</option>
+            <option value="Emerging Technologies">Emerging Technologies</option>
+        </optgroup>
+
+        <optgroup label="Media, Entertainment & Telecom">
+            <option value="Advertising & Marketing">Advertising & Marketing</option>
+            <option value="Telecom / ISP">Telecom / ISP</option>
+            <option value="Film / Music / Entertainment">Film / Music / Entertainment</option>
+            <option value="Printing & Publishing">Printing & Publishing</option>
+            <option value="Events / Live Entertainment">Events / Live Entertainment</option>
+            <option value="TV / Radio">TV / Radio</option>
+            <option value="Sports / Leisure & Recreation">Sports / Leisure & Recreation</option>
+            <option value="Animation & VFX">Animation & VFX</option>
+            <option value="Gaming">Gaming</option>
+        </optgroup>
+
+        <optgroup label="Healthcare & Life Sciences">
+            <option value="Medical Services / Hospital">Medical Services / Hospital</option>
+            <option value="Pharmaceutical & Life Sciences">Pharmaceutical & Life Sciences</option>
+            <option value="Medical Devices & Equipment">Medical Devices & Equipment</option>
+            <option value="Biotechnology">Biotechnology</option>
+            <option value="Clinical Research / Contract Research">Clinical Research / Contract Research</option>
+        </optgroup>
+
+        <optgroup label="Consumer, Retail & Hospitality">
+            <option value="FMCG">FMCG</option>
+            <option value="Retail">Retail</option>
+            <option value="Travel & Tourism">Travel & Tourism</option>
+            <option value="Textile & Apparel">Textile & Apparel</option>
+            <option value="Consumer Electronics & Appliances">Consumer Electronics & Appliances</option>
+            <option value="Food Processing">Food Processing</option>
+            <option value="Hotels & Restaurants">Hotels & Restaurants</option>
+            <option value="Furniture & Furnishing">Furniture & Furnishing</option>
+            <option value="Gems & Jewellery">Gems & Jewellery</option>
+            <option value="Beauty & Personal Care">Beauty & Personal Care</option>
+            <option value="Beverage">Beverage</option>
+            <option value="Fitness & Wellness">Fitness & Wellness</option>
+            <option value="Leather">Leather</option>
+        </optgroup>
+
+        <optgroup label="Miscellaneous">
+            <option value="Miscellaneous">Miscellaneous</option>
+            <option value="NGO / Social Services / Industry Associations">NGO / Social Services / Industry Associations</option>
+            <option value="Agriculture / Forestry / Fishing">Agriculture / Forestry / Fishing</option>
+            <option value="Import & Export">Import & Export</option>
+            <option value="Government / Public Administration">Government / Public Administration</option>
+        </optgroup>
+    </select>
+</div>
+
         <div class="mb-3">
         <label class="form-label" for="department">Department<span style="color: red;">*</span></label>
             <select class="form-control" name="department" id="department" required>

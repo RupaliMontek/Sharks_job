@@ -68,9 +68,9 @@
     <section class="content-header">
         <h1>Add Job Post</h1>
     </section>
-                <div class="box">
-                    <div class="box-body">
-                        <div class="box box-warning">
+    <div class="box">
+        <div class="box-body">
+            <div class="box box-warning">
         <form action="<?php echo base_url("job_post/company_registration"); ?>" method="POST" id="form_job_postss" name="form_job_post" >
         <?php if (!empty($job_data) && isset($job_data[0])): ?>
     <input type="hidden" name="company_id" id="company_id" value="<?php echo htmlspecialchars($companyId); ?>"/>  
@@ -192,67 +192,67 @@
     </select>
 </div>
       
-      <div class="mb-3">
-        <label class="form-label"  for="max_salary">Max Salary</label>
-        <select class="form-control" name="max_salary" id="max_salary" value="<?php echo htmlspecialchars($job_data[0]['max_salary']); ?>">
-            <option  value="" selected>Select Max Salary</option>
-            <option value="less_50000_per_year">Less than ₹ 50,000/Year</option>
-            <option value="50000_per_year">₹ 50,000/Year</option>
-            <option value="1.0_lakh_per_year">₹ 1.0 Lakh /Year</option>
-            <option value="1.5_lakh_per_year">₹ 1.5 Lakh /Year</option>
-            <option value="2.0_lakh_per_year">₹ 2.0 Lakh /Year</option>
-            <option value="2.5_lakh_per_year">₹ 2.5 Lakh /Year</option>
-            <option value="3.0_lakh_per_year">₹ 3.0 Lakh /Year</option>
-            <option value="3.5_lakh_per_year">₹ 3.5 Lakh /Year</option>
-            <option value="4.0_lakh_per_year">₹ 4.0 Lakh /Year</option>
-            <option value="4.5_lakh_per_year">₹ 4.5 Lakh /Year</option>
-            <option value="5_lakh_per_year">₹ 5 Lakh /Year</option>
-            <option value="6_lakh_per_year">₹ 6 Lakh /Year</option>
-            <option value="7_lakh_per_year">₹ 7 Lakh /Year</option>
-            <option value="8_lakh_per_year">₹ 8 Lakh /Year</option>
-            <option value="9_lakh_per_year">₹ 9 Lakh /Year</option>
-            <option value="10_lakh_per_year">₹ 10 Lakh /Year</option>
-            <option value="11_lakh_per_year">₹ 11 Lakh /Year</option>
-            <option value="12_lakh_per_year">₹ 12 Lakh /Year</option>
-            <option value="13_lakh_per_year">₹ 13 Lakh /Year</option>
-            <option value="14_lakh_per_year">₹ 14 Lakh /Year</option>
-            <option value="15_lakh_per_year">₹ 15 Lakh /Year</option>
-            <option value="16_lakh_per_year">₹ 16 Lakh /Year</option>
-            <option value="17_lakh_per_year">₹ 17 Lakh /Year</option>
-            <option value="18_lakh_per_year">₹ 18 Lakh /Year</option>
-            <option value="19_lakh_per_year">₹ 19 Lakh /Year</option>
-            <option value="20_lakh_per_year">₹ 20 Lakh /Year</option>
-            <option value="21_lakh_per_year">₹ 21 Lakh /Year</option>
-            <option value="22_lakh_per_year">₹ 22 Lakh /Year</option>
-            <option value="23_lakh_per_year">₹ 23 Lakh /Year</option>
-            <option value="24_lakh_per_year">₹ 24 Lakh /Year</option>
-            <option value="25_lakh_per_year">₹ 25 Lakh /Year</option>
-            <option value="26_lakh_per_year">₹ 26 Lakh /Year</option>
-            <option value="27_lakh_per_year">₹ 27 Lakh /Year</option>
-            <option value="28_lakh_per_year">₹ 28 Lakh /Year</option>
-            <option value="29_lakh_per_year">₹ 29 Lakh /Year</option>
-            <option value="30_lakh_per_year">₹ 30 Lakh /Year</option>
-            <option value="31_lakh_per_year">₹ 31 Lakh /Year</option>
-            <option value="32_lakh_per_year">₹ 32 Lakh /Year</option>
-            <option value="33_lakh_per_year">₹ 33 Lakh /Year</option>
-            <option value="34_lakh_per_year">₹ 34 Lakh /Year</option>
-            <option value="35_lakh_per_year">₹ 35 Lakh /Year</option>
-            <option value="36_lakh_per_year">₹ 36 Lakh /Year</option>
-            <option value="37_lakh_per_year">₹ 37 Lakh /Year</option>
-            <option value="38_lakh_per_year">₹ 38 Lakh /Year</option>
-            <option value="39_lakh_per_year">₹ 39 Lakh /Year</option>
-            <option value="40_lakh_per_year">₹ 40 Lakh /Year</option>
-            
-        </select>
-      </div>
+<div class="mb-3">
+    <label class="form-label" for="max_salary">Max Salary</label>
+    <select class="form-control" name="max_salary" id="max_salary">
+        <option value="" <?php echo empty($job_data[0]['max_salary']) ? 'selected' : ''; ?>>Select Max Salary</option>
+        <option value="less_50000_per_year" <?php echo ($job_data[0]['max_salary'] == 'less_50000_per_year') ? 'selected' : ''; ?>>Less than ₹ 50,000/Year</option>
+        <option value="50000_per_year" <?php echo ($job_data[0]['max_salary'] == '50000_per_year') ? 'selected' : ''; ?>>₹ 50,000/Year</option>
+        <option value="1.0_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '1.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 1.0 Lakh /Year</option>
+        <option value="1.5_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '1.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 1.5 Lakh /Year</option>
+        <option value="2.0_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '2.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 2.0 Lakh /Year</option>
+        <option value="2.5_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '2.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 2.5 Lakh /Year</option>
+        <option value="3.0_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '3.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 3.0 Lakh /Year</option>
+        <option value="3.5_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '3.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 3.5 Lakh /Year</option>
+        <option value="4.0_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '4.0_lakh_per_year') ? 'selected' : ''; ?>>₹ 4.0 Lakh /Year</option>
+        <option value="4.5_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '4.5_lakh_per_year') ? 'selected' : ''; ?>>₹ 4.5 Lakh /Year</option>
+        <option value="5_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '5_lakh_per_year') ? 'selected' : ''; ?>>₹ 5 Lakh /Year</option>
+        <option value="6_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '6_lakh_per_year') ? 'selected' : ''; ?>>₹ 6 Lakh /Year</option>
+        <option value="7_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '7_lakh_per_year') ? 'selected' : ''; ?>>₹ 7 Lakh /Year</option>
+        <option value="8_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '8_lakh_per_year') ? 'selected' : ''; ?>>₹ 8 Lakh /Year</option>
+        <option value="9_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '9_lakh_per_year') ? 'selected' : ''; ?>>₹ 9 Lakh /Year</option>
+        <option value="10_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '10_lakh_per_year') ? 'selected' : ''; ?>>₹ 10 Lakh /Year</option>
+        <option value="11_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '11_lakh_per_year') ? 'selected' : ''; ?>>₹ 11 Lakh /Year</option>
+        <option value="12_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '12_lakh_per_year') ? 'selected' : ''; ?>>₹ 12 Lakh /Year</option>
+        <option value="13_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '13_lakh_per_year') ? 'selected' : ''; ?>>₹ 13 Lakh /Year</option>
+        <option value="14_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '14_lakh_per_year') ? 'selected' : ''; ?>>₹ 14 Lakh /Year</option>
+        <option value="15_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '15_lakh_per_year') ? 'selected' : ''; ?>>₹ 15 Lakh /Year</option>
+        <option value="16_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '16_lakh_per_year') ? 'selected' : ''; ?>>₹ 16 Lakh /Year</option>
+        <option value="17_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '17_lakh_per_year') ? 'selected' : ''; ?>>₹ 17 Lakh /Year</option>
+        <option value="18_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '18_lakh_per_year') ? 'selected' : ''; ?>>₹ 18 Lakh /Year</option>
+        <option value="19_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '19_lakh_per_year') ? 'selected' : ''; ?>>₹ 19 Lakh /Year</option>
+        <option value="20_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '20_lakh_per_year') ? 'selected' : ''; ?>>₹ 20 Lakh /Year</option>
+        <option value="21_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '21_lakh_per_year') ? 'selected' : ''; ?>>₹ 21 Lakh /Year</option>
+        <option value="22_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '22_lakh_per_year') ? 'selected' : ''; ?>>₹ 22 Lakh /Year</option>
+        <option value="23_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '23_lakh_per_year') ? 'selected' : ''; ?>>₹ 23 Lakh /Year</option>
+        <option value="24_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '24_lakh_per_year') ? 'selected' : ''; ?>>₹ 24 Lakh /Year</option>
+        <option value="25_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '25_lakh_per_year') ? 'selected' : ''; ?>>₹ 25 Lakh /Year</option>
+        <option value="26_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '26_lakh_per_year') ? 'selected' : ''; ?>>₹ 26 Lakh /Year</option>
+        <option value="27_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '27_lakh_per_year') ? 'selected' : ''; ?>>₹ 27 Lakh /Year</option>
+        <option value="28_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '28_lakh_per_year') ? 'selected' : ''; ?>>₹ 28 Lakh /Year</option>
+        <option value="29_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '29_lakh_per_year') ? 'selected' : ''; ?>>₹ 29 Lakh /Year</option>
+        <option value="30_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '30_lakh_per_year') ? 'selected' : ''; ?>>₹ 30 Lakh /Year</option>
+        <option value="31_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '31_lakh_per_year') ? 'selected' : ''; ?>>₹ 31 Lakh /Year</option>
+        <option value="32_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '32_lakh_per_year') ? 'selected' : ''; ?>>₹ 32 Lakh /Year</option>
+        <option value="33_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '33_lakh_per_year') ? 'selected' : ''; ?>>₹ 33 Lakh /Year</option>
+        <option value="34_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '34_lakh_per_year') ? 'selected' : ''; ?>>₹ 34 Lakh /Year</option>
+        <option value="35_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '35_lakh_per_year') ? 'selected' : ''; ?>>₹ 35 Lakh /Year</option>
+        <option value="36_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '36_lakh_per_year') ? 'selected' : ''; ?>>₹ 36 Lakh /Year</option>
+        <option value="37_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '37_lakh_per_year') ? 'selected' : ''; ?>>₹ 37 Lakh /Year</option>
+        <option value="38_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '38_lakh_per_year') ? 'selected' : ''; ?>>₹ 38 Lakh /Year</option>
+        <option value="39_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '39_lakh_per_year') ? 'selected' : ''; ?>>₹ 39 Lakh /Year</option>
+        <option value="40_lakh_per_year" <?php echo ($job_data[0]['max_salary'] == '40_lakh_per_year') ? 'selected' : ''; ?>>₹ 40 Lakh /Year</option>
+    </select>
+</div>
+
     <div class="mb-3">
         <label class="form-label" for="job_country">Job Country<span style="color: red;">*</span></label>
         <select onchange="get_state_list(this.value); updatePreview();" class="form-control" name="job_country" id="job_country" required>
             <option value="" selected>Select Country</option>
             <?php 
-            $selectedCountry = $job_data[0]['job_country'] ?? ''; // Get the job country or default to an empty string
+            $selectedCountry = $job_data[0]['job_country'] ?? ''; 
             foreach ($country_list as $row) { 
-                $isSelected = ($row['id'] == $selectedCountry) ? 'selected' : ''; // Check if this option should be selected
+                $isSelected = ($row['id'] == $selectedCountry) ? 'selected' : ''; 
             ?>
                 <option value="<?= htmlspecialchars($row['id']); ?>" <?= $isSelected; ?>>
                     <?= htmlspecialchars($row['name']); ?>
@@ -337,8 +337,128 @@
 </script>
 
 <div class="mb-3">
-    <label class="form-label"  for="industry_type">Industry Type<span style="color: red;">*</span></label>
-        <input autocomplete="off" type="text" class="form-control" type="industry_type" name="industry_type" id="industry_type"  value="<?php echo htmlspecialchars($job_data[0]['industry_type']); ?>" required>
+    <label class="form-label" for="industry_type">Industry Type <span style="color: red;">*</span></label>
+    <select class="form-control" name="industry_type" id="industry_type" required>
+        <option value="">Select Industry Type</option>
+
+        <optgroup label="IT Services">
+            <option value="IT Services" <?php echo ($job_data[0]['industry_type'] == 'IT Services') ? 'selected' : ''; ?>>IT Services</option>
+            <option value="IT Services & Consulting" <?php echo ($job_data[0]['industry_type'] == 'IT Services & Consulting') ? 'selected' : ''; ?>>IT Services & Consulting</option>
+        </optgroup>
+
+        <optgroup label="BPM">
+            <option value="BPO / Call Centre" <?php echo ($job_data[0]['industry_type'] == 'BPO / Call Centre') ? 'selected' : ''; ?>>BPO / Call Centre</option>
+            <option value="Analytics / KPO / Research" <?php echo ($job_data[0]['industry_type'] == 'Analytics / KPO / Research') ? 'selected' : ''; ?>>Analytics / KPO / Research</option>
+        </optgroup>
+
+        <optgroup label="Professional Services">
+            <option value="Recruitment / Staffing" <?php echo ($job_data[0]['industry_type'] == 'Recruitment / Staffing') ? 'selected' : ''; ?>>Recruitment / Staffing</option>
+            <option value="Management Consulting" <?php echo ($job_data[0]['industry_type'] == 'Management Consulting') ? 'selected' : ''; ?>>Management Consulting</option>
+            <option value="Law Enforcement / Security Services" <?php echo ($job_data[0]['industry_type'] == 'Law Enforcement / Security Services') ? 'selected' : ''; ?>>Law Enforcement / Security Services</option>
+            <option value="Architecture / Interior Design" <?php echo ($job_data[0]['industry_type'] == 'Architecture / Interior Design') ? 'selected' : ''; ?>>Architecture / Interior Design</option>
+            <option value="Accounting / Auditing" <?php echo ($job_data[0]['industry_type'] == 'Accounting / Auditing') ? 'selected' : ''; ?>>Accounting / Auditing</option>
+            <option value="Facility Management Services" <?php echo ($job_data[0]['industry_type'] == 'Facility Management Services') ? 'selected' : ''; ?>>Facility Management Services</option>
+            <option value="Legal" <?php echo ($job_data[0]['industry_type'] == 'Legal') ? 'selected' : ''; ?>>Legal</option>
+            <option value="Design" <?php echo ($job_data[0]['industry_type'] == 'Design') ? 'selected' : ''; ?>>Design</option>
+            <option value="Content Development / Language" <?php echo ($job_data[0]['industry_type'] == 'Content Development / Language') ? 'selected' : ''; ?>>Content Development / Language</option>
+        </optgroup>
+
+        <optgroup label="Manufacturing & Production">
+            <option value="Industrial Equipment / Machinery" <?php echo ($job_data[0]['industry_type'] == 'Industrial Equipment / Machinery') ? 'selected' : ''; ?>>Industrial Equipment / Machinery</option>
+            <option value="Chemicals" <?php echo ($job_data[0]['industry_type'] == 'Chemicals') ? 'selected' : ''; ?>>Chemicals</option>
+            <option value="Industrial Automation" <?php echo ($job_data[0]['industry_type'] == 'Industrial Automation') ? 'selected' : ''; ?>>Industrial Automation</option>
+            <option value="Automobile" <?php echo ($job_data[0]['industry_type'] == 'Automobile') ? 'selected' : ''; ?>>Automobile</option>
+            <option value="Building Material" <?php echo ($job_data[0]['industry_type'] == 'Building Material') ? 'selected' : ''; ?>>Building Material</option>
+            <option value="Petrochemical / Plastics / Rubber" <?php echo ($job_data[0]['industry_type'] == 'Petrochemical / Plastics / Rubber') ? 'selected' : ''; ?>>Petrochemical / Plastics / Rubber</option>
+            <option value="Iron & Steel" <?php echo ($job_data[0]['industry_type'] == 'Iron & Steel') ? 'selected' : ''; ?>>Iron & Steel</option>
+            <option value="Auto Components" <?php echo ($job_data[0]['industry_type'] == 'Auto Components') ? 'selected' : ''; ?>>Auto Components</option>
+            <option value="Electrical Equipment" <?php echo ($job_data[0]['industry_type'] == 'Electrical Equipment') ? 'selected' : ''; ?>>Electrical Equipment</option>
+            <option value="Packaging & Containers" <?php echo ($job_data[0]['industry_type'] == 'Packaging & Containers') ? 'selected' : ''; ?>>Packaging & Containers</option>
+            <option value="Metals & Mining" <?php echo ($job_data[0]['industry_type'] == 'Metals & Mining') ? 'selected' : ''; ?>>Metals & Mining</option>
+            <option value="Fertilizers / Pesticides / Agro chemicals" <?php echo ($job_data[0]['industry_type'] == 'Fertilizers / Pesticides / Agro chemicals') ? 'selected' : ''; ?>>Fertilizers / Pesticides / Agro chemicals</option>
+            <option value="Defence & Aerospace" <?php echo ($job_data[0]['industry_type'] == 'Defence & Aerospace') ? 'selected' : ''; ?>>Defence & Aerospace</option>
+            <option value="Pulp & Paper" <?php echo ($job_data[0]['industry_type'] == 'Pulp & Paper') ? 'selected' : ''; ?>>Pulp & Paper</option>
+        </optgroup>
+
+        <optgroup label="BFSI">
+            <option value="Banking" <?php echo ($job_data[0]['industry_type'] == 'Banking') ? 'selected' : ''; ?>>Banking</option>
+            <option value="Financial Services" <?php echo ($job_data[0]['industry_type'] == 'Financial Services') ? 'selected' : ''; ?>>Financial Services</option>
+            <option value="Insurance" <?php echo ($job_data[0]['industry_type'] == 'Insurance') ? 'selected' : ''; ?>>Insurance</option>
+            <option value="Investment Banking / Venture Capital / Private Equity" <?php echo ($job_data[0]['industry_type'] == 'Investment Banking / Venture Capital / Private Equity') ? 'selected' : ''; ?>>Investment Banking / Venture Capital / Private Equity</option>
+            <option value="NBFC" <?php echo ($job_data[0]['industry_type'] == 'NBFC') ? 'selected' : ''; ?>>NBFC</option>
+            <option value="FinTech / Payments" <?php echo ($job_data[0]['industry_type'] == 'FinTech / Payments') ? 'selected' : ''; ?>>FinTech / Payments</option>
+        </optgroup>
+
+        <optgroup label="Education">
+            <option value="Education / Training" <?php echo ($job_data[0]['industry_type'] == 'Education / Training') ? 'selected' : ''; ?>>Education / Training</option>
+            <option value="E-Learning / EdTech" <?php echo ($job_data[0]['industry_type'] == 'E-Learning / EdTech') ? 'selected' : ''; ?>>E-Learning / EdTech</option>
+        </optgroup>
+
+        <optgroup label="Infrastructure, Transport & Real Estate">
+            <option value="Engineering & Construction" <?php echo ($job_data[0]['industry_type'] == 'Engineering & Construction') ? 'selected' : ''; ?>>Engineering & Construction</option>
+            <option value="Real Estate" <?php echo ($job_data[0]['industry_type'] == 'Real Estate') ? 'selected' : ''; ?>>Real Estate</option>
+            <option value="Power" <?php echo ($job_data[0]['industry_type'] == 'Power') ? 'selected' : ''; ?>>Power</option>
+            <option value="Courier / Logistics" <?php echo ($job_data[0]['industry_type'] == 'Courier / Logistics') ? 'selected' : ''; ?>>Courier / Logistics</option>
+            <option value="Oil & Gas" <?php echo ($job_data[0]['industry_type'] == 'Oil & Gas') ? 'selected' : ''; ?>>Oil & Gas</option>
+            <option value="Water Treatment / Waste Management" <?php echo ($job_data[0]['industry_type'] == 'Water Treatment / Waste Management') ? 'selected' : ''; ?>>Water Treatment / Waste Management</option>
+            <option value="Aviation" <?php echo ($job_data[0]['industry_type'] == 'Aviation') ? 'selected' : ''; ?>>Aviation</option>
+            <option value="Ports & Shipping" <?php echo ($job_data[0]['industry_type'] == 'Ports & Shipping') ? 'selected' : ''; ?>>Ports & Shipping</option>
+            <option value="Urban Transport" <?php echo ($job_data[0]['industry_type'] == 'Urban Transport') ? 'selected' : ''; ?>>Urban Transport</option>
+            <option value="Railways" <?php echo ($job_data[0]['industry_type'] == 'Railways') ? 'selected' : ''; ?>>Railways</option>
+        </optgroup>
+        <optgroup label="Technology">
+            <option value="Internet" <?php echo ($job_data[0]['industry_type'] == 'Internet') ? 'selected' : ''; ?>>Internet</option>
+            <option value="Software Product" <?php echo ($job_data[0]['industry_type'] == 'Software Product') ? 'selected' : ''; ?>>Software Product</option>
+            <option value="Electronics Manufacturing" <?php echo ($job_data[0]['industry_type'] == 'Electronics Manufacturing') ? 'selected' : ''; ?>>Electronics Manufacturing</option>
+            <option value="Electronic Components / Semiconductors" <?php echo ($job_data[0]['industry_type'] == 'Electronic Components / Semiconductors') ? 'selected' : ''; ?>>Electronic Components / Semiconductors</option>
+            <option value="Hardware & Networking" <?php echo ($job_data[0]['industry_type'] == 'Hardware & Networking') ? 'selected' : ''; ?>>Hardware & Networking</option>
+            <option value="Emerging Technologies" <?php echo ($job_data[0]['industry_type'] == 'Emerging Technologies') ? 'selected' : ''; ?>>Emerging Technologies</option>
+        </optgroup>
+
+        <optgroup label="Media, Entertainment & Telecom">
+            <option value="Advertising & Marketing" <?php echo ($job_data[0]['industry_type'] == 'Advertising & Marketing') ? 'selected' : ''; ?>>Advertising & Marketing</option>
+            <option value="Telecom / ISP" <?php echo ($job_data[0]['industry_type'] == 'Telecom / ISP') ? 'selected' : ''; ?>>Telecom / ISP</option>
+            <option value="Film / Music / Entertainment" <?php echo ($job_data[0]['industry_type'] == 'Film / Music / Entertainment') ? 'selected' : ''; ?>>Film / Music / Entertainment</option>
+            <option value="Printing & Publishing" <?php echo ($job_data[0]['industry_type'] == 'Printing & Publishing') ? 'selected' : ''; ?>>Printing & Publishing</option>
+            <option value="Events / Live Entertainment" <?php echo ($job_data[0]['industry_type'] == 'Events / Live Entertainment') ? 'selected' : ''; ?>>Events / Live Entertainment</option>
+            <option value="TV / Radio" <?php echo ($job_data[0]['industry_type'] == 'TV / Radio') ? 'selected' : ''; ?>>TV / Radio</option>
+            <option value="Sports / Leisure & Recreation" <?php echo ($job_data[0]['industry_type'] == 'Sports / Leisure & Recreation') ? 'selected' : ''; ?>>Sports / Leisure & Recreation</option>
+            <option value="Animation & VFX" <?php echo ($job_data[0]['industry_type'] == 'Animation & VFX') ? 'selected' : ''; ?>>Animation & VFX</option>
+            <option value="Gaming" <?php echo ($job_data[0]['industry_type'] == 'Gaming') ? 'selected' : ''; ?>>Gaming</option>
+        </optgroup>
+
+        <optgroup label="Healthcare & Life Sciences">
+            <option value="Medical Services / Hospital" <?php echo ($job_data[0]['industry_type'] == 'Medical Services / Hospital') ? 'selected' : ''; ?>>Medical Services / Hospital</option>
+            <option value="Pharmaceutical & Life Sciences" <?php echo ($job_data[0]['industry_type'] == 'Pharmaceutical & Life Sciences') ? 'selected' : ''; ?>>Pharmaceutical & Life Sciences</option>
+            <option value="Medical Devices & Equipment" <?php echo ($job_data[0]['industry_type'] == 'Medical Devices & Equipment') ? 'selected' : ''; ?>>Medical Devices & Equipment</option>
+            <option value="Biotechnology" <?php echo ($job_data[0]['industry_type'] == 'Biotechnology') ? 'selected' : ''; ?>>Biotechnology</option>
+            <option value="Clinical Research / Contract Research" <?php echo ($job_data[0]['industry_type'] == 'Clinical Research / Contract Research') ? 'selected' : ''; ?>>Clinical Research / Contract Research</option>
+        </optgroup>
+
+        <optgroup label="Consumer, Retail & Hospitality">
+            <option value="FMCG" <?php echo ($job_data[0]['industry_type'] == 'FMCG') ? 'selected' : ''; ?>>FMCG</option>
+            <option value="Retail" <?php echo ($job_data[0]['industry_type'] == 'Retail') ? 'selected' : ''; ?>>Retail</option>
+            <option value="Travel & Tourism" <?php echo ($job_data[0]['industry_type'] == 'Travel & Tourism') ? 'selected' : ''; ?>>Travel & Tourism</option>
+            <option value="Textile & Apparel" <?php echo ($job_data[0]['industry_type'] == 'Textile & Apparel') ? 'selected' : ''; ?>>Textile & Apparel</option>
+            <option value="Consumer Electronics & Appliances" <?php echo ($job_data[0]['industry_type'] == 'Consumer Electronics & Appliances') ? 'selected' : ''; ?>>Consumer Electronics & Appliances</option>
+            <option value="Food Processing" <?php echo ($job_data[0]['industry_type'] == 'Food Processing') ? 'selected' : ''; ?>>Food Processing</option>
+            <option value="Hotels & Restaurants" <?php echo ($job_data[0]['industry_type'] == 'Hotels & Restaurants') ? 'selected' : ''; ?>>Hotels & Restaurants</option>
+            <option value="Furniture & Furnishing" <?php echo ($job_data[0]['industry_type'] == 'Furniture & Furnishing') ? 'selected' : ''; ?>>Furniture & Furnishing</option>
+            <option value="Gems & Jewellery" <?php echo ($job_data[0]['industry_type'] == 'Gems & Jewellery') ? 'selected' : ''; ?>>Gems & Jewellery</option>
+            <option value="Beauty & Personal Care" <?php echo ($job_data[0]['industry_type'] == 'Beauty & Personal Care') ? 'selected' : ''; ?>>Beauty & Personal Care</option>
+            <option value="Beverage" <?php echo ($job_data[0]['industry_type'] == 'Beverage') ? 'selected' : ''; ?>>Beverage</option>
+            <option value="Fitness & Wellness" <?php echo ($job_data[0]['industry_type'] == 'Fitness & Wellness') ? 'selected' : ''; ?>>Fitness & Wellness</option>
+            <option value="Leather" <?php echo ($job_data[0]['industry_type'] == 'Leather') ? 'selected' : ''; ?>>Leather</option>
+        </optgroup>
+
+        <optgroup label="Miscellaneous">
+            <option value="Miscellaneous" <?php echo ($job_data[0]['industry_type'] == 'Miscellaneous') ? 'selected' : ''; ?>>Miscellaneous</option>
+            <option value="NGO / Social Services / Industry Associations" <?php echo ($job_data[0]['industry_type'] == 'NGO / Social Services / Industry Associations') ? 'selected' : ''; ?>>NGO / Social Services / Industry Associations</option>
+            <option value="Agriculture / Forestry / Fishing" <?php echo ($job_data[0]['industry_type'] == 'Agriculture / Forestry / Fishing') ? 'selected' : ''; ?>>Agriculture / Forestry / Fishing</option>
+            <option value="Import & Export" <?php echo ($job_data[0]['industry_type'] == 'Import & Export') ? 'selected' : ''; ?>>Import & Export</option>
+            <option value="Government / Public Administration" <?php echo ($job_data[0]['industry_type'] == 'Government / Public Administration') ? 'selected' : ''; ?>>Government / Public Administration</option>
+        </optgroup>
+    </select>
 </div>
         <div class="mb-3">
     <label class="form-label" for="department">Department<span style="color: red;">*</span></label>

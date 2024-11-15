@@ -185,7 +185,7 @@ public function send_reset_link()
         $data['job_id'] = $this->session->userdata('job_id');
 
        $data['job_data'] = $this->modelbasic->get_job_data($job_id);
-       print_r($data['job_data']); die();
+    //    print_r($data['job_data']); die();
        $data['user_admin_id'] = $this->session->userdata('user_admin_id');       
        $data['companyId'] = $this->session->userdata('company');
        $data['siderbar_menus']   = $this->M_permission->list_labels('internal user');
