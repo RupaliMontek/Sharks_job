@@ -219,10 +219,10 @@ Array.from(circularProgress).forEach((progressBar) => {
 </div>
 <div class="line"></div>  
 <ul>
-<li><a class="hvr-wobble-bottom" href="#"><i class="fa fa-home"></i>My Home</a></li>
+<li><a class="hvr-wobble-bottom" href="<?php echo base_url("candidate_profile/index"); ?>"><i class="fa fa-home"></i>My Home</a></li>
 <li><a class="hvr-wobble-bottom" href="<?php echo base_url("recruitment/all_jobs"); ?>"><i class="fa fa-briefcase"></i>Jobs</a></li>
 <li><a class="hvr-wobble-bottom" href="#top_companies"><i class="fa fa-building-o"></i>Companies</a></li>
-<li><a class="hvr-wobble-bottom" href="#blogs"><i class="fa fa-book"></i>Blogs</a></li>    
+<li><a class="hvr-wobble-bottom" href="<?php echo base_url("recruitment/blog"); ?>"><i class="fa fa-book"></i>Blogs</a></li>    
 </ul>   
 </div>
         </div>
@@ -279,32 +279,28 @@ Array.from(circularProgress).forEach((progressBar) => {
             <button class="btn btn-primary rightLst">></button>
         </div>
         <?php
-                $candidate_skils=explode(',',$key_skills);
-                $result_companies=$this->M_Candidate_profile->candidate_skills_fill_for_job_recommendtion($candidate_skils);
-                //  print_r($candidate_skils);exit;
-                 if(count($result_companies)<=3)
-                {
-                    
+                $candidate_id = $this->input->post('candidate_id');
+                $candidate_skils = $this->M_Candidate_profile->get_candidates_keyskill($candidate_id);
+                $result_companies =$this->M_Candidate_profile->candidate_skills_fill_for_job_recommendtion($candidate_skils);
+                // print_r($result_companies); exit;
+                if(count($result_companies)<=3)
+                {                    
                 ?>
                 <div id="recommended_job" class="MultiCarousel recommendedJobs" data-items="1,2,2,3" data-slide="1" id="MultiCarousel"  data-interval="1000">
-                <h1>Recommended Jobs For You <a class="hvr-wobble-bottom" href="#">view all</a></h1>
+                <h1>Recommended Jobs For You <a class="hvr-wobble-bottom" href="<?php echo base_url('candidate_profile/search_job?skills=' . implode(',', $candidate_skils)); ?>">view all</a></h1>
             <div class="MultiCarousel-inner">
                 <?php
                 foreach($result_companies as $row_company){?>
-                ?>
                 <div class="item">
                     <div class="pad15">
-                        <div class="companylogos"><img width="" height="auto" src="<?php echo base_url() ?>frontend/images/complogo.png"/><span>4 d ago</span></div>
+                        <div class="companylogos"><img width="" height="auto" src="<?php echo base_url() ?>frontend/images/complogo.png"/><span><?php echo $days_diff . ' days ago'; ?></span></div>
                         <p class="lead">Urgent Opening For a Designation</p>
-                        <p><?php echo $row_company->company_name;?></p>
+                        <!-- <p><?php echo $row_company->company_name;?></p> -->
                         <p class="locationn"><?php echo $row_company->job_opening_address;?></p>
                     </div>
-                </div>
-                
+                </div>                
                 <?php }?>
                </div>
-            <!--<button class="btn btn-primary leftLst"><</button>-->
-            <!--<button class="btn btn-primary rightLst">></button>-->
         </div>
                 
                <?php 
@@ -312,17 +308,37 @@ Array.from(circularProgress).forEach((progressBar) => {
                 }elseif(count($result_companies)>3){ ?>
                 
                 <div id="recommended_job" class="MultiCarousel recommendedJobs" data-items="1,2,2,3" data-slide="1" id="MultiCarousel"  data-interval="1000">
-                <h1>Recommended Jobs For You <a class="hvr-wobble-bottom" href="#">view all</a></h1>
+                <h1>Recommended Jobs For You <a class="hvr-wobble-bottom" href="<?php echo base_url('candidate_profile/search_job?skills=' . implode(',', $candidate_skils)); ?>">view all</a></h1>
             <div class="MultiCarousel-inner">
                 <?php
                 foreach($result_companies as $row_company){?>
                 
                 <div class="item">
                     <div class="pad15">
-                        <div class="companylogos"><img width="" height="auto" src="<?php echo base_url() ?>frontend/images/complogo.png"/><span>4 d ago</span></div>
+                    <?php
+                        $created_at = $row_company->created_at;
+
+                        $current_date = new DateTime();
+                        $created_date = new DateTime($created_at);
+
+                        $interval = $current_date->diff($created_date);
+                        $days_diff = $interval->days;
+                    ?>
+
+                <div class="companylogos">
+                    <img width="" height="auto" src="<?php echo base_url() ?>frontend/images/complogo.png" />
+                    <span><?php echo $days_diff . ' days ago'; ?></span>
+                </div>
                         <p class="lead">Urgent Opening For a Designation</p>
-                        <p><?php echo $row_company->company_name;?></p>
-                        <p class="locationn"><?php echo $row_company->job_opening_address;?></p>
+                        <!-- <p><?php echo $row_company->company_name;?></p> -->
+                        <p class="locationn">
+                    <?php 
+                    $maxLength = 20; // Set your desired character limit
+                    $jobAddress = $row_company->job_opening_address;
+                    echo strlen($jobAddress) > $maxLength ? substr($jobAddress, 0, $maxLength) . '...' : $jobAddress;
+                    ?>
+                </p>
+
                     </div>
                 </div>
                 

@@ -143,7 +143,7 @@ class Candidate_profile extends CI_Controller
 	
  public function index(){
 
- 	$candidate_id =$_SESSION['candidate_id'];
+ 	// $candidate_id =$_SESSION['candidate_id'];
     $candidate_id =$_SESSION['candidate_id'];
     // print_r($candidate_id); die();  
     $data["companies"]=$this->M_Candidate_profile->get_all_companies();
@@ -152,6 +152,10 @@ class Candidate_profile extends CI_Controller
     $data["educations"]=$this->M_Candidate_profile->get_all_education();
     $data["candidate_white_paper_journal_entry"]=$this->M_Candidate_profile->get_candidate_white_paper_journal_entry($candidate_id);
     //print_r($data["educations"]); die();
+    // $candidate_skils = $this->M_Candidate_profile->get_candidates_keyskill($candidate_id);
+    // print_r($candidate_id); die();
+    // $data["result_companies"] =$this->M_Candidate_profile->candidate_skills_fill_for_job_recommendtion($candidate_skils);
+    
     $data['current_employment_details'] = $this->M_Candidate_profile->check_current_employment_fill($candidate_id); 
     if(!empty($data['current_employment_details']))
     {
@@ -385,6 +389,7 @@ class Candidate_profile extends CI_Controller
    public function search_job()
     {
         $work_mode = $this->input->get('work_mode');
+        $skills = $this->input->get('skills');
         $post = $this->input->post();       
         
         $location_id  =   @$post['joblocationid'];
@@ -392,8 +397,9 @@ class Candidate_profile extends CI_Controller
         $experience   =   @$post["experience"];
         $location     =   @$post["job-location"];
         $pin_code     =   @$post["pin_code"];
+        // $skills       =   @$post["skills"];
 
-        $data["job_latest"] = $this->M_Candidate_profile->search_job($search, $experience, $location_id, $pin_code, $work_mode);
+        $data["job_latest"] = $this->M_Candidate_profile->search_job($search, $experience, $location_id, $pin_code, $skills, $work_mode);
         $data["companies"]=$this->M_Candidate_profile->get_all_companies();
         $data["cities"]=$this->M_Candidate_profile->all_cities(); 
         $data["departments"]=$this->M_Candidate_profile->get_all_department();

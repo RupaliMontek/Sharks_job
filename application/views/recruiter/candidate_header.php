@@ -158,8 +158,11 @@ if (isset($blogs_meta) && $blogs_meta && isset($is_blog_details_page) && $is_blo
   <form action="<?php echo base_url(); ?>Candidate_profile_login/check_user_login_by_otp_candidate"  method="post">
   <div class="form-group">
                 <label for="email">Email</label>
+                <div class="frEmailAndOtp">
                 <input type="email" name="email_id" id="email_id" class="form-control" placeholder="Enter your email">
-                <button type="button" class="btn btn-primary" id="send_otp">Get OTP</button>
+                <button type="button" class="btn btn-primary frrrotp" id="send_otp">Get OTP</button>
+</div>
+                
                 <!--<button type="button" class="frSendOTP" id="send_otp" class="btn btn-primary">Send OTP</button>-->
             </div>
                 <div class="form-group">
@@ -183,12 +186,12 @@ if (isset($blogs_meta) && $blogs_meta && isset($is_blog_details_page) && $is_blo
 <form class="getotpform" action="<?php echo base_url(); ?>Candidate_profile_login/check_user_login_by_mobile_otp_candidate"  method="post">
   <div class="form-group">
     <label for="mobile">Mobile Number</label>
+    <div class="frEmailAndOtp">
   <input type="phone" class="form-control" id="mobile" name="mobile" aria-describedby="mobileHelp" placeholder="Enter your 10 digit mobile no.">
-    <small id="emailHelp" class="form-text text-muted">You will receive an OTP on this number.</small>
-  </div>  
-  <div class="forformbottombtns">
-  <button type="button" class="btn btn-primary" id="send_otp_to_mobile">Get OTP</button> 
-</div>
+<button type="button" class="btn btn-primary frrrotp" id="send_otp_to_mobile">Get OTP</button> </div>
+<small id="emailHelp" class="form-text text-muted">You will receive an OTP on this number.</small>
+  </div> 
+
 <div class="form-group">
                 <label for="otp">Enter OTP</label>
                 <input type="text" name="otp" id="otp" class="form-control" placeholder="Enter OTP">

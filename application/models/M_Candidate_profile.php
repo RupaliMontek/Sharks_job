@@ -135,6 +135,14 @@ class M_Candidate_profile  extends CI_Model{
 	    return $this->db->get()->result();
 	     
 	}
+    public function get_candidates_keyskill($candidate_id){
+	    $this->db->select('*');
+	    $this->db->from('tbl_candidate_skills_jobs');
+        $this->db->where("candidate_id",$candidate_id);
+	   /* $this->db->join('specialization_course', 'candidate_course.course_id = specialization_course.course_id', 'inner');*/
+	    return $this->db->get()->result();
+	     
+	}
 public function check_stats_and_city(){
       $response = array();
       $post= $this->input->post();
@@ -355,7 +363,7 @@ $this->db->join('candidate_course cs', 'cs.course_id=tcjp.education', 'left');
 return $this->db->get()->result();
 
 }
-public function search_job($search, $category, $location, $pin_code, $work_mode = null)
+public function search_job($search, $category, $location, $pin_code, $skills, $work_mode = null)
 {
     $this->db->select('tbl_candidate_job_post.*, cities.id as city_id, cities.name');
     $this->db->from('tbl_candidate_job_post');
@@ -389,7 +397,9 @@ public function search_job($search, $category, $location, $pin_code, $work_mode 
         $this->db->or_where('max_exp_candidate <=', $category);
         $this->db->group_end(); // End the group for AND conditions
     }
-
+    if (!empty($skills)) {
+        $this->db->like('key_skills', $skills);
+    }
     // Filter by work_mode if provided (internship or contractual)
     if (!empty($work_mode)) {
         if (is_array($work_mode)) {
