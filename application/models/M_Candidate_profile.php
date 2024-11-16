@@ -1246,25 +1246,15 @@ public function getemail($code)
  }
 
 public function candidate_skills_fill_for_job_recommendtion($newkeywords) {
-    // Define the table name
     $table = 'tbl_candidate_job_post';
-    
-    // Start building the query
     $this->db->from($table);
-
-    // Add conditions for each keyword
     foreach ($newkeywords as $keywordd) {
-        $this->db->or_like('key_skills', $keywordd);
+        $this->db->or_like('key_skills', $keywordd->skills);
     }
-
-    // Execute the query and get results
     $query = $this->db->get();
-    
-    // Return the results
-    // return
+
    return $query->result();
-    // print_r($this->db->last_query());
-    // exit;
+
 }
 
 /*public function check_code_for_reset_password($code)

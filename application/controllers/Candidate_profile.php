@@ -144,8 +144,10 @@ class Candidate_profile extends CI_Controller
  public function index(){
 
  	// $candidate_id =$_SESSION['candidate_id'];
+     $candidate_id = $this->session->userdata('candidate_id');
     $candidate_id =$_SESSION['candidate_id'];
     // print_r($candidate_id); die();  
+    $data['candidate_id'] = $candidate_id;
     $data["companies"]=$this->M_Candidate_profile->get_all_companies();
     $data["cities"]=$this->M_Candidate_profile->all_cities(); 
     $data["departments"]=$this->M_Candidate_profile->get_all_department();
@@ -259,6 +261,7 @@ class Candidate_profile extends CI_Controller
     $data['last_employment'] = $this->M_Candidate_profile->get_letest_employment_by_candidate_id($candidate_id);
     $data["client_list"] = $this->M_Candidate_profile->client_list_job();
     $data['recent_blogs'] = $this->M_blog->list_recent_blogs(4);
+    // print_r($data['recent_blogs']); exit;
 	$this->load->view('recruiter/msute_candidate_login_header',@$data);
 	$this->load->view('recruiter/msuite_user_login_home_page',@$data);
 	$this->load->view('recruiter/candidate_footer', @$data);

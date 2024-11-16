@@ -279,81 +279,60 @@ Array.from(circularProgress).forEach((progressBar) => {
             <button class="btn btn-primary rightLst">></button>
         </div>
         <?php
-                $candidate_id = $this->input->post('candidate_id');
-                $candidate_skils = $this->M_Candidate_profile->get_candidates_keyskill($candidate_id);
-                $result_companies =$this->M_Candidate_profile->candidate_skills_fill_for_job_recommendtion($candidate_skils);
-                // print_r($result_companies); exit;
-                if(count($result_companies)<=3)
-                {                    
-                ?>
-                <div id="recommended_job" class="MultiCarousel recommendedJobs" data-items="1,2,2,3" data-slide="1" id="MultiCarousel"  data-interval="1000">
-                <h1>Recommended Jobs For You <a class="hvr-wobble-bottom" href="<?php echo base_url('candidate_profile/search_job?skills=' . implode(',', $candidate_skils)); ?>">view all</a></h1>
-            <div class="MultiCarousel-inner">
-                <?php
-                foreach($result_companies as $row_company){?>
-                <div class="item">
-                    <div class="pad15">
-                        <div class="companylogos"><img width="" height="auto" src="<?php echo base_url() ?>frontend/images/complogo.png"/><span><?php echo $days_diff . ' days ago'; ?></span></div>
-                        <p class="lead">Urgent Opening For a Designation</p>
-                        <!-- <p><?php echo $row_company->company_name;?></p> -->
-                        <p class="locationn"><?php echo $row_company->job_opening_address;?></p>
-                    </div>
-                </div>                
-                <?php }?>
-               </div>
-        </div>
-                
-               <?php 
-                
-                }elseif(count($result_companies)>3){ ?>
-                
-                <div id="recommended_job" class="MultiCarousel recommendedJobs" data-items="1,2,2,3" data-slide="1" id="MultiCarousel"  data-interval="1000">
-                <h1>Recommended Jobs For You <a class="hvr-wobble-bottom" href="<?php echo base_url('candidate_profile/search_job?skills=' . implode(',', $candidate_skils)); ?>">view all</a></h1>
-            <div class="MultiCarousel-inner">
-                <?php
-                foreach($result_companies as $row_company){?>
-                
-                <div class="item">
-                    <div class="pad15">
-                    <?php
-                        $created_at = $row_company->created_at;
+    $candidate_id = $this->session->userdata('candidate_id');
+    $candidate_skils = $this->M_Candidate_profile->get_candidates_keyskill($candidate_id);
+    $result_companies = $this->M_Candidate_profile->candidate_skills_fill_for_job_recommendtion($candidate_skils);
+    
+    // Limit the results to 5 (if there are more than 5 jobs available)
+    $result_companies = array_slice($result_companies, 0, 3);
+?>
 
-                        $current_date = new DateTime();
-                        $created_date = new DateTime($created_at);
+<div id="recommended_job" class="MultiCarousel recommendedJobs" data-items="1,2,2,3" data-slide="1" data-interval="1000">
+    <h1>Recommended Jobs For You 
+        <a class="hvr-wobble-bottom" href="<?php echo base_url('candidate_profile/search_job?search=' . urlencode(implode(', ', array_map('trim', array_merge(...array_map(fn($item) => explode(',', $item->skills), $candidate_skils)))))); ?>">view all</a>
+    </h1>
 
-                        $interval = $current_date->diff($created_date);
-                        $days_diff = $interval->days;
-                    ?>
+    <div class="MultiCarousel-inner" style="display: flex; justify-content: space-between; overflow-x: scroll;">
+        <?php foreach($result_companies as $row_company) { 
+            // Calculate days difference
+            $created_at = $row_company->created_at;
+            $current_date = new DateTime();
+            $created_date = new DateTime($created_at);
+            $interval = $current_date->diff($created_date);
+            $days_diff = $interval->days;
+        ?>
 
+        <!-- <div class="item" style="flex: 1 1 30%; margin: 0 10px; box-sizing: border-box;">
+            <div class="pad15" style="border: 1px solid #ddd; padding: 15px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div class="companylogos">
-                    <img width="" height="auto" src="<?php echo base_url() ?>frontend/images/complogo.png" />
+                    <img width="50" height="auto" src="<?php echo base_url() ?>frontend/images/complogo.png" alt="Company Logo"/>
                     <span><?php echo $days_diff . ' days ago'; ?></span>
                 </div>
-                        <p class="lead">Urgent Opening For a Designation</p>
-                        <!-- <p><?php echo $row_company->company_name;?></p> -->
-                        <p class="locationn">
-                    <?php 
-                    $maxLength = 20; // Set your desired character limit
-                    $jobAddress = $row_company->job_opening_address;
-                    echo strlen($jobAddress) > $maxLength ? substr($jobAddress, 0, $maxLength) . '...' : $jobAddress;
-                    ?>
-                </p>
-
-                    </div>
-                </div>
-                
-                <?php }?>
-               </div>
-            <button class="btn btn-primary leftLst"><</button>
-            <button class="btn btn-primary rightLst">></button>
+                <p class="lead" style="font-size: 16px; font-weight: bold;">Urgent Opening For a Designation</p>
+                <p class="locationn" style="color: #777;"><?php echo $row_company->job_opening_address;?></p>
+            </div>
+        </div> -->
+        <div class="item" style="flex: 1 1 30%; margin: 0 10px; box-sizing: border-box;">
+        <div class="pad15" style="border: 1px solid #ddd; padding: 15px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        <a href="<?php echo base_url('recruitment/job_description/' . $row_company->job_id); ?>" style="text-decoration: none; color: inherit;">    
+        <div class="companylogos">
+                <img width="50" height="auto" src="<?php echo base_url() ?>frontend/images/complogo.png" alt="Company Logo"/>
+                <span><?php echo $days_diff . ' days ago'; ?></span>
+            </div>
+            <p class="lead" style="font-size: 16px; font-weight: bold;">Urgent Opening For a Designation</p>
+            <p class="locationn" style="color: #777;"><?php echo $row_company->job_opening_address;?></p>
         </div>
-              
-                
-               <?php
-                
-                }
-               ?>
+    </a>
+</div>
 
+
+        <?php } ?>
+    </div>
+</div>
+
+<!-- Removed the slider buttons as per the latest request -->
+           
+              
 
         <div class="recruitersApply">
             <h3>Recruiters are inviting you to apply!</h3>
@@ -436,7 +415,7 @@ Array.from(circularProgress).forEach((progressBar) => {
         <p>SHARKS JOB Blog | <span>27 feb 2023</span></p>
     </div>
 </div>
-<a class="hvr-wobble-bottom" href="#">view all</a>
+<a class="hvr-wobble-bottom" href="<?php echo base_url("recruitment/blog"); ?>">view all</a>
 </div>
 <!-- mnuser blog end here -->
 
