@@ -42,23 +42,41 @@ $query = $this->db->get();
 return $query->result();
 }
 public function list_recent_blogs($limit = 4)
-{
-    $query = $this->db->from('blog')
-                      ->order_by('cr_date', 'DESC')
-                      ->limit($limit)
-                      ->get();
-    $results = $query->result_array(); 
-    return $results;
-}
+    {
+        // Load the secondary database
+        $db_sharksjob = $this->load->database('sharksjob_backend', TRUE);
 
-public function list_all_blog()
-{
-    $query = $this->db->from('blog')
-                      ->order_by('cr_date', 'DESC')
-                      ->get();
-    $results = $query->result_array(); 
-    return $results;
-}
+        $query = $db_sharksjob->from('blog')
+                              ->order_by('cr_date', 'DESC')
+                              ->limit($limit)
+                              ->get();
+
+        return $query->result_array(); 
+    }
+    public function list_recent_2_blogs($limit = 2)
+    {
+        // Load the secondary database
+        $db_sharksjob = $this->load->database('sharksjob_backend', TRUE);
+
+        $query = $db_sharksjob->from('blog')
+                              ->order_by('cr_date', 'DESC')
+                              ->limit($limit)
+                              ->get();
+
+        return $query->result_array(); 
+    }
+
+    public function list_all_blog()
+    {
+        // Load the secondary database
+        $db_sharksjob = $this->load->database('sharksjob_backend', TRUE);
+
+        $query = $db_sharksjob->from('blog')
+                              ->order_by('cr_date', 'DESC')
+                              ->get();
+
+        return $query->result_array(); 
+    }
 	public function record_count($tbl)
  { 
 	return $this->db->count_all($tbl); 

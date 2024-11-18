@@ -49,5 +49,28 @@ $db['login'] = array(
     'save_queries' => TRUE
 );
 
+$db['sharksjob_backend'] = array(
+    'dsn'   => '',
+    'hostname' => 'localhost',  // e.g., 'localhost' or an IP address
+    'username' => 'root', // Your database username
+    'password' => '', // Your database password
+    'database' => 'sharksjob_backend', // The name of the database
+    'dbdriver' => 'mysqli', // or 'pdo' based on your setup
+    'dbprefix' => '', // You can leave it empty unless you are using a table prefix
+    'pconnect' => FALSE, // TRUE for persistent connection or FALSE for non-persistent
+    'db_debug' => (ENVIRONMENT !== 'production'), // Set this to TRUE for development
+    'cache_on' => FALSE, // Cache query results, can be set to TRUE if needed
+    'cachedir' => '', // Set cache directory if cache_on is TRUE
+    'char_set' => 'utf8', // Character set
+    'dbcollat' => 'utf8_general_ci', // Collation
+    'swap_pre' => '', // Swap prefix
+    'encrypt' => FALSE, // Encryption flag
+    'compress' => FALSE, // Compression flag
+    'stricton' => FALSE, // Strict mode flag
+    'failover' => array(), // Failover database configurations (if needed)
+    'save_queries' => TRUE // Whether to save query strings for debugging
+);
+
+
 
 ?>

@@ -1,7 +1,3 @@
-<style>
-   
-</style>
-
 <div class="container-fluid blogbannerrr"><h2>Blog</h2></div>
 <div class="container-fluid onRegisteringtextOuter">
     <div class="container">

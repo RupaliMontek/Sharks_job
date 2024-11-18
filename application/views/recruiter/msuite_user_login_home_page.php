@@ -404,16 +404,17 @@ Array.from(circularProgress).forEach((progressBar) => {
 <div id="blogs" class="mnuserhomeBlog">
     <h6>Stay updated with our blogs</h6>
     <div class="mnuserhomeBlogInn">
+    <?php foreach ($recent_2_blogs as $row): ?>
     <div class="blogshort">
-        <img src="http://localhost/msuite/frontend/images/imageicon.jpg" width="100%" height="auto">
-        <h6>Blog title 1</h6>
-        <p>SHARKS JOB Blog | <span>27 feb 2023</span></p>
+        <img src="<?php echo base_url($row['image']); ?>" width="100%" height="auto" alt="Blog Image">
+        <!-- <img src="http://localhost/msuite/frontend/images/imageicon.jpg" width="100%" height="auto"> -->
+        <h6><?php
+            $title = $row['title'];
+            $titleLimited = (strlen($title) > 50) ? substr($title, 0, 50) . '...' : $title;
+        ?></h6>
+        <p><?php echo  $row['title']; ?> | <span><?php echo $row['cr_date']; ?></span></p>
     </div>
-    <div class="blogshort">
-        <img src="http://localhost/msuite/frontend/images/imageicon.jpg" width="100%" height="auto">
-        <h6>Blog title 1</h6>
-        <p>SHARKS JOB Blog | <span>27 feb 2023</span></p>
-    </div>
+    <?php endforeach; ?> 
 </div>
 <a class="hvr-wobble-bottom" href="<?php echo base_url("recruitment/blog"); ?>">view all</a>
 </div>

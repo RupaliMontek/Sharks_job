@@ -203,6 +203,7 @@ class Recruitment extends CI_Controller
         
     $data['blog'] = $this->M_blog->list_all_blog();
     $data['recent_blogs'] = $this->M_blog->list_recent_blogs(4);
+    $data['recent_2_blogs'] = $this->M_blog->list_recent_2_blogs(2);
     $this->load->view("recruiter/candidate_header");
     $this->load->view("recruiter/blog", $data);
     $this->load->view("recruiter/candidate_footer");
