@@ -66,7 +66,13 @@
 
                                 </div>
                                 <div class="card-text frsalary">
-                                    <strong></strong> <?= htmlspecialchars($jobData['comany_min_package_offer']); ?> &#8377; - <?= htmlspecialchars($jobData['comany_max_package_offer']); ?> &#8377;
+                                <?php
+// Assuming $jobData contains the salary range in the format "1.0_lakh_per_year"
+$minPackage = str_replace(['_per_year', '_'], [' per year', ' '], $jobData['comany_min_package_offer']);
+$maxPackage = str_replace(['_per_year', '_'], [' per year', ' '], $jobData['comany_max_package_offer']);
+?>
+
+<strong></strong> <?= htmlspecialchars($minPackage); ?> - <?= htmlspecialchars($maxPackage); ?>
                                 </div>
                                 <p class="card-text"><?= htmlspecialchars($jobData['key_skills']); ?></p>
                                 <p class="card-text"><?= htmlspecialchars($jobData['min_exp_candidate']); ?> - <?= htmlspecialchars($jobData['max_exp_candidate']); ?> years Experience</p>
