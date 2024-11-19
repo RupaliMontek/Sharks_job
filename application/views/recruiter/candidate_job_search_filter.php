@@ -9,12 +9,12 @@
                 <div class="workmode">
                     <h6>Work Mode</h6>
                     <div class="chckBoxCont">
-         <input onclick="filters_all_ajax()" type="checkbox" id="work_mode" name="work_mode" value="Work from office">
+      <input onclick="filters_all_ajax()" type="checkbox" id="work_mode" name="work_mode" value="Work from office">
         <label class="" for="">
             <p class="">
                 <span class="" title="Work from office">Work from office</span>
                 <span class=""></span></p></label>
-    </div>
+        </div>
 
     <div class="chckBoxCont">
         <input onclick="filters_all_ajax()" type="checkbox" id="work_mode" name="work_mode" value="Hybrid">
@@ -698,15 +698,28 @@ if ($row->company_name) {
                 <img width="90%" src="<?php echo base_url(); ?>frontend/images/complogo.png"/>
              </div>
 
-              <div class="jobFilterRight">
+             <div class="jobFilterRight">
                 <h6>Filter Jobs By Location</h6>
                 <ul>
-                    <li><a>Pune<span>120 Jobs</span></a></li>
-                    <li><a>Mumbai<span>180 Jobs</span></a></li>
-                    <li><a>Banglore<span>210 Jobs</span></a></li>
-                    <li><a>Chennai<span>310 Jobs</span></a></li>
+                    <?php if (!empty($jobs_by_location)): ?>
+                        <?php foreach ($jobs_by_location as $job): ?>
+                            <?php 
+                                // Get the location name from the mapping
+                                $location_name = isset($location_names[$job->job_location]) ? $location_names[$job->job_location] : "Unknown Location";
+                            ?>
+                            <li>
+                                <a href="<?php echo base_url('candidate_profile/search_job?location=' . urlencode($location_names[$job->job_location])); ?>">
+                                    <?php echo htmlspecialchars($location_name); ?>
+                                    <span><?php echo htmlspecialchars($job->job_count); ?> Jobs</span>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <li>No jobs available.</li>
+                    <?php endif; ?>
                 </ul>
-             </div>
+            </div>
+
 
 
         </div>

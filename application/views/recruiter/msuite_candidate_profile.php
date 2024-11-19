@@ -292,23 +292,24 @@ Array.from(circularProgress).forEach((progressBar) => {
     if(empty($user_details[0]->email))
     {
         $final_count = @$resume = @$profile_summary_count+@$final_count_profile_img+$count+$know_languagecount+$resume+1;
-    }
-    
+    } 
     
     
 ?>
     
        <div class="col-lg-4 col-sm-12 pendingAction">
                 <div class="pendingActionInn">
-                    <h5><?= $final_count; ?> Pending Action(s)</h5>
+                    <h5>
+                        <!-- <?= $final_count; ?>  -->
+                    Pending Action(s)</h5>
                     <ul>
                         <li>
-                        <?php 
-                        if(empty($profile_image))
-                            { ?>
-                              <a class="updateimggg" type="button" data-toggle="modal" data-target="#uploadPhoto"><i class="fa fa-solid fa-plus"></i> Add Photo
-                              </a>
-                        <?php } ?>
+                        <?php if(empty($user_details[0]->image)){ ?>
+                        <li>
+                            <a type="updateimggg" data-toggle="modal"  data-target="#uploadPhoto">Add Profile Photo
+                            </a>
+                        </li>
+                   <?php } ?>
                         </li>
                         <?php if(empty($profile_summary)){ ?>
                         <li>
@@ -322,7 +323,7 @@ Array.from(circularProgress).forEach((progressBar) => {
                             </a>
                     <?php } 
                         elseif(!empty($personal_details[0])){ ?>
-                            <a type="button" onclick="edit_personal_details(<?php echo @$personal_details[0]->personal_id ?>)">Add Languages
+                            <a type="button" onclick="edit_personal_details(<?php echo @$personal_details[0]->personal_id ?>)">Add Personal details
                             </a>
                             <?php } ?>
                         </li>
@@ -330,7 +331,7 @@ Array.from(circularProgress).forEach((progressBar) => {
                         
                     <?php if(empty($user_details[0]->resume)){ ?>
                         <li>
-                            <a type="button" data-toggle="modal"  data-target="#resume_upload">Add Resume
+                            <a type="button" data-toggle="modal"  data-target="#resume_upload">Add Updated Resume
                             </a>
                         </li>
                    <?php } ?>

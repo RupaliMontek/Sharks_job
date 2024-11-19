@@ -227,7 +227,25 @@ public function all_cities(){
     $this->db->where("state_id",22);
     return $this->db->get()->result();
 }
-
+public function get_all_jobs($location){
+    $this->db->select("*");
+    $this->db->from("tbl_candidate_job_post");
+    $this->db->where("job_location",$location);
+    return $this->db->get()->result();
+}
+public function get_jobs_count_by_location() {
+    $this->db->select("job_location, COUNT(*) as job_count");
+    $this->db->from("tbl_candidate_job_post");
+    $this->db->group_by("job_location");
+    return $this->db->get()->result();
+}
+public function get_jobs_count_by_job_location_ids($location_ids) {
+    $this->db->select("job_location, COUNT(*) as job_count");
+    $this->db->from("tbl_candidate_job_post");
+    $this->db->where_in("job_location", $location_ids); // Filter by job_location IDs
+    $this->db->group_by("job_location");
+    return $this->db->get()->result();
+}
 public function check_job_apply_status($job_id,$candidate_id){
     $this->db->select("*");
     $this->db->from("tbl_candidate_job_apply");

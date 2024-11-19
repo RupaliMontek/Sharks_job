@@ -52,18 +52,18 @@
 
 <div class="container-fluid">
     <div class="container jobscategories">
-        <a href="<?php echo base_url();?>recruitment/all_jobs" class="badge hvr-wobble-bottom">Remote</a>
-<a href="<?php echo base_url();?>recruitment/all_jobs" class="badge hvr-wobble-bottom">MNC</a>
-<a href="<?php echo base_url();?>recruitment/all_jobs" class="badge hvr-wobble-bottom">Fortune 500</a>
-<a href="<?php echo base_url();?>recruitment/all_jobs" class="badge hvr-wobble-bottom">Data Science</a>
-<a href="<?php echo base_url();?>recruitment/all_jobs" class="badge hvr-wobble-bottom">Temp WFH</a>
-<a href="<?php echo base_url();?>recruitment/all_jobs" class="badge hvr-wobble-bottom">Supply Chain</a>
-<a href="<?php echo base_url();?>recruitment/all_jobs" class="badge hvr-wobble-bottom">Marketing</a>
-<a href="<?php echo base_url();?>recruitment/all_jobs" class="badge hvr-wobble-bottom">Sales</a>
-<a href="<?php echo base_url();?>recruitment/all_jobs" class="badge hvr-wobble-bottom">HR</a>
-<a href="<?php echo base_url();?>recruitment/all_jobs" class="badge hvr-wobble-bottom">Software & IT</a>
-<a href="<?php echo base_url();?>recruitment/all_jobs" class="badge hvr-wobble-bottom">Analytics</a>
-    </div>
+<a href="<?php echo base_url();?>recruitment/all_jobs" class="badge hvr-wobble-bottom">Remote</a>
+<!-- <a href="<?php echo base_url('candidate_profile/search_job?skills=HR') ?>" class="badge hvr-wobble-bottom">MNC</a> -->
+<!-- <a href="<?php echo base_url('candidate_profile/search_job?skills=HR') ?>" class="badge hvr-wobble-bottom">Fortune 500</a> -->
+<a href="<?php echo base_url('candidate_profile/search_job?skills=Data Science') ?>" class="badge hvr-wobble-bottom">Data Science</a>
+<!-- <a href="<?php echo base_url('candidate_profile/search_job?search=work from home') ?>" class="badge hvr-wobble-bottom">Temp WFH</a> -->
+<!-- <a href="<?php echo base_url('candidate_profile/search_job?skills=Supply Chain') ?>" class="badge hvr-wobble-bottom">Supply Chain</a> -->
+<a href="<?php echo base_url('candidate_profile/search_job?skills=Marketing') ?>" class="badge hvr-wobble-bottom">Marketing</a>
+<a href="<?php echo base_url('candidate_profile/search_job?skills=Company Secretary') ?>" class="badge hvr-wobble-bottom">CS</a>
+<a href="<?php echo base_url('candidate_profile/search_job?skills=Sales') ?>" class="badge hvr-wobble-bottom">Sales</a>
+<a href="<?php echo base_url('candidate_profile/search_job?skills=HR') ?>" class="badge hvr-wobble-bottom">HR</a>
+<a href="<?php echo base_url('candidate_profile/search_job?skills=Software & IT') ?>" class="badge hvr-wobble-bottom">Software & IT</a>
+<a href="<?php echo base_url('candidate_profile/search_job?skills=Analytics') ?>" class="badge hvr-wobble-bottom">Analytics</a>    </div>
 </div>
 
 <!-- mobile slider start here -->

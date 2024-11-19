@@ -408,8 +408,18 @@ class Candidate_profile extends CI_Controller
         $data["departments"]=$this->M_Candidate_profile->get_all_department();
         $data["educations"]=$this->M_Candidate_profile->get_all_education();
         $data["internship"]=$this->M_Candidate_profile->get_all_internship();
-        // print_r($data["internship"]); die();
-        
+        $data["jobs_by_location"] = $this->M_Candidate_profile->get_jobs_count_by_location();
+        $location_ids = [2763, 2707, 48315, 3659];
+    
+        $data["jobs_by_location"] = $this->M_Candidate_profile->get_jobs_count_by_job_location_ids($location_ids);
+// print_r($data["jobs_by_location"]); die();   
+        $data["location_names"] = [
+            2763 => "Pune",
+            2707 => "Mumbai",
+            48315 => "Bangalore",
+            3659 => "Chennai"
+        ];
+
         $this->load->view("recruiter/msute_candidate_login_header");
         $this->load->view("recruiter/candidate_job_search_filter", $data);
         $db_name1 = "sharksjob_backend";
