@@ -289,7 +289,7 @@ class Candidate_profile extends CI_Controller
         $data["departments"]=$this->M_Candidate_profile->get_all_department();
         $data["educations"]=$this->M_Candidate_profile->get_all_education();
         $data["candidate_white_paper_journal_entry"]=$this->M_Candidate_profile->get_candidate_white_paper_journal_entry($candidate_id);
-         //print_r($data["educations"]); die();
+        //  print_r($candidate_id); die();
         $data['current_employment_details'] = $this->M_Candidate_profile->check_current_employment_fill($candidate_id);	
 	    if(!empty($data['current_employment_details']))
 	    {
@@ -350,7 +350,8 @@ class Candidate_profile extends CI_Controller
         $data["remainingMonths"]=$remainingMonths = $totalMonths % 12;
 	    }
         $data['user_details']=$this->M_Candidate_profile->get_candidate_details($candidate_id);
-	    //$data['employment_details'] = $this->M_Candidate_profile->check_employment_fill($candidate_id);	   
+	    // print_r($data['user_details']); die();
+        //$data['employment_details'] = $this->M_Candidate_profile->check_employment_fill($candidate_id);	   
 	    $data['education_de'] = $this->M_Candidate_profile->check_education_fill($candidate_id);
 	    $data['education_employemnt'] = $this->M_Candidate_profile->get_employment_candidate($candidate_id);
 	    $data['candidate_skil'] = $this->M_Candidate_profile->check_candidate_skills_fill($candidate_id);
@@ -403,6 +404,7 @@ class Candidate_profile extends CI_Controller
         // $skills       =   @$post["skills"];
 
         $data["job_latest"] = $this->M_Candidate_profile->search_job($search, $experience, $location_id, $pin_code, $skills, $work_mode);
+        // print_r($data["job_latest"]); die();
         $data["companies"]=$this->M_Candidate_profile->get_all_companies();
         $data["cities"]=$this->M_Candidate_profile->all_cities(); 
         $data["departments"]=$this->M_Candidate_profile->get_all_department();

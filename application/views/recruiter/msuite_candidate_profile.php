@@ -306,35 +306,94 @@ Array.from(circularProgress).forEach((progressBar) => {
                         <li>
                         <?php if(empty($user_details[0]->image)){ ?>
                         <li>
-                            <a type="updateimggg" data-toggle="modal"  data-target="#uploadPhoto">Add Profile Photo
-                            </a>
+                            <a>Add Profile Photo</a>
                         </li>
                    <?php } ?>
                         </li>
-                        <?php if(empty($profile_summary)){ ?>
+                        <?php if(empty($profile_summary->profile_summary)){ ?>
                         <li>
-                        <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#ProfileSummery"> Add Profile Summery</a>
+                        <a> Add Profile Summery</a>
                         </li>
                         <?php }  
                         if(empty($know_language)){ ?>
                         <li>
-                            <?php if(empty($personal_details[0])){ ?>
-                            <a type="button" data-toggle="modal" data-target="#PersonalDetailssss">Add Languages
-                            </a>
+                            <?php if(empty($know_language[0])){ ?>
+                            <a>Add Personal details</a>
                     <?php } 
-                        elseif(!empty($personal_details[0])){ ?>
-                            <a type="button" onclick="edit_personal_details(<?php echo @$personal_details[0]->personal_id ?>)">Add Personal details
-                            </a>
+                        elseif(empty($personal_details[0])){ ?>
+                            <a>Add Personal details</a>
                             <?php } ?>
                         </li>
                         <?php } ?>
                         
                     <?php if(empty($user_details[0]->resume)){ ?>
                         <li>
-                            <a type="button" data-toggle="modal"  data-target="#resume_upload">Add Updated Resume
-                            </a>
+                            <a>Add Updated Resume</a>
                         </li>
                    <?php } ?>
+                   <li>
+                        <?php if(empty($career_profile)){ ?>
+                        <li>
+                            <a>Add Career Profile</a>
+                        </li>
+                   <?php } ?>
+                        </li>
+                        <li>
+                        <?php if(empty($employement_details)){ ?>
+                        <li>
+                            <a>Add Employement Details</a>
+                        </li>
+                   <?php } ?>
+                        </li>
+                        <li>
+                        <?php if(empty($education_details)){ ?>
+                        <li>
+                            <a>Add Education Details</a>
+                        </li>
+                   <?php } ?>
+                        </li>
+                        <li>
+                        <?php if(empty($it_skills)){ ?>
+                        <li>
+                            <a>Add IT Skills</a>
+                        </li>
+                   <?php } ?>
+                        </li>
+                        <li>
+                        <?php if(empty($candidate_project)){ ?>
+                        <li>
+                            <a>Add Project Details</a>
+                        </li>
+                   <?php } ?>
+                        </li>
+                        <li>
+                        <?php if(empty($career_profile)){ ?>
+                        <li>
+                            <a>Add Career Details</a>
+                        </li>
+                   <?php } ?>
+                   <li>
+                        <?php 
+                        if (empty($social_platform)) { ?>
+                            <a>Add Accomplishments - Social Platforms details</a>
+                        <?php 
+                        } elseif (empty($work_samples)) { ?>
+                            <a>Add Accomplishments - Work Samples</a>
+                        <?php 
+                        } elseif (empty($candidate_white_paper_journal_entry)) { ?>
+                            <a type="button">Add Accomplishments - White Paper / Research Publication / Journal Entry details</a>
+                        <?php 
+                        } elseif (empty($candidate_presentation)) { ?>
+                            <a>Add Accomplishments - Candidate Presentation</a>
+                        <?php 
+                        } elseif (empty($patent_details)) { ?>
+                            <a>Add Accomplishments - Patent Details</a>
+                        <?php 
+                        } elseif (empty($certifications)) { ?>
+                            <a>Add Accomplishments - Certifications</a>
+                        <?php 
+                        } ?>
+                    </li>
                     </ul>
                 </div>
             </div>

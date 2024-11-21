@@ -169,8 +169,8 @@
         <div class="frprofile">
                 <img src="<?php echo base_url("frontend/images/profilepic.svg"); ?>" width="70" height="auto">
                 <div><h6><?php echo @$user_details[0]->name; ?></h6>
-                <p><?php echo  @$last_employment->emp_current_desigantion ?> @ <?php echo @$last_employment->emp_current_company_name; ?></p>
-                <a class="button btn-primary hvr-wobble-bottom" href="#">View & Update Profile</a></div>
+                <p><?php echo  @$last_employment->emp_current_desigantion ?><?php echo @$last_employment->emp_current_company_name; ?></p>
+                <a class="button btn-primary hvr-wobble-bottom" href="<?php echo base_url('candidate_profile/fill_candidate_profile'); ?>">View & Update Profile</a></div>
             </div>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -195,7 +195,7 @@
 </div>
 <div class="line"></div>  
 <ul class="userprofilepopup">
-<li><a class="hvr-wobble-bottom" href="#"><i class="fa fa-list-ul"></i>SHARKS JOB Blog</a></li>
+<li><a class="hvr-wobble-bottom" href="<?php echo base_url('recruitment/blog'); ?>"><i class="fa fa-list-ul"></i>SHARKS JOB Blog</a></li>
 <li><a class="hvr-wobble-bottom" href="#"><i class="fa fa-gear"></i>Settings</a></li>
 <li><a class="hvr-wobble-bottom" href="#"><i class="fa fa-question-circle-o"></i>FAQ's</a></li>
 <li><a class="hvr-wobble-bottom" href="<?php echo base_url();?>Candidate_profile_login/logout"><i class="fa fa-sign-out"></i>logout</a></li>    

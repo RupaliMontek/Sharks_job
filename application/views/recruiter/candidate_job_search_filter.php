@@ -605,29 +605,29 @@
                         <div class="jobprofileshortTop">
                             
                       <?php
-if ($row->company_name) {
-    // Fetch the company details based on company_name
-    $query = $this->db->query("SELECT * FROM client WHERE client_id = $row->company_name");
-    $company_details = $query->row();
+                        if ($row->job_id) {
+                            // Fetch the company details based on company_name
+                            $query = $this->db->query("SELECT * FROM client WHERE client_id = $row->job_id");
+                            $company_details = $query->row();
 
-    // Check if the company details and logo are valid
-    if (isset($company_details->client_logo) && !empty($company_details->client_logo)) {
-        // Check if the logo file exists on the server before displaying it
-        $logo_path = base_url($company_details->client_logo);
-        if (@getimagesize($logo_path)) {
-            // Only render the <img> tag if the file exists
-            echo '<img width="70" height="auto" src="' . $logo_path . '" alt="Company Logo" />';
-        }
-    }
-}
-?>
+                            // Check if the company details and logo are valid
+                            if (isset($company_details->client_logo) && !empty($company_details->client_logo)) {
+                                // Check if the logo file exists on the server before displaying it
+                                $logo_path = base_url($company_details->client_logo);
+                                if (@getimagesize($logo_path)) {
+                                    // Only render the <img> tag if the file exists
+                                    echo '<img width="70" height="auto" src="' . $logo_path . '" alt="Company Logo" />';
+                                }
+                            }
+                        }
+                        ?>
  
                           <h4><?php echo $row->profile; ?></h4>
                         <div class="compname_review">
                         <?php  
                         if($row->company_name)
                         {
-                           echo $company_details->client_name;
+                          //  echo $company_details->client_name;
                            
                         }?>
                         <span class="star"><i class="fa fa-star"></i>3.9</span>  <span class="frreview">9 Reviews</span></div>
@@ -645,27 +645,27 @@ if ($row->company_name) {
                             $array = $row->key_skills;
                             $button = explode(",", $array);
                             ?>
-                                        <?php foreach ($button as $btn) { ?>
-                                          <button style="font-size:16px" type="button" class="btn btn-light-blue btn-sm"><?php echo $btn; ?></button>
-                                        <?php } ?>                          
+                            <?php foreach ($button as $btn) { ?>
+                              <button style="font-size:16px" type="button" class="btn btn-light-blue btn-sm"><?php echo $btn; ?></button>
+                            <?php } ?>                          
                         <div class="jobdetails_bottom">
-               <i class="fa fa-history" aria-hidden="true"></i><span><?php
-               $diff = abs(
-                   strtotime($row->created_at) - strtotime(date("Y-m-d h:i:s"))
-               );
-               $years = floor($diff / (365 * 60 * 60 * 24));
-               $months = floor(
-                   ($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24)
-               );
-               $days = floor(
-                   ($diff -
-                       $years * 365 * 60 * 60 * 24 -
-                       $months * 30 * 60 * 60 * 24) /
-                       (60 * 60 * 24)
-               );
-               echo $days . " DAY AGO";
-               ?></span><span class="right"><i class="fa fa-bookmark"></i>Save</span>
-            </div>
+                            <i class="fa fa-history" aria-hidden="true"></i><span><?php
+                            $diff = abs(
+                                strtotime($row->created_at) - strtotime(date("Y-m-d h:i:s"))
+                            );
+                            $years = floor($diff / (365 * 60 * 60 * 24));
+                            $months = floor(
+                                ($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24)
+                            );
+                            $days = floor(
+                                ($diff -
+                                    $years * 365 * 60 * 60 * 24 -
+                                    $months * 30 * 60 * 60 * 24) /
+                                    (60 * 60 * 24)
+                            );
+                            echo $days . " DAY AGO";
+                            ?></span><span class="right"><i class="fa fa-bookmark"></i>Save</span>
+                        </div>
 
                 </div>
                  </a>

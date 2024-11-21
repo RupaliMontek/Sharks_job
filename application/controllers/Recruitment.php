@@ -1085,6 +1085,7 @@ return  $this->db->get()->result();
     {
         @$candidate_id = $_SESSION["candidate_id"];
         $data["row"] = $this->M_Candidate_profile->get_job_description($id);
+        // print_r($data["row"]); die();
         $data["job_apply_status"] = $this->M_Candidate_profile->check_job_apply_status($id,$candidate_id);
         
         $get_details_jobprofile = $this->M_Candidate_profile->get_details_job_selected($id);
