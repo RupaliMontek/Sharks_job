@@ -7,6 +7,7 @@
                     </h4>
                     <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
                   </div>
+                  
                   <!-- Modal body -->
                   <div class="modal-body">
                     <div class="col-md-"> 
