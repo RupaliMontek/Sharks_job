@@ -145,7 +145,7 @@ public function send_reset_link()
         $this->m_admin_user->updatePassword($user['user_admin_id'], $password);
 
         $this->session->set_flashdata('success', 'Password has been reset');
-        return redirect('job_post/recruiter_login');
+        return redirect('recruitment');
     } else {
         $this->session->set_flashdata('error', 'Invalid token');
         return redirect('job_post/reset_password_form');

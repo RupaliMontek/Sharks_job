@@ -1164,7 +1164,7 @@ function edit_resume_headilne_candidate_details(resume_hedline_id){
     function edit_personal_details(personal_candidate_id)
 {
     var base_url = '<?php echo base_url(); ?>';
-    var personal_candidate_id=personal_candidate_id;
+    var personal_candidate_id = personal_candidate_id;
     $.ajax({
       url: base_url+'recruitment/edit_candidate_peronal_details_details',      
       type: 'POST',
@@ -1176,10 +1176,6 @@ function edit_resume_headilne_candidate_details(resume_hedline_id){
         }
       });
 }
-
-
-
-
 
    function delete_education_details(education_id)
 {   

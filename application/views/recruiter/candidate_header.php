@@ -149,11 +149,13 @@ if (isset($blogs_meta) && $blogs_meta && isset($is_blog_details_page) && $is_blo
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password">
     <a  id="showButton"class="showbtn" href="#">Show</a>
-    <a class="forgotPassword" href="#">Forgot Password?</a>
+    <!-- <a href="javascript:void(0);" class="text-body" id="forgotPasswordLink">Forgot password?</a> -->
+    <a class="forgotPassword" id="forgotPasswordLink" href="javascript:void(0);">Forgot Password?</a>
   </div>
   <div class="forformbottombtns">
   <button type="submit" class="btn btn-primary">Log In</button>
   </form>
+
   <a class="useOtp" href="#"> Login via OTP</a>
   <form action="<?php echo base_url(); ?>Candidate_profile_login/check_user_login_by_otp_candidate"  method="post">
   <div class="form-group">
@@ -234,6 +236,55 @@ if (isset($blogs_meta) && $blogs_meta && isset($is_blog_details_page) && $is_blo
 </nav>
 </div>
 </div>
+  <!-- Forgot Password Modal -->
+  <div class="modal" id="forgotPasswordModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Forgot Password</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="forgotPasswordForm">
+                            <div class="form-group">
+                                <label for="forgotEmail">Enter your email address</label>
+                                <input type="email" class="form-control" id="forgotEmail" placeholder="Enter email" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Reset Link</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+<script>
+            document.getElementById('forgotPasswordLink').addEventListener('click', function () {
+                $('#forgotPasswordModal').modal('show');
+            });
+
+            $('#forgotPasswordForm').on('submit', function (e) {
+                e.preventDefault();
+                var email = $('#forgotEmail').val();
+                
+                if (email !== '') {
+                    $.ajax({
+                        url: "<?php echo base_url('job_post/send_reset_link'); ?>",
+                        type: "POST",
+                        data: { email: email },
+                        success: function (response) {
+                            alert("A password reset link has been sent to your email.");
+                            $('#forgotPasswordModal').modal('hide');
+                        },
+                        error: function () {
+                            alert("Failed to send reset link. Please try again.");
+                        }
+                    });
+                } else {
+                    alert("Please enter your email.");
+                }
+            });
+        </script>
 <script>
     // Send OTP button click event
     $('#send_otp').on('click', function() {

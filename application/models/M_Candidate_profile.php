@@ -889,7 +889,7 @@ public function check_employment_fill($candidate_id){
     $this->db->select("*");
     $this->db->from("tbl_employment_candidate");
     $this->db->where("candidate_id",$candidate_id);
-    return $this->db->get()->num_rows();
+    return $this->db->get()->row();
 }
 
 public function save_candidate_project_details($insert_data)
