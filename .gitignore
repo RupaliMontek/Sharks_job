@@ -1,0 +1,5 @@
+# Ignore database.php file (e.g., typically located in application/config)
+application/config/database.php
+
+# Ignore .htaccess file in the public directory
+public/.htaccess
