@@ -1,3 +1,18 @@
+<?php if ($this->session->flashdata('success')): ?>
+    <script>
+        $(document).ready(function() {
+            toastr.success('<?php echo $this->session->flashdata('success'); ?>', 'Success');
+        });
+    </script>
+<?php endif; ?>
+
+<?php if ($this->session->flashdata('error')): ?>
+    <script>
+        $(document).ready(function() {
+            toastr.error('<?php echo $this->session->flashdata('error'); ?>', 'Error');
+        });
+    </script>
+<?php endif; ?>
 <link href="<?php echo base_url() ?>frontend/owlCarousel/css/owl.carousel.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>frontend/owlCarousel/css/icofont.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>frontend/owlCarousel/css/forcarouselStyle.css">

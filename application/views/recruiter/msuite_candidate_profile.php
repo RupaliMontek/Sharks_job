@@ -9,22 +9,19 @@
                     {
                     if(!empty($user_details[0]->resume))
                     {
-                        $resume=10;
-                        $progress_bar= $resume;
-                       
+                        $resume=20;
+                        $progress_bar= $resume;                       
+                        // print_r($progress_bar); die();
                     }
                     else
                     {
-                        $resume=0;
-                        
-                    }
-                        
+                        $resume=0;                        
+                    }                        
                     if(!empty($career_profile->preferred_work_location))
                     {
                         $preferred_work_location = 2;
-                        $progress_bar= $preferred_work_location+$resume;
-                        
-                        
+                        $progress_bar= @$resume+@$preferred_work_location;
+                        // print_r($progress_bar); die();
                     }
                        
                     if(!empty($employement_details))
@@ -34,8 +31,8 @@
                             if(!empty($row->emp_current_company_name && $row->emp_current_desigantion))
                             {
                                $candidate_designation_current_company = 10;
-                               $progress_bar= $candidate_designation_current_company+$preferred_work_location+$resume;
-                               
+                               $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company;
+                                //   print_r($progress_bar); die();
                             }
                             else
                             {
@@ -49,8 +46,8 @@
                     if(!empty($career_profile->career_profile_department))   
                      {
                         $career_profile_department=10;
-                        $progress_bar= @$candidate_designation_current_company+@$preferred_work_location+$resume;
-                        
+                        $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department;
+                        // print_r($progress_bar); die();
                      } 
                      else
                      {
@@ -62,8 +59,8 @@
                       if(!empty($career_profile->career_current_industry)) 
                       {
                           $career_current_industry=2;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$resume;
-                            
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry;
+                            // print_r($progress_bar); die(); 
                       }
                       else
                       {
@@ -73,8 +70,8 @@
                       if(!empty($user_details[0]->image))
                       {
                           $profile_photo = 5;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$profile_photo+$resume;
-                            
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry+@$profile_photo;
+                        //   print_r($progress_bar); die();  
                           
                       }
                       else
@@ -85,9 +82,9 @@
                       if(!empty($resume_headline))
                        {
                           $resume_headlines = 8;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$profile_photo+@$resume_headlines+@$resume;
-                          
-                       }
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry+@$profile_photo+@$resume_headlines;
+                        //   print_r($progress_bar); die();
+                        }
                        else
                        {
                           $resume_headlines = 0;
@@ -98,8 +95,9 @@
                       if(!empty($know_language))
                       {
                           $candidate_know_language = 2;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$resume ;
-                      }
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language;
+                        //   print_r($progress_bar); die();
+                        }
                       else
                       {
                           $candidate_know_language = 0;
@@ -108,8 +106,9 @@
                       if(!empty($education_details))
                        {
                           $education_detail = 10;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$resume ;
-                       }
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail;
+                        //   print_r($progress_bar); die();
+                        }
                       else
                       {
                           $education_detail = 0;
@@ -117,9 +116,10 @@
                       
                       if(!empty($personal_details))
                       {
-                          $personal_detail = 2;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$personal_detail+$resume ;
-                      }
+                          $personal_detail = 7;
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$personal_detail;
+                        //   print_r($progress_bar); die();
+                        }
                       else
                       {
                           $personal_detail = 0;
@@ -128,41 +128,42 @@
                       if(!empty($employement_details))
                       {
                           $employement_detail = 8;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$personal_detail+@$employement_detail+@$resume;
-                      }
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$personal_detail+@$employement_detail;
+                        //   print_r($progress_bar); die();
+                        }
                       else
                       {
                           $employement_detail = 0;
-                      }
+                      }                    
                       
-                      
-                     if(!empty($key_skiils))
+                     if(!empty($candidate_skils))
                        {
                           $key_skiil = 8;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$personal_detail+@$employement_detail+@$key_skiil+$resume;
-                       }
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$personal_detail+@$employement_detail+@$key_skiil;
+                        //   print_r($progress_bar); die();
+                        }
                       else
                       {
                            $key_skiil = 0;
                       }
                       
-                      
                      if(!empty($profile_summary))
                       {
                           $profile_summarys = 8;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$personal_detail+@$employement_detail+@$key_skiil+@$profile_summarys+@$resume;
-                      }
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$personal_detail+@$employement_detail+@$key_skiil+@$profile_summarys;
+                        //   print_r($progress_bar); die();
+                        }
                       else
                       {
                           $profile_summarys = 0;
-                      }
-                           $progress_bar;
+                      }                     
                          
                     }
                     else
                     {
                         $preferred_work_location = 0;
                     }
+                    
                     ?>        
                     
   <?php $profile_image = base_url($user_details[0]->image); ?>          
@@ -214,23 +215,23 @@ Array.from(circularProgress).forEach((progressBar) => {
                     <div class="profileTextt">
                         <h5><?php echo @$user_details[0]->name; ?><?php if(empty($resume_headline)){  ?> <!--<a type="button" class="btn btn-primary" data-toggle="modal" data-target="#ResumeHeadlines">Add Resume Headline</a>--><?php } else { ?> <i onclick="edit_candidate_basic_details()" style="color:blue" class="fa fa-pencil" aria-hidden="true"></i> <?php } ?></h5> 
                          
-                        <div class="shortInfoo"><p><b><?php echo @$last_employment->emp_current_desigantion ?></b>, <span><?php if(!empty($last_employment)) { echo "at"; } ?> <?php echo @$last_employment->emp_current_company_name; ?></span></p>
+                        <div class="shortInfoo"><p><b><?php echo @$last_employment->emp_current_desigantion ?></b> <span><?php if(!empty($last_employment)) { echo "at"; } ?> <?php echo @$last_employment->emp_current_company_name; ?></span></p>
                         <p class="lastupTextt"><span class="lastupp">Profile last updated - <b><?php $timestamp = @$user_details[0]->last_update_profile_date;
-                                                                                                      if ($timestamp) 
-                                                                                                      {
-                                                                                                           $date = DateTime::createFromFormat('d-m-Y H:i:s', $timestamp);
-                                                                                                                  if ($date) 
-                                                                                                                  {
-                                                                                                                      $converted_date = $date->format('d-m-Y');
-                                                                                                                      echo $converted_date; // Output: 2024-02-12
-                                                                                                                   } 
-                                                                                                       }?>
+                        if ($timestamp) 
+                        {
+                            $date = DateTime::createFromFormat('d-m-Y H:i:s', $timestamp);
+                                    if ($date) 
+                                    {
+                                        $converted_date = $date->format('d-m-Y');
+                                        echo $converted_date; // Output: 2024-02-12
+                                    } 
+                        }?>
                         </b></span></p>
                         </div>
                         
                         <div class="filledpoints">
                     <ul>
-                        <li><i class="fa fa-map-marker"></i><?php if(!empty($personal_details->hometown)){ echo @$personal_details->hometown; ?>, INDIA <?php } ?></li>
+                        <li><i class="fa fa-map-marker"></i><?php { echo @$personal_details[0]->hometown; ?><?php } ?></li>
                         <li><i class="fa fa-briefcase"></i> <?php if(!empty($last_employment->total_exp_year) && !empty($last_employment->total_exp_month)){  echo $last_employment->total_exp_year." Years ".$remainingMonths." Months"; } else{ if(!empty($last_employment)){ echo @$totalYears." Years And ".@$remainingMonths." Months"; } }?> </li>
                         <li><i class="fa fa-money"></i><?php 
                         if(!empty(@$user_details[0]->emp_current_salary))
@@ -306,35 +307,94 @@ Array.from(circularProgress).forEach((progressBar) => {
                         <li>
                         <?php if(empty($user_details[0]->image)){ ?>
                         <li>
-                            <a type="updateimggg" data-toggle="modal"  data-target="#uploadPhoto">Add Profile Photo
-                            </a>
+                            <a>Add Profile Photo</a>
                         </li>
                    <?php } ?>
                         </li>
-                        <?php if(empty($profile_summary)){ ?>
+                        <?php if(empty($profile_summary->profile_summary)){ ?>
                         <li>
-                        <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#ProfileSummery"> Add Profile Summery</a>
+                        <a> Add Profile Summery</a>
                         </li>
                         <?php }  
                         if(empty($know_language)){ ?>
                         <li>
-                            <?php if(empty($personal_details[0])){ ?>
-                            <a type="button" data-toggle="modal" data-target="#PersonalDetailssss">Add Languages
-                            </a>
+                            <?php if(empty($know_language[0])){ ?>
+                            <a>Add Personal details</a>
                     <?php } 
-                        elseif(!empty($personal_details[0])){ ?>
-                            <a type="button" onclick="edit_personal_details(<?php echo @$personal_details[0]->personal_id ?>)">Add Personal details
-                            </a>
+                        elseif(empty($personal_details[0])){ ?>
+                            <a>Add Personal details</a>
                             <?php } ?>
                         </li>
                         <?php } ?>
                         
                     <?php if(empty($user_details[0]->resume)){ ?>
                         <li>
-                            <a type="button" data-toggle="modal"  data-target="#resume_upload">Add Updated Resume
-                            </a>
+                            <a>Add Updated Resume</a>
                         </li>
                    <?php } ?>
+                   <li>
+                        <?php if(empty($career_profile)){ ?>
+                        <li>
+                            <a>Add Career Profile</a>
+                        </li>
+                   <?php } ?>
+                        </li>
+                        <li>
+                        <?php if(empty($employement_details)){ ?>
+                        <li>
+                            <a>Add Employement Details</a>
+                        </li>
+                   <?php } ?>
+                        </li>
+                        <li>
+                        <?php if(empty($education_details)){ ?>
+                        <li>
+                            <a>Add Education Details</a>
+                        </li>
+                   <?php } ?>
+                        </li>
+                        <li>
+                        <?php if(empty($it_skills)){ ?>
+                        <li>
+                            <a>Add IT Skills</a>
+                        </li>
+                   <?php } ?>
+                        </li>
+                        <li>
+                        <?php if(empty($candidate_project)){ ?>
+                        <li>
+                            <a>Add Project Details</a>
+                        </li>
+                   <?php } ?>
+                        </li>
+                        <li>
+                        <?php if(empty($career_profile)){ ?>
+                        <li>
+                            <a>Add Career Details</a>
+                        </li>
+                   <?php } ?>
+                   <li>
+                        <?php 
+                        if (empty($social_platform)) { ?>
+                            <a>Add Accomplishments - Social Platforms details</a>
+                        <?php 
+                        } elseif (empty($work_samples)) { ?>
+                            <a>Add Accomplishments - Work Samples</a>
+                        <?php 
+                        } elseif (empty($candidate_white_paper_journal_entry)) { ?>
+                            <a type="button">Add Accomplishments - White Paper / Research Publication / Journal Entry details</a>
+                        <?php 
+                        } elseif (empty($candidate_presentation)) { ?>
+                            <a>Add Accomplishments - Candidate Presentation</a>
+                        <?php 
+                        } elseif (empty($patent_details)) { ?>
+                            <a>Add Accomplishments - Patent Details</a>
+                        <?php 
+                        } elseif (empty($certifications)) { ?>
+                            <a>Add Accomplishments - Certifications</a>
+                        <?php 
+                        } ?>
+                    </li>
                     </ul>
                 </div>
             </div>

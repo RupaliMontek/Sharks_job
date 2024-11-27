@@ -5,25 +5,24 @@
         <div class="col-lg-3 col-sm-12 nopaddingColForMobile">
             <div class="mnuserHomepageLeft">
                 <div class="frprofile">
-                    <?php $progress_bar= 0; 
+                <?php $progress_bar= 0; 
                     if(!empty($career_profile->preferred_work_location))
                     {
                     if(!empty($user_details[0]->resume))
                     {
-                        $resume=10;
-                        $progress_bar= $resume;
+                        $resume=20;
+                        $progress_bar= $resume;                       
+                        // print_r($progress_bar); die();
                     }
                     else
                     {
-                        $resume=0;
-                    }
-                    
-                    $profile_image = base_url($user_details[0]->image);
-                        
+                        $resume=0;                        
+                    }                        
                     if(!empty($career_profile->preferred_work_location))
                     {
                         $preferred_work_location = 2;
-                        $progress_bar= $preferred_work_location+$resume;
+                        $progress_bar= @$resume+@$preferred_work_location;
+                        // print_r($progress_bar); die();
                     }
                        
                     if(!empty($employement_details))
@@ -33,62 +32,73 @@
                             if(!empty($row->emp_current_company_name && $row->emp_current_desigantion))
                             {
                                $candidate_designation_current_company = 10;
-                               $progress_bar= $candidate_designation_current_company+$preferred_work_location+$resume;
+                               $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company;
+                                //   print_r($progress_bar); die();
                             }
                             else
                             {
                                 $candidate_designation_current_company = 0;
+                                 
                             }
-                              
-                       }
+                        }
                         
                     }
                             
                     if(!empty($career_profile->career_profile_department))   
                      {
                         $career_profile_department=10;
-                        $progress_bar= @$candidate_designation_current_company+@$preferred_work_location+$resume;
+                        $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department;
+                        // print_r($progress_bar); die();
                      } 
                      else
                      {
                         $career_profile_department = 0;
+                        
                      }
                       
                      
                       if(!empty($career_profile->career_current_industry)) 
                       {
                           $career_current_industry=2;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$resume;
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry;
+                            // print_r($progress_bar); die(); 
                       }
                       else
                       {
                           $career_current_industry = 0;
+                          
                       }
                       if(!empty($user_details[0]->image))
                       {
                           $profile_photo = 5;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$profile_photo+$resume;
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry+@$profile_photo;
+                        //   print_r($progress_bar); die();  
+                          
                       }
                       else
                       {
                           $profile_photo = 0;
+                          
                       }
                       if(!empty($resume_headline))
                        {
                           $resume_headlines = 8;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$profile_photo+@$resume_headlines+@$resume;
-                       }
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry+@$profile_photo+@$resume_headlines;
+                        //   print_r($progress_bar); die();
+                        }
                        else
                        {
                           $resume_headlines = 0;
+                          
                        }
                      
                        
                       if(!empty($know_language))
                       {
                           $candidate_know_language = 2;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$resume ;
-                      }
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language;
+                        //   print_r($progress_bar); die();
+                        }
                       else
                       {
                           $candidate_know_language = 0;
@@ -97,8 +107,9 @@
                       if(!empty($education_details))
                        {
                           $education_detail = 10;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$resume ;
-                       }
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail;
+                        //   print_r($progress_bar); die();
+                        }
                       else
                       {
                           $education_detail = 0;
@@ -106,9 +117,10 @@
                       
                       if(!empty($personal_details))
                       {
-                          $personal_detail = 2;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$personal_detail+$resume ;
-                      }
+                          $personal_detail = 7;
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$personal_detail;
+                        //   print_r($progress_bar); die();
+                        }
                       else
                       {
                           $personal_detail = 0;
@@ -117,44 +129,46 @@
                       if(!empty($employement_details))
                       {
                           $employement_detail = 8;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$personal_detail+@$employement_detail+@$resume;
-                      }
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$personal_detail+@$employement_detail;
+                        //   print_r($progress_bar); die();
+                        }
                       else
                       {
                           $employement_detail = 0;
-                      }
+                      }                    
                       
-                      
-                     if(!empty($key_skiils))
+                     if(!empty($candidate_skils))
                        {
                           $key_skiil = 8;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$personal_detail+@$employement_detail+@$key_skiil+$resume;
-                       }
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$personal_detail+@$employement_detail+@$key_skiil;
+                        //   print_r($progress_bar); die();
+                        }
                       else
                       {
                            $key_skiil = 0;
                       }
                       
-                      
                      if(!empty($profile_summary))
                       {
                           $profile_summarys = 8;
-                          $progress_bar= @$candidate_designation_current_company+@$career_profile_department+@$preferred_work_location+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$personal_detail+@$employement_detail+@$key_skiil+@$profile_summarys+@$resume;
-                      }
+                          $progress_bar= @$resume+@$preferred_work_location+@$candidate_designation_current_company+@$career_profile_department+@$career_current_industry+@$profile_photo+@$resume_headlines+@$candidate_know_language+@$education_detail+@$personal_detail+@$employement_detail+@$key_skiil+@$profile_summarys;
+                        //   print_r($progress_bar); die();
+                        }
                       else
                       {
                           $profile_summarys = 0;
-                      }
-                           $progress_bar;
+                      }                     
                          
                     }
                     else
                     {
                         $preferred_work_location = 0;
                     }
+                    
                     ?>        
- <?php
-$profile_image = base_url($user_details[0]->image);     
+                    
+  <?php $profile_image = base_url($user_details[0]->image); ?>          
+<?php
 if($progress_bar==0)
 {
    $progress_percentage = 1; 
@@ -163,7 +177,8 @@ else
 {
    $progress_percentage = $progress_bar;
 }
- ?>                   
+
+ ?>
                     
 <div class="row d-flex justify-content-center ">
  <div class="circular-progress" data-inner-circle-color="white" data-percentage="<?= $progress_percentage; ?>" data-progress-color="blue" data-bg-color="lightgrey">
@@ -183,7 +198,7 @@ Array.from(circularProgress).forEach((progressBar) => {
 
   const progress = setInterval(() => {
     startValue++;
-    progressValue.textContent = ;`${startValue}%`;
+    progressValue.textContent = `${startValue}%`;
     progressValue.style.color = `${progressColor}`;
 
     innerCircle.style.backgroundColor = `${progressBar.getAttribute(

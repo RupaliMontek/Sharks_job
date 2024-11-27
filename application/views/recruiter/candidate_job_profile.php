@@ -6,8 +6,8 @@
             <div class="jobheader">
                 <img width="70" height="auto" src="<?php echo base_url() ?>frontend/images/complogo.png"/>
                 <h6 class="jobtitle"><?php echo $row->profile; ?><br><span><?php
-                if(!empty($row->company_name)){
-                $query = $this->db->query("select * from client where client_id  =$row->company_name ");
+                if(!empty($row->job_id)){
+                $query = $this->db->query("select * from client where client_id  =$row->job_id ");
                           $company_details = $query->row();
                 echo @$company_details->client_name;
                 

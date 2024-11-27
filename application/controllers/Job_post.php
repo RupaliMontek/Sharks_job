@@ -145,7 +145,7 @@ public function send_reset_link()
         $this->m_admin_user->updatePassword($user['user_admin_id'], $password);
 
         $this->session->set_flashdata('success', 'Password has been reset');
-        return redirect('job_post/recruiter_login');
+        return redirect('recruitment');
     } else {
         $this->session->set_flashdata('error', 'Invalid token');
         return redirect('job_post/reset_password_form');
@@ -622,6 +622,7 @@ private function prepareJobData($companyId, $file_name = null)
             "job_type"                      => $this->input->post("job_type"),
             "no_of_vacancies"               => $this->input->post("no_of_vacancies"),
             "work_mode"                     => $this->input->post("work_mode"),
+            "mode"                          => $this->input->post("mode"),
             "education"                     => $this->input->post("education"),
             "new_company_name"              => $this->input->post("new_company_name"),
             "company_telephone"             => $this->input->post("company_telephone"),
@@ -712,6 +713,7 @@ public function saveRegistration() {
         "job_type"                      => $job_data_array['job_type'],
         "no_of_vacancies"               => $job_data_array['no_of_vacancies'],
         "work_mode"                     => $job_data_array['work_mode'],
+        "mode"                          => $job_data_array['mode'],
         "education"                     => $job_data_array['education'],
         "new_company_name"              => $job_data_array['new_company_name'],
         "company_telephone"             => $job_data_array['company_telephone'],

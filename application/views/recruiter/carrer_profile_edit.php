@@ -2,11 +2,12 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h4 class="modal-title deletouterr">Edit Personal Details
+                    <h4 class="modal-title deletouterr">Edit career profile Details
                     <button type="button" class="btn frnewdeletbtnnnn" onclick="delete_confirm_carrer_profile(<?php echo $career_profile->career_profile_Id ;?>)" >Delete</button>
                     </h4>
                     <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
                   </div>
+                  
                   <!-- Modal body -->
                   <div class="modal-body">
                     <div class="col-md-"> 
