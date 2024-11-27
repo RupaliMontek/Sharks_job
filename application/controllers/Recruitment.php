@@ -919,6 +919,36 @@ if(isset($_GET['code']))
         $data["educations"]=$this->M_Candidate_profile->get_all_education();
         $data["companies"]=$this->M_Candidate_profile->get_all_companies();
         $data["cities"]=$this->M_Candidate_profile->all_cities();
+        $work_mode = $this->input->get('work_mode');
+        $skills = $this->input->get('skills');
+        $post = $this->input->post();       
+        
+        $location_id  =   @$post['joblocationid'];
+        $search       =   @$post["job-title"];
+        $experience   =   @$post["experience"];
+        $location     =   @$post["job-location"];
+        $pin_code     =   @$post["pin_code"];
+        // $skills       =   @$post["skills"];
+
+        $data["job_latest"] = $this->M_Candidate_profile->search_job($search, $experience, $location_id, $pin_code, $skills, $work_mode);
+        // print_r($data["job_latest"]); die();
+        // $data["companies"]=$this->M_Candidate_profile->get_all_companies();
+        // $data["cities"]=$this->M_Candidate_profile->all_cities(); 
+        // $data["departments"]=$this->M_Candidate_profile->get_all_department();
+        // $data["educations"]=$this->M_Candidate_profile->get_all_education();
+        $data["internship"]=$this->M_Candidate_profile->get_all_internship();
+        $data["jobs_by_location"] = $this->M_Candidate_profile->get_jobs_count_by_location();
+        $location_ids = [2763, 2707, 48315, 3659];
+    
+        $data["jobs_by_location"] = $this->M_Candidate_profile->get_jobs_count_by_job_location_ids($location_ids);
+// print_r($data["jobs_by_location"]); die();   
+        $data["location_names"] = [
+            2763 => "Pune",
+            2707 => "Mumbai",
+            48315 => "Bangalore",
+            3659 => "Chennai"
+        ];
+
         $db_name1 = "sharksjob_backend";
         $this->db->query("use " .$db_name1. "");
 	    $data['recent_blogs'] = $this->M_blog->list_recent_blogs(4);

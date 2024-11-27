@@ -555,64 +555,74 @@ $.ajax({
 });
 
 
-function filters_all_ajax (){
-    var base_url ="<?php echo base_url();?>";
-    var location = new Array();
-    var educations = new Array();
-    var companies = new Array();    
-    var salary = new Array();
-    var work_mode = new Array();
-    $("input[name=location]:checked").each(function() 
-    {                   
+function filters_all_ajax() {
+    var base_url = "<?php echo base_url(); ?>";
+
+    var location = [];
+    var experience = [];
+    var educations = [];
+    var companies = [];
+    var salary = [];
+    var work_mode = [];
+    var department = [];
+    var profile = [];
+
+    $("input[name=location]:checked").each(function () {
         location.push($(this).val());
-                   //alert(brand);  
     });
-    $("input[name=companies]:checked").each(function() 
-    {                   
+
+    $("input[name=experience]:checked").each(function () {
+        experience.push($(this).val());
+    });
+
+    $("input[name=companies]:checked").each(function () {
         companies.push($(this).val());
-                   //alert(brand);  
     });
 
-    $("input[name=education_filter]:checked").each(function() 
-    {
+    $("input[name=education_filter]:checked").each(function () {
         educations.push($(this).val());
-                   //alert(brand);  
     });
-    
-    $("input[name=salary]:checked").each(function() 
-    {
-        salary.push($(this).val());
-                   //alert(brand);  
-    });
-    
-    $("input[name=work_mode]:checked").each(function() 
-    {
-        work_mode.push($(this).val());
-                   //alert(brand);  
-    });
- 
-    $.ajax({
-    url: base_url+'recruitment/ajax_job_filter',
-    type: 'POST',
-    data:{location:location,companies:companies,educations:educations,salary:salary,work_mode:work_mode},
-    success:function(data)
-    {
-       
-        $('#job_filters').css('display','none');         
-        $('#vieweducation').modal('hide');
-        $('#viewlocation').modal('hide');
-        $('#vietopCompanies').modal('hide');
-        $("#job_filter").addClass("col-lg-6 col-sm-12 jobFilterMiddle");
-         //$("#job_filtersssss").html(data);
-         $('#jobprofileshort').addClass("hidden");
-       
-         $('#job_filtersssss').removeClass("hidden").addClass("col-lg-6 col-sm-12 jobFilterMiddle");;
-          $("#job_filtersssss").html(data);
-        
-         console.log("aaaaa");
-    }
-});
 
+    $("input[name=salary]:checked").each(function () {
+        salary.push($(this).val());
+    });
+
+    $("input[name=work_mode]:checked").each(function () {
+        work_mode.push($(this).val());
+    });
+
+    $("input[name=department]:checked").each(function () {
+        department.push($(this).val());
+    });
+    $("input[name=profile]:checked").each(function () {
+      profile.push($(this).val());
+    });
+
+    $.ajax({
+        url: base_url + 'recruitment/ajax_job_filter',
+        type: 'POST',
+        data: {
+            location: location,
+            experience: experience,
+            companies: companies,
+            educations: educations,
+            salary: salary, // Include salary in the request
+            work_mode: work_mode,
+            department: department,
+            profile:profile 
+        },
+        success: function (data) {
+            $('#job_filters').css('display', 'none');
+            $('#vieweducation').modal('hide');
+            $('#viewlocation').modal('hide');
+            $('#viewexperience').modal('hide');
+            $('#vietopCompanies').modal('hide');
+            $("#job_filter").addClass("col-lg-6 col-sm-12 jobFilterMiddle");
+            $('#jobprofileshort').addClass("hidden");
+            $('#job_filtersssss').removeClass("hidden").addClass("col-lg-6 col-sm-12 jobFilterMiddle");
+            $("#job_filtersssss").html(data);
+        }
+    });
 }
 
 

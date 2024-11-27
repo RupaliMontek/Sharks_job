@@ -85,7 +85,15 @@
         <label class="form-label"  for="key_skills">key skills<span style="color: red;">*</span></label>
         <input autocomplete="off" class="form-control" type="text" name="key_skills" id="key_skills" required >
         </div> 
-        
+        <div class="mb-3">
+        <label class="form-label"  for="mode">Work Mode<span style="color: red;">*</span></label>
+        <select class="form-control" name="mode" id="mode" required>
+            <option  value="" selected>Select Work Mode</option>
+            <option value="work_from_home">Work from Home/Remote</option>
+            <option value="Work_from_office">Work from Office</option>
+            <option value="Hybrid">Hybrid</option>
+         </select>
+      </div> 
         <div class="mb-3">
         <label class="form-label"  for="min_exp_candidate">Min Exp Candidate<span style="color: red;">*</span></label>
         <select class="form-control" name="min_exp_candidate" id="min_exp_candidate" required>
@@ -460,7 +468,7 @@
             <select class="form-control" name="department" id="department" required>
                 <option value="" selected>Select Department</option>
                 <?php foreach($department_list as $row) { ?>
-                    <option value="<?= $row['dept_id']; ?>"><?= $row['dept_name']; ?></option>
+                    <option value="<?= $row['dept_name']; ?>"><?= $row['dept_name']; ?></option>
                     <?php } ?>
                 </select>
         </div>
@@ -890,6 +898,7 @@ function openModal() {
     const jobTitle = document.getElementById("profile").value;
     console.log(jobTitle);
     const keySkills = document.getElementById("key_skills").value;
+    const mode = document.getElementById("mode").value;
     const minExp = document.getElementById("min_exp_candidate").value;
     const maxExp = document.getElementById("max_exp_candidate").value;
     const minSalary = document.getElementById("min_salary").value;
@@ -920,6 +929,7 @@ function openModal() {
     // Populate modal with form data
     document.getElementById("preview_profile").textContent = jobTitle;
     document.getElementById("preview_key_skills").textContent = keySkills;
+    document.getElementById("preview_mode").textContent = mode;
     document.getElementById("preview_min_exp").textContent = minExp;
     document.getElementById("preview_max_exp").textContent = maxExp;
     document.getElementById("preview_min_salary").textContent = minSalary;
@@ -1016,6 +1026,7 @@ function showSelectedEducation() {
             <div class="modal-body">
                 <p><b>Job Title: </b><span id="preview_profile"></span></p>
                 <p><b>Key skills: </b><span id="preview_key_skills"></span></p>
+                <p><b>Work Mode: </b><span id="preview_mode"></span></p>
                 <p><b>Min Exp Candidate: </b><span id="preview_min_exp"></span>Years</p>
                 <p><b>Max Exp Candidate: </b><span id="preview_max_exp"></span>Years</p>
                 <p><b>Min Salary: </b><span id="preview_min_salary"></span></p>

@@ -416,6 +416,9 @@ class Candidate_profile extends CI_Controller
         $data["educations"]=$this->M_Candidate_profile->get_all_education();
         $data["internship"]=$this->M_Candidate_profile->get_all_internship();
         $data["jobs_by_location"] = $this->M_Candidate_profile->get_jobs_count_by_location();
+        $data["get_Profiles_Count"] = $this->M_Candidate_profile->getAllProfilesWithCount();
+        $data["get_location_Count"] = $this->M_Candidate_profile->getAllLocationWithCount();
+        // print_r($data["get_location_Count"]); die();
         $location_ids = [2763, 2707, 48315, 3659];
     
         $data["jobs_by_location"] = $this->M_Candidate_profile->get_jobs_count_by_job_location_ids($location_ids);

@@ -326,61 +326,82 @@ $this->db->join('candidate_course cs', 'cs.course_id=tcjp.education', 'left');
 return $this->db->get()->result();
 
 }*/
+public function getAllProfilesWithCount()
+{
+    $query = $this->db->query("
+        SELECT profile, CONCAT(profile, ' (', COUNT(*), ')') AS profile_with_count
+        FROM tbl_candidate_job_post
+        GROUP BY profile
+        ORDER BY COUNT(*) DESC
+    ");
+
+    return $query->result_array();
+}
+public function getAllLocationWithCount()
+{
+    $query = $this->db->query("
+        SELECT job_location, CONCAT(job_location, ' (', COUNT(*), ')') AS job_location_with_count
+        FROM tbl_candidate_job_post
+        GROUP BY job_location
+        ORDER BY COUNT(*) DESC
+    ");
+
+    return $query->result_array();
+}
 
 public function filter_all()
 {
+    $post = $this->input->post();
 
-$post=$this->input->post();
-if(!empty($post['salary'])){
- $salary=implode(",",$post['salary']);   
-}
-if(!empty($post['educations'])){
-$educations=implode(",",$post['educations']);
-}
-if(!empty($post['companies'])){
-$companies=implode(",",$post['companies']);
-}
-if(!empty($post['location']))
-{
- $location=implode(",",$post['location']);
-}
-$this->db->select("tcjp.*,c.*,cs.*,cl.*");
-$this->db->from("tbl_candidate_job_post as tcjp");
-if(!empty($companies))
-{
-  $this->db->where("company_name IN($companies)");
-}
-if(!empty($educations))
-{
-  $this->db->where("education IN($educations)");
-}
-if(!empty($location))
-{
-  $this->db->where("job_location IN($location)");
-}
-$work_mode = array(
-    'Work from office',
-        'Hybrid',
-        'Remote / WFH'
-);
-if(!empty($work_mode))
-{/*
- $work_mode=$post['work_mode'];*/
- //$work_mode=implode(",",$work_mode);
- $this->db->where_in("work_mode",$work_mode);
-}
-if(!empty(@$post["min_exp"] && @$post["max_exp"]))
-{
-    $this->db->where('min_exp_candidate >=', $post["min_exp"]);
-    $this->db->where('max_exp_candidate <=', $post["min_exp"]); 
-}
-$this->db->join('cities c', 'c.id=tcjp.job_location', 'left');
-$this->db->join('client cl', 'cl.client_id=tcjp.company_name', 'left');
-$this->db->join('candidate_course cs', 'cs.course_id=tcjp.education', 'left');
+    $salary = !empty($post['salary']) ? implode(",", $post['salary']) : null;
+    $educations = !empty($post['educations']) ? implode(",", $post['educations']) : null;
+    $companies = !empty($post['companies']) ? implode(",", $post['companies']) : null;
+    $location = !empty($post['location']) ? implode(",", $post['location']) : null;
+    $work_mode = !empty($post['work_mode']) ? $post['work_mode'] : null;
+    $department = !empty($post['department']) ? $post['department'] : null;
+    $profile = !empty($post['profile']) ? $post['profile'] : null; // New addition
 
-return $this->db->get()->result();
+    $this->db->select("tcjp.*, c.*, cs.*, cl.*");
+    $this->db->from("tbl_candidate_job_post as tcjp");
 
+    if (!empty($salary_ranges)) {
+        $this->db->group_start();
+        foreach ($salary_ranges as $range) {
+            [$comany_min_package_offer, $comany_max_package_offer] = explode('-', $range);
+            $this->db->or_where("(tcjp.salary_min >= $comany_min_package_offer AND tcjp.salary_max <= $comany_max_package_offer)");
+        }
+        $this->db->group_end();
+    }
+    if (!empty($companies)) {
+        $this->db->where("company_name IN ($companies)");
+    }
+    if (!empty($educations)) {
+        $this->db->where("education IN ($educations)");
+    }
+    if (!empty($location)) {
+        $this->db->where("job_location IN ($location)");
+    }
+    if (!empty($work_mode)) {
+        $this->db->where_in("mode", $work_mode);
+    }
+    if (!empty($department)) {
+        $this->db->where_in("department", $department); // Use department filter
+    }
+    if (!empty($profile)) {
+        $this->db->where_in("profile", $profile); // Use department filter
+    }
+    if (!empty(@$post["min_exp"]) && !empty(@$post["max_exp"])) {
+        $this->db->where('min_exp_candidate >=', $post["min_exp"]);
+        $this->db->where('max_exp_candidate <=', $post["max_exp"]);
+    }
+
+    $this->db->join('cities c', 'c.id = tcjp.job_location', 'left');
+    $this->db->join('client cl', 'cl.client_id = tcjp.company_name', 'left');
+    $this->db->join('candidate_course cs', 'cs.course_id = tcjp.education', 'left');
+
+    return $this->db->get()->result();
 }
+
 public function search_job($search, $category, $location, $pin_code, $skills, $work_mode = null)
 {
     $this->db->select('tbl_candidate_job_post.*, cities.id as city_id, cities.name');
