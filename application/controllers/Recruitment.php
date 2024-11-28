@@ -1,8 +1,8 @@
 <?php
 defined("BASEPATH") or exit("No direct script access allowed");
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 class Recruitment extends CI_Controller
 {
     public $m_admin_user;

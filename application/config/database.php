@@ -4,12 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $active_group = 'default';
 $query_builder = TRUE;
- 
+
 $db['default'] = array(
     'dsn'       => '',
     'hostname'  => 'localhost',
-    'username'  => 'root1',
-    'password'  => 'M@CjfcUXP!',
+    'username'  => 'root',
+    'password'  => '',
     'database'  => 'msuite_office_mgmt',
     'dbdriver'  => 'mysqli',
     'dbprefix'  => '',
@@ -26,11 +26,12 @@ $db['default'] = array(
     'failover'  => array(),
     'save_queries' => TRUE
 );
+
 $db['login'] = array(
     'dsn'       => '',
     'hostname'  => 'localhost',
-    'username'  => 'root1',  // Change this to the correct login username
-    'password'  => 'M@CjfcUXP!',  // Change this to the correct login password
+    'username'  => 'root',  // Change this to the correct login username
+    'password'  => '',  // Change this to the correct login password
     'database'  => 'sharksjob_backend',
     'dbdriver'  => 'mysqli',
     'dbprefix'  => '',
@@ -51,8 +52,8 @@ $db['login'] = array(
 $db['sharksjob_backend'] = array(
     'dsn'   => '',
     'hostname' => 'localhost',  // e.g., 'localhost' or an IP address
-    'username' => 'root1', // Your database username
-    'password' => 'M@CjfcUXP!', // Your database password
+    'username' => 'root', // Your database username
+    'password' => '', // Your database password
     'database' => 'sharksjob_backend', // The name of the database
     'dbdriver' => 'mysqli', // or 'pdo' based on your setup
     'dbprefix' => '', // You can leave it empty unless you are using a table prefix

@@ -337,17 +337,78 @@ public function getAllProfilesWithCount()
 
     return $query->result_array();
 }
+// public function getAllLocationWithCount()
+// {
+//     $query = $this->db->query("
+//         SELECT job_location, CONCAT(job_location, ' (', COUNT(*), ')') AS job_location_with_count
+//         FROM tbl_candidate_job_post
+//         GROUP BY job_location
+//         ORDER BY COUNT(*) DESC
+//     ");
+
+//     return $query->result_array();
+// }
 public function getAllLocationWithCount()
 {
     $query = $this->db->query("
-        SELECT job_location, CONCAT(job_location, ' (', COUNT(*), ')') AS job_location_with_count
+SELECT 
+    j.job_location, 
+    MAX(c.name) AS name, -- Display one representative name (if needed)
+    CONCAT(' (', COUNT(*), ')') AS job_location_with_count
+FROM 
+    tbl_candidate_job_post j
+JOIN 
+    cities c ON j.job_location = c.id -- Match job_location with cities.id
+GROUP BY 
+    j.job_location
+ORDER BY 
+    COUNT(*) DESC;
+    ");
+
+    return $query->result_array();
+}
+public function getAllEducationWithCount()
+{
+    $query = $this->db->query("
+SELECT 
+    j.education, 
+    MAX(c.course_name) AS name, -- Display one representative name (if needed)
+    CONCAT(' (', COUNT(*), ')') AS education_with_count
+FROM 
+    tbl_candidate_job_post j
+JOIN 
+    candidate_course c ON j.education = c.course_id -- Match education with cities.id
+GROUP BY 
+    j.education
+ORDER BY 
+    COUNT(*) DESC;
+    ");
+
+    return $query->result_array();
+}
+public function getAllCompanyWithCount()
+{
+    $query = $this->db->query("
+SELECT company_name, CONCAT(company_name, ' (', COUNT(*), ')') AS company_name_with_count
         FROM tbl_candidate_job_post
-        GROUP BY job_location
+        GROUP BY company_name
         ORDER BY COUNT(*) DESC
     ");
 
     return $query->result_array();
 }
+// public function getAllCompanyWithCount()
+// {
+//     $query = $this->db->query("
+// SELECT company_name, CONCAT(company_name, ' (', COUNT(*), ')') AS company_name_with_count
+//         FROM tbl_candidate_job_post
+//         GROUP BY company_name
+//         ORDER BY COUNT(*) DESC
+//     ");
+
+//     return $query->result_array();
+// }
+
 
 public function filter_all()
 {
