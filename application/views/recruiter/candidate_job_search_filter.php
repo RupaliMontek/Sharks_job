@@ -53,7 +53,7 @@
         <input onclick="filters_all_ajax()" type="checkbox" id="department" name="department" value="IT">
         <label for="">
             <p><span>Engineering - Software & QA</span>
-                <span>(724)</span></p>
+                <!-- <span>(724)</span></p> -->
         </label>
     </div>
 
@@ -61,7 +61,7 @@
         <input onclick="filters_all_ajax()" type="checkbox" id="department" name="department" value="Non_IT">
         <label for="">
             <p><span>UX, Design & Architecture</span>
-                <span>(7)</span></p>
+                <!-- <span>(7)</span></p> -->
         </label>
     </div>
 
@@ -69,7 +69,7 @@
         <input onclick="filters_all_ajax()" type="checkbox" id="department" name="department" value="sales">
         <label for="">
             <p><span>Marketing & Communication</span>
-                <span>(24)</span></p>
+                <!-- <span>(24)</span></p> -->
         </label>
     </div>
 
@@ -77,7 +77,7 @@
         <input onclick="filters_all_ajax()" type="checkbox" id="department" name="department" value="All">
         <label for="">
             <p><span>Other</span>
-                <span>(20)</span></p>
+                <!-- <span>(20)</span></p> -->
         </label>
     </div>
 
@@ -100,7 +100,7 @@
         <input type="checkbox" id="<?php $row->dept_id; ?>">
         <label class="" for="">
             <p class=""><span class="" ><?php echo $row->dept_name; ?></span>
-                <span class="">(724)</span></p></label>
+                <!-- <span class="">(724)</span></p></label> -->
 </div>
 <?php } ?>
       </div>
@@ -118,7 +118,7 @@
         <input onclick="filters_all_ajax()" type="checkbox" value="less_50000_per_year-3_lakh_per_year" name="salary" id="salary">
         <label for="">
             <p><span>0-3 Lakhs</span>
-                <span>(724)</span></p>
+                <!-- <span>(724)</span></p> -->
         </label>
     </div>
 
@@ -126,7 +126,7 @@
         <input onclick="filters_all_ajax()" type="checkbox" value="3_lakh_per_year-6_lakh_per_year" name="salary" id="salary">
         <label for="">
             <p><span>3-6 Lakhs</span>
-                <span>(7)</span></p>
+                <!-- <span>(7)</span></p> -->
         </label>
     </div>
 
@@ -134,7 +134,7 @@
         <input onclick="filters_all_ajax()" type="checkbox" value="6_lakh_per_year-10_lakh_per_year" name="salary" id="salary">
         <label for="">
             <p><span>6-10 Lakhs</span>
-                <span>(24)</span></p>
+                <!-- <span>(24)</span></p> -->
         </label>
     </div>
 
@@ -142,7 +142,7 @@
         <input onclick="filters_all_ajax()" type="checkbox" value="10_lakh_per_year-15_lakh_per_year" name="salary" id="salary">
         <label for="">
             <p><span>10-15 Lakhs</span>
-                <span>(20)</span></p>
+                <!-- <span>(20)</span></p> -->
         </label>
     </div>
 
@@ -160,71 +160,24 @@
         </button>
       </div>
       <div class="modal-body">
-        <nav class="navbar navbar-light">
-  <!-- <form class="form-inline leftbarsearchform">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search Department" aria-label="Search">
-    <button class="btn searchiconn" type="submit"><i class="fa fa-search"></i></button>
-  </form> -->
-</nav>
-<div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" value="less_50000_per_year-3_lakh_per_year" name="salary" id="salary">
-        <label for="">
-            <p><span>0-3 Lakhs</span>
-                <span>(724)</span></p>
-        </label>
-    </div>
-
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" value="3_lakh_per_year-6_lakh_per_year" name="salary" id="salary">
-        <label for="">
-            <p><span>3-6 Lakhs</span>
-                <span>(7)</span></p>
-        </label>
-    </div>
-
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" value="6_lakh_per_year-10_lakh_per_year" name="salary" id="salary">
-        <label for="">
-            <p><span>6-10 Lakhs</span>
-                <span>(24)</span></p>
-        </label>
-    </div>
-
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" value="10_lakh_per_year-15_lakh_per_year" name="salary" id="salary">
-        <label for="">
-            <p><span>10-15 Lakhs</span>
-                <span>(20)</span></p>
-        </label>
-    </div>
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" value="15_lakh_per_year-20_lakh_per_year" name="salary" id="salary">
-        <label for="">
-            <p><span>15-20 Lakhs</span>
-                <span>(20)</span></p>
-        </label>
-    </div>
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" value="20_lakh_per_year-30_lakh_per_year" name="salary" id="salary">
-        <label for="">
-            <p><span>20-30 Lakhs</span>
-                <span>(20)</span></p>
-        </label>
-    </div>
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" value="30_lakh_per_year-40_lakh_per_year" name="salary" id="salary">
-        <label for="">
-            <p><span>30-40 Lakhs</span>
-                <span>(20)</span></p>
-        </label>
-    </div>
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" value="15_lakh_per_year-20_lakh_per_year" name="salary" id="salary">
-        <label for="">
-            <p><span>15-20 Lakhs</span>
-                <span>(20)</span></p>
-        </label>
-    </div>
+      <?php if (!empty($get_education_Count)): ?>
+          <?php foreach ($get_education_Count as $row): ?>
+            <div class="chckBoxCont">     
+              <input id="education_filter<?php echo htmlspecialchars($row['education']); ?>" 
+                     name="education_filter[]" 
+                     type="checkbox" 
+                     value="<?php echo htmlspecialchars($row['education']); ?>">
+              <label for="education_filter<?php echo htmlspecialchars($row['education']); ?>">
+                <p>
+                  <span class="client-name"><?php echo htmlspecialchars($row['name']); ?></span> 
+                  <span class="job-location-with-count"><?php echo htmlspecialchars($row['education_with_count']); ?></span>
+                </p>
+              </label>      
+            </div>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p>No locations available.</p>
+        <?php endif; ?>
       </div>
       <div class="modal-footer">
         <button type="button" onclick="filters_all_ajax()" class="btn btn-primary">Apply</button>
@@ -241,28 +194,28 @@
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Corporate</span>
-                <span class="">(724)</span></p></label>
+                <!-- <span class="">(724)</span></p></label> -->
     </div>
 
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Foreign MNC</span>
-                <span class="">(7)</span></p></label>
+                <!-- <span class="">(7)</span></p></label> -->
     </div>
 
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Indian MNC</span>
-                <span class="">(24)</span></p></label>
+                <!-- <span class="">(24)</span></p></label> -->
     </div>
 
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Startup</span>
-                <span class="">(20)</span></p></label>
+                <!-- <span class="">(20)</span></p></label> -->
     </div>
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewcompanytype">
@@ -283,46 +236,46 @@
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Corporate</span>
-                <span class="">(724)</span></p></label>
+                <!-- <span class="">(724)</span></p></label> -->
     </div>
 
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Foreign MNC</span>
-                <span class="">(7)</span></p></label>
+                <!-- <span class="">(7)</span></p></label> -->
     </div>
 
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Indian MNC</span>
-                <span class="">(24)</span></p></label>
+                <!-- <span class="">(24)</span></p></label> -->
     </div>
 
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Startup</span>
-                <span class="">(20)</span></p></label>
+                <!-- <span class="">(20)</span></p></label> -->
     </div>
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >MNC</span>
-                <span class="">(20)</span></p></label>
+                <!-- <span class="">(20)</span></p></label> -->
     </div>
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Govt/PSU</span>
-                <span class="">(20)</span></p></label>
+                <!-- <span class="">(20)</span></p></label> -->
     </div>
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Other</span>
-                <span class="">(20)</span></p></label>
+                <!-- <span class="">(20)</span></p></label> -->
     </div>
       </div>
       <div class="modal-footer">
@@ -340,7 +293,7 @@
         <input onclick="filters_all_ajax()" type="checkbox" value="Software Engineer" name="profile" id="profile">
         <label for="">
             <p><span>Software Engineer</span>
-                <span>(724)</span></p>
+                <!-- <span>(724)</span></p> -->
         </label>
     </div>
 
@@ -348,7 +301,7 @@
         <input onclick="filters_all_ajax()" type="checkbox" value="Design Engineer" name="profile" id="profile">
         <label for="">
             <p><span>Design Engineer</span>
-                <span>(7)</span></p>
+                <!-- <span>(7)</span></p> -->
         </label>
     </div>
 
@@ -356,7 +309,7 @@
         <input onclick="filters_all_ajax()" type="checkbox" value="Digital Marketing" name="profile" id="profile">
         <label for="">
             <p><span>Digital Marketing</span>
-                <span>(24)</span></p>
+                <!-- <span>(24)</span></p> -->
         </label>
     </div>
 
@@ -364,7 +317,7 @@
         <input onclick="filters_all_ajax()" type="checkbox" value="Other" name="profile" id="profile">
         <label for="">
             <p><span>Other</span>
-                <span>(20)</span></p>
+                <!-- <span>(20)</span></p> -->
         </label>
     </div>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewrolecategory">
@@ -416,7 +369,7 @@
     <input type="checkbox" id="education_filter" name="education_filter" value="<?php echo $row->course_id; ?>" onclick="filters_all_ajax()">
     <label class="" for="">
     <p class=""><span class="" ><?php echo $row->course_name; ?></span>
-    <span class="">(724)</span></p></label>
+    <!-- <span class="">(724)</span></p></label> -->
 </div> 
 <?php } ?>
 </form>
@@ -437,15 +390,24 @@
         </button>
       </div>
       <div class="modal-body">
-<?php foreach ($educations as $row) { ?>
-<div class="chckBoxCont">
-    <input type="checkbox" id="education_filter" name="education_filter" value="<?php echo $row->course_id; ?>"  >
-    <label class="" for="">
-    <p class=""><span class="" ><?php echo $row->course_name; ?></span>
-    <span class="">(724)</span></p></label>
-</div> 
-<?php } ?>
-
+        <?php if (!empty($get_education_Count)): ?>
+          <?php foreach ($get_education_Count as $row): ?>
+            <div class="chckBoxCont">     
+              <input id="education_filter<?php echo htmlspecialchars($row['education']); ?>" 
+                     name="education_filter[]" 
+                     type="checkbox" 
+                     value="<?php echo htmlspecialchars($row['education']); ?>">
+              <label for="education_filter<?php echo htmlspecialchars($row['education']); ?>">
+                <p>
+                  <span class="client-name"><?php echo htmlspecialchars($row['name']); ?></span> 
+                  <span class="job-location-with-count"><?php echo htmlspecialchars($row['education_with_count']); ?></span>
+                </p>
+              </label>      
+            </div>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p>No locations available.</p>
+        <?php endif; ?>
       </div>
       <div class="modal-footer">
         <button onclick="filters_all_ajax()" type="button" class="btn btn-primary">Apply</button>
@@ -463,14 +425,14 @@
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Company Jobs</span>
-                <span class="">(724)</span></p></label>
+                <!-- <span class="">(724)</span></p></label> -->
     </div>
 
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Consultant Jobs</span>
-                <span class="">(7)</span></p></label>
+                <!-- <span class="">(7)</span></p></label> -->
     </div>
 </div>
 
@@ -484,7 +446,7 @@
     <input onclick="filters_all_ajax()" type="checkbox" id="companies" name="companies" value="<?php echo $row->client_id; ?>">
     <label class="" for="">
     <p class=""><span class="" ><?php echo $row->client_name; ?></span>
-    <span class="">(724)</span></p></label>
+    <!-- <span class="">(724)</span></p></label> -->
 </div>
 <?php } ?>
 </form>
@@ -509,7 +471,7 @@
     <input type="checkbox" id="companies" name="companies" value="<?php echo $row->client_id; ?>">
     <label class="" for="">
     <p class=""><span class="" ><?php echo $row->client_name; ?></span>
-    <span class="">(724)</span></p></label>
+    <!-- <span class="">(724)</span></p></label> -->
 </div> 
 <?php } ?>
 
@@ -527,18 +489,25 @@
                 <div class="locationn">
                     <div class="line"></div>
                       <h6>Location</h6>
-                      <form  method="post">
-                      <?php $sliced_array = array_slice($cities, 0, 4); ?>
-                        <?php foreach ($sliced_array as $row) { ?>                   
-                          <div class="chckBoxCont">
-                          
-                              <input id="location" name="location" type="checkbox" value="<?php echo $row->id; ?>" onclick="filters_all_ajax()"  >
-                              <label class="" for="">
-                                  <p class=""><span class="" ><?php echo $row->name; ?></span>
-                                      <span class=""></span></p></label>      
-                          </div>
-                          <?php } ?>
-                      </form>
+                      <form method="post">
+  <?php 
+    // Limit the results to the first 4 locations
+    $sliced_array = array_slice($cities, 0, 4);
+    foreach ($sliced_array as $row): 
+  ?>               
+      <div class="chckBoxCont">
+          <input id="location" name="location" type="checkbox" value="<?php echo $row->id; ?>" onclick="filters_all_ajax()">
+          <label class="" for="">
+              <p class="">
+                  <span class=""><?php echo $row->name; ?></span>
+                  <!-- <span class="job-location-with-count"><?php echo $row->id; ?></span> -->
+                  <span class=""></span>
+              </p>
+          </label>      
+      </div>
+  <?php endforeach; ?>
+</form>
+
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewlocation">
   View More
@@ -546,34 +515,41 @@
 
 <div class="modal fade forlocationmodal" id="viewlocation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <!-- <form action="<?php echo base_url(); ?>recruitment/locations_filter" method="post"> -->
     <div class="modal-content">
-    <div class="modal-body">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Location</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
         <?php if (!empty($get_location_Count)): ?>
-          <?php foreach ($get_location_Count as $location): ?>
-            <div class="chckBoxCont">
-              <input onclick="filters_all_ajax()" type="checkbox" value="<?= htmlspecialchars($location['job_location']) ?>" name="job_location" id="job_location<?= htmlspecialchars($location['job_location']) ?>">
-              <label for="job_location<?= htmlspecialchars($location['job_location']) ?>">
+          <?php foreach ($get_location_Count as $row):?>
+            
+            <div class="chckBoxCont">     
+              <input id="location<?php echo htmlspecialchars($row['job_location']); ?>" 
+                     name="location[]" 
+                     type="checkbox" 
+                     value="<?php echo htmlspecialchars($row['job_location']); ?>">
+              <label for="location<?php echo htmlspecialchars($row['job_location']); ?>">
                 <p>
-                  <span><?= htmlspecialchars($location['job_location']) ?></span>
-                  <span>(<?= htmlspecialchars(explode('(', $location['job_location_with_count'])[1]) ?>)</span>
+                  <span class="client-name"><?php echo htmlspecialchars($row['name']); ?></span> 
+                  <span class="job-location-with-count"><?php echo htmlspecialchars($row['job_location_with_count']); ?></span>
                 </p>
-              </label>
+              </label>      
             </div>
           <?php endforeach; ?>
         <?php else: ?>
-          <p>No job_location available.</p>
+          <p>No locations available.</p>
         <?php endif; ?>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary" onclick="filters_all_ajax()">Apply</button>
       </div>
     </div>
-<!-- </form> -->
-
-
   </div>
 </div>
+
 <!-- modal box click on view more end here  -->
 
                 </div>
