@@ -1023,7 +1023,10 @@ h6.subheading{font-size: 15px; font-weight: 600; color: #777585; background: non
 
 .forsalaryy,.departmentt,.locationn,.companytypee, .rolecategoryy,.educationnn, .Topcompanyss {position: relative;}
 .forsalarymodal, .fordepartmentmodal,.forlocationmodal, .forcompanytypemodal,.forrolecategorymodal,.foreducationmodal,
-.fortopCompaniesmodal{position: absolute; width:1000px; /*width: 500px;*/ overflow-x: unset !important; overflow-y: unset !important; top:20px;}
+.fortopCompaniesmodal{position: absolute; width:1000px; /*width: 500px; overflow-x: unset !important; overflow-y: unset !important;*/ top:0px;bottom:unset;max-height:480px;}
+body.modal-open {overflow: auto !important;}
+
+.jobFilterLeft .modal-dialog{margin:0 !important;}
 .forsalaryy,.departmentt,.locationn,.companytypee, .rolecategoryy,.educationnn, .Topcompanyss {position: relative;}
 .forsalarymodal .modal-dialog, .fordepartmentmodal .modal-dialog, .forlocationmodal .modal-dialog, .forcompanytypemodal .modal-dialog, .forrolecategorymodal .modal-dialog, .foreducationmodal .modal-dialog ,
 .fortopCompaniesmodal .modal-dialog{max-width:100% !important;}

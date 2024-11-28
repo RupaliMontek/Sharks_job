@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $active_group = 'default';
 $query_builder = TRUE;
-
+ 
 $db['default'] = array(
     'dsn'       => '',
     'hostname'  => 'localhost',
@@ -51,8 +51,8 @@ $db['login'] = array(
 $db['sharksjob_backend'] = array(
     'dsn'   => '',
     'hostname' => 'localhost',  // e.g., 'localhost' or an IP address
-    'username' => 'root', // Your database username
-    'password' => '', // Your database password
+    'username' => 'root1', // Your database username
+    'password' => 'M@CjfcUXP!', // Your database password
     'database' => 'sharksjob_backend', // The name of the database
     'dbdriver' => 'mysqli', // or 'pdo' based on your setup
     'dbprefix' => '', // You can leave it empty unless you are using a table prefix
