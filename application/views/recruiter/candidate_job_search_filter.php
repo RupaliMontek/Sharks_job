@@ -492,15 +492,15 @@
                       <form method="post">
   <?php 
     // Limit the results to the first 4 locations
-    $sliced_array = array_slice($get_location_Count, 0, 4);
+    $sliced_array = array_slice($cities, 0, 4);
     foreach ($sliced_array as $row): 
   ?>               
       <div class="chckBoxCont">
-          <input id="location" name="location" type="checkbox" value="<?php echo htmlspecialchars($row['job_location']); ?>" onclick="filters_all_ajax()">
+          <input id="location" name="location" type="checkbox" value="<?php echo $row->id; ?>" onclick="filters_all_ajax()">
           <label class="" for="">
               <p class="">
-                  <span class=""><?php echo htmlspecialchars($row['name']); ?></span>
-                  <span class="job-location-with-count"><?php echo htmlspecialchars($row['job_location_with_count']); ?></span>
+                  <span class=""><?php echo $row->name; ?></span>
+                  <!-- <span class="job-location-with-count"><?php echo $row->id; ?></span> -->
                   <span class=""></span>
               </p>
           </label>      
