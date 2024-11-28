@@ -394,3 +394,54 @@ INFO - 2024-11-28 06:23:44 --> File loaded: C:\xampp\htdocs\sharks_job\applicati
 INFO - 2024-11-28 06:23:44 --> File loaded: C:\xampp\htdocs\sharks_job\application\views\recruiter/candidate_footer.php
 INFO - 2024-11-28 06:23:44 --> Final output sent to browser
 DEBUG - 2024-11-28 06:23:44 --> Total execution time: 2.6522
+INFO - 2024-11-28 06:41:18 --> Config Class Initialized
+INFO - 2024-11-28 06:41:18 --> Hooks Class Initialized
+DEBUG - 2024-11-28 06:41:18 --> UTF-8 Support Enabled
+INFO - 2024-11-28 06:41:18 --> Utf8 Class Initialized
+INFO - 2024-11-28 06:41:18 --> URI Class Initialized
+DEBUG - 2024-11-28 06:41:18 --> No URI present. Default controller set.
+INFO - 2024-11-28 06:41:18 --> Router Class Initialized
+INFO - 2024-11-28 06:41:19 --> Output Class Initialized
+INFO - 2024-11-28 06:41:19 --> Security Class Initialized
+DEBUG - 2024-11-28 06:41:19 --> Global POST, GET and COOKIE data sanitized
+INFO - 2024-11-28 06:41:19 --> Input Class Initialized
+INFO - 2024-11-28 06:41:19 --> Language Class Initialized
+INFO - 2024-11-28 06:41:19 --> Loader Class Initialized
+INFO - 2024-11-28 06:41:19 --> Helper loaded: url_helper
+INFO - 2024-11-28 06:41:19 --> Helper loaded: file_helper
+INFO - 2024-11-28 06:41:19 --> Helper loaded: form_helper
+INFO - 2024-11-28 06:41:19 --> Helper loaded: date_helper
+INFO - 2024-11-28 06:41:19 --> Helper loaded: html_helper
+INFO - 2024-11-28 06:41:19 --> Database Driver Class Initialized
+INFO - 2024-11-28 06:41:19 --> Email Class Initialized
+INFO - 2024-11-28 06:41:19 --> Session: Class initialized using 'files' driver.
+INFO - 2024-11-28 06:41:19 --> Form Validation Class Initialized
+INFO - 2024-11-28 06:41:19 --> Upload Class Initialized
+INFO - 2024-11-28 06:41:19 --> Image Lib Class Initialized
+INFO - 2024-11-28 06:41:19 --> Language file loaded: language/english/pagination_lang.php
+INFO - 2024-11-28 06:41:19 --> Pagination Class Initialized
+DEBUG - 2024-11-28 06:41:19 --> Encryption: Auto-configured driver 'openssl'.
+INFO - 2024-11-28 06:41:19 --> Encryption: OpenSSL initialized with method AES-128-CBC.
+INFO - 2024-11-28 06:41:19 --> Encryption Class Initialized
+INFO - 2024-11-28 06:41:21 --> User Agent Class Initialized
+INFO - 2024-11-28 06:41:21 --> Controller Class Initialized
+DEBUG - 2024-11-28 06:41:21 --> Email class already loaded. Second attempt ignored.
+INFO - 2024-11-28 06:41:21 --> Model "M_admin_user" initialized
+INFO - 2024-11-28 06:41:21 --> Model "M_blog" initialized
+INFO - 2024-11-28 06:41:21 --> Model "M_blog" initialized
+INFO - 2024-11-28 06:41:21 --> Model "M_recruiter" initialized
+INFO - 2024-11-28 06:41:21 --> Model "M_Candidate_profile" initialized
+INFO - 2024-11-28 06:41:21 --> Model "M_Candidate_profile_login" initialized
+INFO - 2024-11-28 06:41:21 --> Model "M_dailyreport" initialized
+INFO - 2024-11-28 06:41:21 --> Model "Modelbasic" initialized
+INFO - 2024-11-28 06:41:22 --> Helper loaded: string_helper
+INFO - 2024-11-28 06:41:22 --> Model "Commen_model" initialized
+INFO - 2024-11-28 06:41:22 --> Helper loaded: download_helper
+INFO - 2024-11-28 06:41:22 --> Model "M_permission" initialized
+DEBUG - 2024-11-28 06:41:22 --> Upload class already loaded. Second attempt ignored.
+INFO - 2024-11-28 06:41:24 --> Database Driver Class Initialized
+INFO - 2024-11-28 06:41:24 --> File loaded: C:\xampp\htdocs\sharks_job\application\views\recruiter/candidate_header.php
+INFO - 2024-11-28 06:41:24 --> File loaded: C:\xampp\htdocs\sharks_job\application\views\recruiter/candidate_dashboard_home.php
+INFO - 2024-11-28 06:41:24 --> File loaded: C:\xampp\htdocs\sharks_job\application\views\recruiter/candidate_footer.php
+INFO - 2024-11-28 06:41:24 --> Final output sent to browser
+DEBUG - 2024-11-28 06:41:24 --> Total execution time: 6.0238
