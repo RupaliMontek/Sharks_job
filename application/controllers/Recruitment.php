@@ -921,6 +921,13 @@ if(isset($_GET['code']))
         $data["educations"]=$this->M_Candidate_profile->get_all_education();
         $data["companies"]=$this->M_Candidate_profile->get_all_companies();
         $data["cities"]=$this->M_Candidate_profile->all_cities();
+        $data["jobs_by_location"] = $this->M_Candidate_profile->get_jobs_count_by_location();
+        $data["get_Profiles_Count"] = $this->M_Candidate_profile->getAllProfilesWithCount();
+        $data["get_location_Count"] = $this->M_Candidate_profile->getAllLocationWithCount();
+        $data["get_education_Count"] = $this->M_Candidate_profile->getAllEducationWithCount();
+        $data["get_department_Count"] = $this->M_Candidate_profile->getAllDepartmentWithCount();
+        $data["get_work_mode_Count"] = $this->M_Candidate_profile->getAllWorkModeWithCount();
+        $data["get_salary_Count"] = $this->M_Candidate_profile->getAllSalaryWithCount();
         $work_mode = $this->input->get('work_mode');
         $skills = $this->input->get('skills');
         $post = $this->input->post();       
