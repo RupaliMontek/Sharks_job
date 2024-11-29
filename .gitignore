@@ -1,10 +1,10 @@
-# application/config/database.php
+application/config/database.php
 application/config/config.php
 
 application/logs/*
 !application/logs/index.html
 application/.htaccess
-# .htaccess
+.htaccess
 application/cache/*
 !application/cache/index.html
 
