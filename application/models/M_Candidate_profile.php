@@ -416,18 +416,28 @@ SELECT
         WHEN comany_min_package_offer = 'less_50000_per_year' AND comany_max_package_offer <= '3.5_lakh_per_year' THEN 'less than 50k'
         WHEN comany_min_package_offer > '50000_per_year' AND comany_max_package_offer <= '3.5_lakh_per_year' THEN '50k - 3.5 lakh'
         WHEN comany_min_package_offer > '3.5_lakh_per_year' AND comany_max_package_offer <= '6_lakh_per_year' THEN '3.5 lakh - 6 lakh'
-        WHEN comany_min_package_offer > '6_lakh_per_year' AND comany_max_package_offer <= '11_lakh_per_year' THEN '6 lakh - 11 lakh'
+        WHEN comany_min_package_offer >= '6_lakh_per_year' AND comany_max_package_offer <= '11_lakh_per_year' THEN '6 lakh - 11 lakh'
         WHEN comany_min_package_offer > '11_lakh_per_year' AND comany_max_package_offer <= '15_lakh_per_year' THEN '11 lakh - 15 lakh'
         WHEN comany_min_package_offer > '15_lakh_per_year' AND comany_max_package_offer <= '20_lakh_per_year' THEN '15 lakh - 20 lakh'
-         WHEN comany_min_package_offer > '20_lakh_per_year' AND comany_max_package_offer <= '25_lakh_per_year' THEN '20 lakh - 25 lakh'
-         WHEN comany_min_package_offer > '25_lakh_per_year' AND comany_max_package_offer <= '30_lakh_per_year' THEN '25 lakh - 30 lakh'
-         WHEN comany_min_package_offer > '30_lakh_per_year' AND comany_max_package_offer <= '35_lakh_per_year' THEN '30 lakh - 35 lakh'
-         WHEN comany_min_package_offer > '35_lakh_per_year' AND comany_max_package_offer <= '40_lakh_per_year' THEN '35 lakh - 40 lakh'
-
+        WHEN comany_min_package_offer > '20_lakh_per_year' AND comany_max_package_offer <= '25_lakh_per_year' THEN '20 lakh - 25 lakh'
+        WHEN comany_min_package_offer > '25_lakh_per_year' AND comany_max_package_offer <= '30_lakh_per_year' THEN '25 lakh - 30 lakh'
+        WHEN comany_min_package_offer > '30_lakh_per_year' AND comany_max_package_offer <= '35_lakh_per_year' THEN '30 lakh - 35 lakh'
+        WHEN comany_min_package_offer > '35_lakh_per_year' AND comany_max_package_offer <= '40_lakh_per_year' THEN '35 lakh - 40 lakh'
     END AS salary_range,
     COUNT(*) AS total_count
 FROM 
     tbl_candidate_job_post
+WHERE 
+    (comany_min_package_offer = 'less_50000_per_year' AND comany_max_package_offer <= '3.5_lakh_per_year')
+    OR (comany_min_package_offer > '50000_per_year' AND comany_max_package_offer <= '3.5_lakh_per_year')
+    OR (comany_min_package_offer > '3.5_lakh_per_year' AND comany_max_package_offer <= '6_lakh_per_year')
+    OR (comany_min_package_offer >= '6_lakh_per_year' AND comany_max_package_offer <= '11_lakh_per_year')
+    OR (comany_min_package_offer > '11_lakh_per_year' AND comany_max_package_offer <= '15_lakh_per_year')
+    OR (comany_min_package_offer > '15_lakh_per_year' AND comany_max_package_offer <= '20_lakh_per_year')
+    OR (comany_min_package_offer > '20_lakh_per_year' AND comany_max_package_offer <= '25_lakh_per_year')
+    OR (comany_min_package_offer > '25_lakh_per_year' AND comany_max_package_offer <= '30_lakh_per_year')
+    OR (comany_min_package_offer > '30_lakh_per_year' AND comany_max_package_offer <= '35_lakh_per_year')
+    OR (comany_min_package_offer > '35_lakh_per_year' AND comany_max_package_offer <= '40_lakh_per_year')
 GROUP BY 
     salary_range
 ORDER BY 

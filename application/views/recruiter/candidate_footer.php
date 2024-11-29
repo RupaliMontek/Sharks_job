@@ -558,6 +558,7 @@ $.ajax({
 function filters_all_ajax() {
     var base_url = "<?php echo base_url(); ?>";
 
+    var work_mode = [];
     var location = [];
     var experience = [];
     var educations = [];
@@ -588,7 +589,7 @@ function filters_all_ajax() {
     });
 
     $("input[name=work_mode]:checked").each(function () {
-        work_mode.push($(this).val());
+    work_mode.push($(this).val());
     });
 
     $("input[name=department]:checked").each(function () {
