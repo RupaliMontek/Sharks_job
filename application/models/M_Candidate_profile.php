@@ -397,17 +397,75 @@ SELECT company_name, CONCAT(company_name, ' (', COUNT(*), ')') AS company_name_w
 
     return $query->result_array();
 }
-// public function getAllCompanyWithCount()
-// {
-//     $query = $this->db->query("
-// SELECT company_name, CONCAT(company_name, ' (', COUNT(*), ')') AS company_name_with_count
-//         FROM tbl_candidate_job_post
-//         GROUP BY company_name
-//         ORDER BY COUNT(*) DESC
-//     ");
+public function getAllDepartmentWithCount()
+{
+    $query = $this->db->query("
+SELECT department, CONCAT(department, ' (', COUNT(*), ')') AS department_with_count
+        FROM tbl_candidate_job_post
+        GROUP BY department
+        ORDER BY COUNT(*) DESC
+    ");
 
-//     return $query->result_array();
-// }
+    return $query->result_array();
+}
+public function getAllSalaryWithCount()
+{
+    $query = $this->db->query("
+SELECT 
+    CASE
+        WHEN comany_min_package_offer = 'less_50000_per_year' AND comany_max_package_offer <= '3.5_lakh_per_year' THEN 'less than 50k'
+        WHEN comany_min_package_offer > '50000_per_year' AND comany_max_package_offer <= '3.5_lakh_per_year' THEN '50k - 3.5 lakh'
+        WHEN comany_min_package_offer > '3.5_lakh_per_year' AND comany_max_package_offer <= '6_lakh_per_year' THEN '3.5 lakh - 6 lakh'
+        WHEN comany_min_package_offer > '6_lakh_per_year' AND comany_max_package_offer <= '11_lakh_per_year' THEN '6 lakh - 11 lakh'
+        WHEN comany_min_package_offer > '11_lakh_per_year' AND comany_max_package_offer <= '15_lakh_per_year' THEN '11 lakh - 15 lakh'
+        WHEN comany_min_package_offer > '15_lakh_per_year' AND comany_max_package_offer <= '20_lakh_per_year' THEN '15 lakh - 20 lakh'
+         WHEN comany_min_package_offer > '20_lakh_per_year' AND comany_max_package_offer <= '25_lakh_per_year' THEN '20 lakh - 25 lakh'
+         WHEN comany_min_package_offer > '25_lakh_per_year' AND comany_max_package_offer <= '30_lakh_per_year' THEN '25 lakh - 30 lakh'
+         WHEN comany_min_package_offer > '30_lakh_per_year' AND comany_max_package_offer <= '35_lakh_per_year' THEN '30 lakh - 35 lakh'
+         WHEN comany_min_package_offer > '35_lakh_per_year' AND comany_max_package_offer <= '40_lakh_per_year' THEN '35 lakh - 40 lakh'
+
+    END AS salary_range,
+    COUNT(*) AS total_count
+FROM 
+    tbl_candidate_job_post
+GROUP BY 
+    salary_range
+ORDER BY 
+    FIELD(salary_range,
+        'less than 50k',
+        '50k - 3.5 lakh',
+        '3.5 lakh - 6 lakh',
+        '6 lakh - 11 lakh',
+        '11 lakh - 15 lakh',
+        '15 lakh - 20 lakh',
+        '20 lakh - 25 lakh',
+        '25 lakh - 30 lakh',
+        '30 lakh - 35 lakh',
+        '35 lakh - 40 lakh'
+    ) ASC;
+    ");
+
+    return $query->result_array();
+}
+public function getAllWorkModeWithCount()
+{
+    $query = $this->db->query("
+SELECT 
+    mode, 
+    COUNT(*) AS mode_with_count
+FROM 
+    tbl_candidate_job_post
+WHERE 
+    mode IS NOT NULL AND mode != ''
+GROUP BY 
+    mode
+ORDER BY 
+    COUNT(*) DESC;
+
+    ");
+
+    return $query->result_array();
+}
 
 
 public function filter_all()

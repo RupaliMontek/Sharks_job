@@ -6,29 +6,34 @@
                 <h6>All Filters <span><a href="#"><!-- Applied (2) --></a></span></h6>
                 <div class="line"></div>
                 <div class="workmode">
-                    <h6>Work Mode</h6>
-                    <div class="chckBoxCont">
-      <input onclick="filters_all_ajax()" type="checkbox" id="work_mode" name="work_mode" value="Work_from_office">
-        <label class="" for="">
-            <p class="">
-                <span class=""  >Work from office</span>
-                <span class=""></span></p></label>
-        </div>
+    <h6>Work Mode</h6>
+    <?php 
+    if (!empty($get_work_mode_Count)) {
+        foreach ($get_work_mode_Count as $row) {
+            // Extract and sanitize data
+            $mode = !empty($row['mode']) ? htmlspecialchars($row['mode']) : 'Work from office';
+            $count = !empty($row['mode_with_count']) ? htmlspecialchars($row['mode_with_count']) : 0;
 
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" id="work_mode" name="work_mode" value="Hybrid">
-        <label class="" for="">
-            <p class=""><span class="" >Hybrid</span>
-                <span class=""></span></p></label>
-    </div>
-
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" id="work_mode" name="work_mode"  value="work_from_home">
-        <label class="" for="">
-            <p class=""><span class="" >Remote / WFH</span>
-                <span class=""></span></p></label>
-    </div>
+            // Generate unique ID and value
+            $mode_id = str_replace(' ', '_', strtolower(trim($mode))); 
+    ?>
+            <div class="chckBoxCont">
+                <input onclick="filters_all_ajax()" type="checkbox" id="work_mode_<?php echo $mode_id; ?>" name="work_mode[]" value="<?php echo $mode_id; ?>">
+                <label for="work_mode_<?php echo $mode_id; ?>">
+                    <p>
+                        <span class=""><?php echo $mode; ?></span>
+                        <span class="count">(<?php echo $count; ?>)</span>
+                    </p>
+                </label>
+            </div>
+    <?php 
+        } 
+    } else {
+        echo "<p>No work modes available.</p>";
+    }
+    ?>
 </div>
+
 
 <div class="line"></div>
   <script type="text/javascript">
@@ -114,37 +119,29 @@
     <div class="line"></div>
     <div class="forsalaryy">
     <h6>Salary</h6>
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" value="less_50000_per_year-3_lakh_per_year" name="salary" id="salary">
-        <label for="">
-            <p><span>0-3 Lakhs</span>
-                <!-- <span>(724)</span></p> -->
-        </label>
-    </div>
-
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" value="3_lakh_per_year-6_lakh_per_year" name="salary" id="salary">
-        <label for="">
-            <p><span>3-6 Lakhs</span>
-                <!-- <span>(7)</span></p> -->
-        </label>
-    </div>
-
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" value="6_lakh_per_year-10_lakh_per_year" name="salary" id="salary">
-        <label for="">
-            <p><span>6-10 Lakhs</span>
-                <!-- <span>(24)</span></p> -->
-        </label>
-    </div>
-
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" value="10_lakh_per_year-15_lakh_per_year" name="salary" id="salary">
-        <label for="">
-            <p><span>10-15 Lakhs</span>
-                <!-- <span>(20)</span></p> -->
-        </label>
-    </div>
+    <?php 
+        if (!empty($get_salary_Count)) {
+            $sliced_array = array_slice($get_salary_Count, 0, 4); // Get the first 4 education options
+            foreach ($sliced_array as $row): 
+        ?>
+            <div class="chckBoxCont">
+                <input type="checkbox" id="salary_<?php echo htmlspecialchars($row['salary_range']); ?>" 
+                       name="salary[]" 
+                       value="<?php echo htmlspecialchars($row['salary_range']); ?>" 
+                       onclick="filters_all_ajax()">
+                <label for="salary_<?php echo htmlspecialchars($row['salary_range']); ?>">
+                    <p>
+                        <span><?php echo htmlspecialchars($row['salary_range']); ?></span> 
+                        <span>(<?php echo htmlspecialchars($row['total_count']); ?>)</span>
+                    </p>
+                </label>
+            </div>
+        <?php 
+            endforeach; 
+        } else {
+            echo "<p>No education options available.</p>";
+        }
+        ?>
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewmoresalary">
   View More
@@ -289,40 +286,32 @@
 <div class="line"></div>
 <div class="rolecategoryy">
     <h6>Role Category</h6>
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" value="Software Engineer" name="profile" id="profile">
-        <label for="">
-            <p><span>Software Engineer</span>
-                <!-- <span>(724)</span></p> -->
-        </label>
-    </div>
-
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" value="Design Engineer" name="profile" id="profile">
-        <label for="">
-            <p><span>Design Engineer</span>
-                <!-- <span>(7)</span></p> -->
-        </label>
-    </div>
-
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" value="Digital Marketing" name="profile" id="profile">
-        <label for="">
-            <p><span>Digital Marketing</span>
-                <!-- <span>(24)</span></p> -->
-        </label>
-    </div>
-
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" value="Other" name="profile" id="profile">
-        <label for="">
-            <p><span>Other</span>
-                <!-- <span>(20)</span></p> -->
-        </label>
-    </div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewrolecategory">
-  View More
-</button>
+    
+    <?php 
+    if (!empty($get_Profiles_Count)) {
+        $display_profiles = array_slice($get_Profiles_Count, 0, 4); // Get the first 4 profiles
+        foreach ($display_profiles as $profile): 
+    ?>
+        <div class="chckBoxCont">
+            <input onclick="filters_all_ajax()" type="checkbox" value="<?= htmlspecialchars($profile['profile']) ?>" name="profile" id="profile_<?= htmlspecialchars($profile['profile']) ?>">
+            <label for="profile_<?= htmlspecialchars($profile['profile']) ?>">
+                <p>
+                    <span><?= htmlspecialchars($profile['profile']) ?></span>
+                    <span>(<?= htmlspecialchars(explode('(', $profile['profile_with_count'])[1]) ?></span>
+                </p>
+            </label>
+        </div>
+    <?php 
+        endforeach; 
+    } else {
+        echo "<p>No Role Category available.</p>";
+    }
+    ?>
+    
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewrolecategory">
+      View More
+    </button>
+</div>
 
 <!-- Modal -->
 <div class="modal fade forrolecategorymodal" id="viewrolecategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -335,88 +324,108 @@
         </button>
       </div>
       <div class="modal-body">
-        <?php if (!empty($get_Profiles_Count)): ?>
-          <?php foreach ($get_Profiles_Count as $profile): ?>
+        <?php 
+        if (!empty($get_Profiles_Count)) {
+            foreach ($get_Profiles_Count as $profile): 
+        ?>
             <div class="chckBoxCont">
-              <input onclick="filters_all_ajax()" type="checkbox" value="<?= htmlspecialchars($profile['profile']) ?>" name="profile" id="profile_<?= htmlspecialchars($profile['profile']) ?>">
-              <label for="profile_<?= htmlspecialchars($profile['profile']) ?>">
-                <p>
-                  <span><?= htmlspecialchars($profile['profile']) ?></span>
-                  <span>(<?= htmlspecialchars(explode('(', $profile['profile_with_count'])[1]) ?>)</span>
-                </p>
-              </label>
+                <input onclick="filters_all_ajax()" type="checkbox" value="<?= htmlspecialchars($profile['profile']) ?>" name="profile" id="profile_<?= htmlspecialchars($profile['profile']) ?>">
+                <label for="profile_<?= htmlspecialchars($profile['profile']) ?>">
+                    <p>
+                        <span><?= htmlspecialchars($profile['profile']) ?></span>
+                        <span>(<?= htmlspecialchars(explode('(', $profile['profile_with_count'])[1]) ?></span>
+                    </p>
+                </label>
             </div>
-          <?php endforeach; ?>
-        <?php else: ?>
-          <p>No profiles available.</p>
-        <?php endif; ?>
+        <?php 
+            endforeach; 
+        } else { 
+            echo "<p>No profiles available.</p>"; 
+        }
+        ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary">Apply</button>
       </div>
     </div>
   </div>
-</div>
+
 
         </div>
-<div class="educationnn">
+        <div class="educationnn">
     <div class="line"></div>
     <h6>Education</h6>
-<form  method="post">
-<?php $sliced_array = array_slice($educations, 0, 4); ?>
-<?php foreach ($sliced_array as $row) { ?>
-<div class="chckBoxCont">
-    <input type="checkbox" id="education_filter" name="education_filter" value="<?php echo $row->course_id; ?>" onclick="filters_all_ajax()">
-    <label class="" for="">
-    <p class=""><span class="" ><?php echo $row->course_name; ?></span>
-    <!-- <span class="">(724)</span></p></label> -->
-</div> 
-<?php } ?>
-</form>
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#vieweducation">
-  View More
-</button>
-
-<!-- Modal -->
-<div class="modal fade foreducationmodal" id="vieweducation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-<!-- <form action="<?php echo base_url(); ?>recruitment/locations_education" method="post"> -->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Education</h5>
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <?php if (!empty($get_education_Count)): ?>
-          <?php foreach ($get_education_Count as $row): ?>
-            <div class="chckBoxCont">     
-              <input id="education_filter<?php echo htmlspecialchars($row['education']); ?>" 
-                     name="education_filter[]" 
-                     type="checkbox" 
-                     value="<?php echo htmlspecialchars($row['education']); ?>">
-              <label for="education_filter<?php echo htmlspecialchars($row['education']); ?>">
-                <p>
-                  <span class="client-name"><?php echo htmlspecialchars($row['name']); ?></span> 
-                  <span class="job-location-with-count"><?php echo htmlspecialchars($row['education_with_count']); ?></span>
-                </p>
-              </label>      
+    <form method="post">
+        <?php 
+        if (!empty($get_education_Count)) {
+            $sliced_array = array_slice($get_education_Count, 0, 4); // Get the first 4 education options
+            foreach ($sliced_array as $row): 
+        ?>
+            <div class="chckBoxCont">
+                <input type="checkbox" id="education_filter_<?php echo htmlspecialchars($row['education']); ?>" 
+                       name="education_filter[]" 
+                       value="<?php echo htmlspecialchars($row['education']); ?>" 
+                       onclick="filters_all_ajax()">
+                <label for="education_filter_<?php echo htmlspecialchars($row['education']); ?>">
+                    <p>
+                        <span><?php echo htmlspecialchars($row['name']); ?></span> 
+                        <span><?php echo htmlspecialchars(explode(' ', $row['education_with_count'])[1]); ?></span>
+                    </p>
+                </label>
             </div>
-          <?php endforeach; ?>
-        <?php else: ?>
-          <p>No locations available.</p>
-        <?php endif; ?>
-      </div>
-      <div class="modal-footer">
-        <button onclick="filters_all_ajax()" type="button" class="btn btn-primary">Apply</button>
-      </div>
-    </div>
-<!-- </form> -->
-  </div>
-</div>
+        <?php 
+            endforeach; 
+        } else {
+            echo "<p>No education options available.</p>";
+        }
+        ?>
+    </form>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#vieweducation">
+        View More
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade foreducationmodal" id="vieweducation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Education</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                <div class="modal-body">
+                    <?php 
+                    if (!empty($get_education_Count)) {
+                        foreach ($get_education_Count as $row): 
+                    ?>
+                        <div class="chckBoxCont">     
+                            <input type="checkbox" id="education_filter_<?php echo htmlspecialchars($row['education']); ?>" 
+                                   name="education_filter[]" 
+                                   value="<?php echo htmlspecialchars($row['education']); ?>">
+                            <label for="education_filter_<?php echo htmlspecialchars($row['education']); ?>">
+                                <p>
+                                    <span><?php echo htmlspecialchars($row['name']); ?></span> 
+                                    <span><?php echo htmlspecialchars(explode(' ', $row['education_with_count'])[1]); ?></span>
+                                </p>
+                            </label>      
+                        </div>
+                    <?php 
+                        endforeach; 
+                    } else { 
+                        echo "<p>No education options available.</p>"; 
+                    }
+                    ?>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="filters_all_ajax()" type="button" class="btn btn-primary">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
                  <div class="line"></div>
                 <div class="posted_by">
                     <h6>Posted By</h6>
@@ -437,81 +446,109 @@
 </div>
 
 <div class="Topcompanyss">
-<div class="line"></div>
-<h6>Top Companies</h6>
-<form  method="post">
-<?php $sliced_array = array_slice($companies, 0, 4); ?>
-   <?php foreach ($sliced_array as $row) { ?>  
-<div class="chckBoxCont">
-    <input onclick="filters_all_ajax()" type="checkbox" id="companies" name="companies" value="<?php echo $row->client_id; ?>">
-    <label class="" for="">
-    <p class=""><span class="" ><?php echo $row->client_name; ?></span>
-    <!-- <span class="">(724)</span></p></label> -->
-</div>
-<?php } ?>
-</form>
+    <div class="line"></div>
+    <h6>Top Companies</h6>
+    <form method="post">
+        <?php 
+        if (!empty($companies)) {
+            $sliced_array = array_slice($companies, 0, 4); // Get the first 4 companies
+            foreach ($sliced_array as $row): 
+        ?>
+            <div class="chckBoxCont">
+                <input type="checkbox" id="company_<?php echo htmlspecialchars($row->client_id); ?>" 
+                       name="companies[]" 
+                       value="<?php echo htmlspecialchars($row->client_id); ?>" 
+                       onclick="filters_all_ajax()">
+                <label for="company_<?php echo htmlspecialchars($row->client_id); ?>">
+                    <p>
+                        <span><?php echo htmlspecialchars($row->client_name); ?></span> 
+                    </p>
+                </label>
+            </div>
+        <?php 
+            endforeach; 
+        } else {
+            echo "<p>No companies available.</p>";
+        }
+        ?>
+    </form>
 
-<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#vietopCompanies">
-  View More
-</button>
-<div class="modal fade fortopCompaniesmodal" id="vietopCompanies" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <!-- <form action="<?php echo base_url(); ?>recruitment/filter_company" method="post"> -->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Top Companies</h5>
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="modal-body">
-        <?php foreach ($companies as $row) { ?>
-<div class="chckBoxCont">
-    <input type="checkbox" id="companies" name="companies" value="<?php echo $row->client_id; ?>">
-    <label class="" for="">
-    <p class=""><span class="" ><?php echo $row->client_name; ?></span>
-    <!-- <span class="">(724)</span></p></label> -->
-</div> 
-<?php } ?>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#vietopCompanies">
+        View More
+    </button>
 
-      </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" onclick="filters_all_ajax()" class="btn btn-primary">Apply</button>
-      </div>
+    <!-- Modal -->
+    <div class="modal fade fortopCompaniesmodal" id="vietopCompanies" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Top Companies</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?php 
+                    if (!empty($companies)) {
+                        foreach ($companies as $row): 
+                    ?>
+                        <div class="chckBoxCont">
+                            <input type="checkbox" id="company_<?php echo htmlspecialchars($row->client_id); ?>" 
+                                   name="companies[]" 
+                                   value="<?php echo htmlspecialchars($row->client_id); ?>">
+                            <label for="company_<?php echo htmlspecialchars($row->client_id); ?>">
+                                <p>
+                                    <span><?php echo htmlspecialchars($row->client_name); ?></span> 
+                                </p>
+                            </label>
+                        </div>
+                    <?php 
+                        endforeach; 
+                    } else {
+                        echo "<p>No companies available.</p>";
+                    }
+                    ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="filters_all_ajax()" class="btn btn-primary">Apply</button>
+                </div>
+            </div>
+        </div>
     </div>
-<!-- </form> -->
-  </div>
 </div>
-</div>
-                <div class="locationn">
-                    <div class="line"></div>
-                      <h6>Location</h6>
-                      <form method="post">
-  <?php 
-    // Limit the results to the first 4 locations
-    $sliced_array = array_slice($cities, 0, 4);
-    foreach ($sliced_array as $row): 
-  ?>               
-      <div class="chckBoxCont">
-          <input id="location" name="location" type="checkbox" value="<?php echo $row->id; ?>" onclick="filters_all_ajax()">
-          <label class="" for="">
-              <p class="">
-                  <span class=""><?php echo $row->name; ?></span>
-                  <!-- <span class="job-location-with-count"><?php echo $row->id; ?></span> -->
-                  <span class=""></span>
-              </p>
-          </label>      
-      </div>
-  <?php endforeach; ?>
-</form>
 
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewlocation">
-  View More
-</button>
+<div class="locationn">
+    <div class="line"></div>
+    <h6>Location</h6>
+    <form method="post">
+        <?php 
+        if (!empty($get_location_Count)) {
+            $sliced_array = array_slice($get_location_Count, 0, 4); // Get the first 4 education options
+            foreach ($sliced_array as $row): 
+        ?>
+            <div class="chckBoxCont">
+                <input type="checkbox" id="location_<?php echo htmlspecialchars($row['name']); ?>" 
+                       name="location[]" 
+                       value="<?php echo htmlspecialchars($row['name']); ?>" 
+                       onclick="filters_all_ajax()">
+                <label for="location_<?php echo htmlspecialchars($row['name']); ?>">
+                    <p>
+                        <span><?php echo htmlspecialchars($row['name']); ?></span> 
+                        <span><?php echo htmlspecialchars(explode(' ', $row['job_location_with_count'])[1]); ?></span>
+                    </p>
+                </label>
+            </div>
+        <?php 
+            endforeach; 
+        } else {
+            echo "<p>No education options available.</p>";
+        }
+        ?>
+    </form>
+    
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewlocation">
+        View More
+    </button>
 
 <div class="modal fade forlocationmodal" id="viewlocation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -549,14 +586,9 @@
     </div>
   </div>
 </div>
-
-<!-- modal box click on view more end here  -->
-
-                </div>
-
-                <!-- Top Companies end here -->
-            </div>
-        </div>
+</div>
+</div>
+</div>
         
         <div id="job_filtersssss" class="hidden"></div>
         <div id="job_filters" class="col-lg-6 col-sm-12 jobFilterMiddle">
