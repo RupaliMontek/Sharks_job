@@ -425,7 +425,7 @@ class Candidate_profile extends CI_Controller
         // print_r($data["get_salary_Count"]); die();
         $location_ids = [2763, 2707, 48315, 3659];
     
-        // $data["jobs_by_location"] = $this->M_Candidate_profile->get_jobs_count_by_job_location_ids($location_ids);
+        $data["jobs_by_locations"] = $this->M_Candidate_profile->get_jobs_count_by_job_location_ids($location_ids);
 // print_r($data["jobs_by_location"]); die();   
         $data["location_names"] = [
             2763 => "Pune",

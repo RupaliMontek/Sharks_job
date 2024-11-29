@@ -18,8 +18,8 @@
             $mode_id = str_replace(' ', '_', strtolower(trim($mode))); 
     ?>
             <div class="chckBoxCont">
-                <input onclick="filters_all_ajax()" type="checkbox" id="work_mode_<?php echo $mode_id; ?>" name="work_mode[]" value="<?php echo $mode_id; ?>">
-                <label for="work_mode_<?php echo $mode_id; ?>">
+                <input onclick="filters_all_ajax()" type="checkbox" id="work_mode" name="work_mode[]" value="<?php echo $mode_id; ?>">
+                <label for="work_mode">
                     <p>
                         <span class=""><?php echo $mode; ?></span>
                         <span class="count">(<?php echo $count; ?>)</span>
@@ -33,8 +33,6 @@
     }
     ?>
 </div>
-
-
 <div class="line"></div>
   <script type="text/javascript">
       function displaySliderValue(eSlider){   
@@ -46,7 +44,6 @@
     <h6>Experience</h6>
      <div class="list-group">                   
                     <input onclick="filters_all_ajax()" type="hidden" name="education" id="education" value="0" />
-                    <input onclick="filters_all_ajax()" type="hidden" name="education" id="education" value="65000" />                    
                     <div id="price_range"></div>
                     <p id="price_show">0 - 30</p>
                 </div>  
@@ -58,7 +55,6 @@
         <input onclick="filters_all_ajax()" type="checkbox" id="department" name="department" value="IT">
         <label for="">
             <p><span>Engineering - Software & QA</span>
-                <!-- <span>(724)</span></p> -->
         </label>
     </div>
 
@@ -66,7 +62,6 @@
         <input onclick="filters_all_ajax()" type="checkbox" id="department" name="department" value="Non_IT">
         <label for="">
             <p><span>UX, Design & Architecture</span>
-                <!-- <span>(7)</span></p> -->
         </label>
     </div>
 
@@ -74,7 +69,6 @@
         <input onclick="filters_all_ajax()" type="checkbox" id="department" name="department" value="sales">
         <label for="">
             <p><span>Marketing & Communication</span>
-                <!-- <span>(24)</span></p> -->
         </label>
     </div>
 
@@ -82,7 +76,6 @@
         <input onclick="filters_all_ajax()" type="checkbox" id="department" name="department" value="All">
         <label for="">
             <p><span>Other</span>
-                <!-- <span>(20)</span></p> -->
         </label>
     </div>
 
@@ -105,7 +98,6 @@
         <input type="checkbox" id="<?php $row->dept_id; ?>">
         <label class="" for="">
             <p class=""><span class="" ><?php echo $row->dept_name; ?></span>
-                <!-- <span class="">(724)</span></p></label> -->
 </div>
 <?php } ?>
       </div>
@@ -121,15 +113,13 @@
     <h6>Salary</h6>
     <?php 
         if (!empty($get_salary_Count)) {
-            $sliced_array = array_slice($get_salary_Count, 0, 4); // Get the first 4 education options
+            $sliced_array = array_slice($get_salary_Count, 0, 4);
             foreach ($sliced_array as $row): 
         ?>
             <div class="chckBoxCont">
-                <input type="checkbox" id="salary_<?php echo htmlspecialchars($row['salary_range']); ?>" 
-                       name="salary[]" 
-                       value="<?php echo htmlspecialchars($row['salary_range']); ?>" 
+                <input type="checkbox" id="salary" name="salary[]" value="<?php echo htmlspecialchars($row['salary_range']); ?>" 
                        onclick="filters_all_ajax()">
-                <label for="salary_<?php echo htmlspecialchars($row['salary_range']); ?>">
+                <label for="salary">
                     <p>
                         <span><?php echo htmlspecialchars($row['salary_range']); ?></span> 
                         <span>(<?php echo htmlspecialchars($row['total_count']); ?>)</span>
@@ -157,23 +147,20 @@
         </button>
       </div>
       <div class="modal-body">
-      <?php if (!empty($get_education_Count)): ?>
-          <?php foreach ($get_education_Count as $row): ?>
+      <?php if (!empty($get_salary_Count)): ?>
+          <?php foreach ($get_salary_Count as $row): ?>
             <div class="chckBoxCont">     
-              <input id="education_filter<?php echo htmlspecialchars($row['education']); ?>" 
-                     name="education_filter[]" 
-                     type="checkbox" 
-                     value="<?php echo htmlspecialchars($row['education']); ?>">
-              <label for="education_filter<?php echo htmlspecialchars($row['education']); ?>">
+              <input id="salary" name="salary[]" type="checkbox" value="<?php echo htmlspecialchars($row['salary_range']); ?>">
+              <label for="salary">
                 <p>
-                  <span class="client-name"><?php echo htmlspecialchars($row['name']); ?></span> 
-                  <span class="job-location-with-count"><?php echo htmlspecialchars($row['education_with_count']); ?></span>
+                  <span class="client-name"><?php echo htmlspecialchars($row['salary_range']); ?></span> 
+                  <span class="salary-with-count">(<?php echo htmlspecialchars($row['total_count']); ?>)</span>
                 </p>
               </label>      
             </div>
           <?php endforeach; ?>
         <?php else: ?>
-          <p>No locations available.</p>
+          <p>No salary available.</p>
         <?php endif; ?>
       </div>
       <div class="modal-footer">
@@ -191,28 +178,24 @@
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Corporate</span>
-                <!-- <span class="">(724)</span></p></label> -->
     </div>
 
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Foreign MNC</span>
-                <!-- <span class="">(7)</span></p></label> -->
     </div>
 
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Indian MNC</span>
-                <!-- <span class="">(24)</span></p></label> -->
     </div>
 
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Startup</span>
-                <!-- <span class="">(20)</span></p></label> -->
     </div>
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewcompanytype">
@@ -233,46 +216,39 @@
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Corporate</span>
-                <!-- <span class="">(724)</span></p></label> -->
     </div>
 
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Foreign MNC</span>
-                <!-- <span class="">(7)</span></p></label> -->
     </div>
 
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Indian MNC</span>
-                <!-- <span class="">(24)</span></p></label> -->
     </div>
 
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Startup</span>
-                <!-- <span class="">(20)</span></p></label> -->
     </div>
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >MNC</span>
-                <!-- <span class="">(20)</span></p></label> -->
     </div>
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Govt/PSU</span>
-                <!-- <span class="">(20)</span></p></label> -->
     </div>
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Other</span>
-                <!-- <span class="">(20)</span></p></label> -->
     </div>
       </div>
       <div class="modal-footer">
@@ -281,7 +257,7 @@
     </div>
   </div>
 </div>
-                </div>
+</div>
 
 <div class="line"></div>
 <div class="rolecategoryy">
@@ -293,8 +269,8 @@
         foreach ($display_profiles as $profile): 
     ?>
         <div class="chckBoxCont">
-            <input onclick="filters_all_ajax()" type="checkbox" value="<?= htmlspecialchars($profile['profile']) ?>" name="profile" id="profile_<?= htmlspecialchars($profile['profile']) ?>">
-            <label for="profile_<?= htmlspecialchars($profile['profile']) ?>">
+            <input onclick="filters_all_ajax()" type="checkbox" value="<?= htmlspecialchars($profile['profile']) ?>" name="profile" id="profile">
+            <label for="profile">
                 <p>
                     <span><?= htmlspecialchars($profile['profile']) ?></span>
                     <span>(<?= htmlspecialchars(explode('(', $profile['profile_with_count'])[1]) ?></span>
@@ -329,8 +305,8 @@
             foreach ($get_Profiles_Count as $profile): 
         ?>
             <div class="chckBoxCont">
-                <input onclick="filters_all_ajax()" type="checkbox" value="<?= htmlspecialchars($profile['profile']) ?>" name="profile" id="profile_<?= htmlspecialchars($profile['profile']) ?>">
-                <label for="profile_<?= htmlspecialchars($profile['profile']) ?>">
+                <input onclick="filters_all_ajax()" type="checkbox" value="<?= htmlspecialchars($profile['profile']) ?>" name="profile" id="profile">
+                <label for="profile">
                     <p>
                         <span><?= htmlspecialchars($profile['profile']) ?></span>
                         <span>(<?= htmlspecialchars(explode('(', $profile['profile_with_count'])[1]) ?></span>
@@ -349,8 +325,6 @@
       </div>
     </div>
   </div>
-
-
         </div>
         <div class="educationnn">
     <div class="line"></div>
@@ -362,11 +336,11 @@
             foreach ($sliced_array as $row): 
         ?>
             <div class="chckBoxCont">
-                <input type="checkbox" id="education_filter_<?php echo htmlspecialchars($row['education']); ?>" 
+                <input type="checkbox" id="education_filter" 
                        name="education_filter[]" 
                        value="<?php echo htmlspecialchars($row['education']); ?>" 
                        onclick="filters_all_ajax()">
-                <label for="education_filter_<?php echo htmlspecialchars($row['education']); ?>">
+                <label for="education_filter">
                     <p>
                         <span><?php echo htmlspecialchars($row['name']); ?></span> 
                         <span><?php echo htmlspecialchars(explode(' ', $row['education_with_count'])[1]); ?></span>
@@ -385,7 +359,6 @@
         View More
     </button>
 
-    <!-- Modal -->
     <div class="modal fade foreducationmodal" id="vieweducation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -434,14 +407,12 @@
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Company Jobs</span>
-                <!-- <span class="">(724)</span></p></label> -->
     </div>
 
     <div class="chckBoxCont">
         <input type="checkbox" id="">
         <label class="" for="">
             <p class=""><span class="" >Consultant Jobs</span>
-                <!-- <span class="">(7)</span></p></label> -->
     </div>
 </div>
 
@@ -455,11 +426,11 @@
             foreach ($sliced_array as $row): 
         ?>
             <div class="chckBoxCont">
-                <input type="checkbox" id="company_<?php echo htmlspecialchars($row->client_id); ?>" 
+                <input type="checkbox" id="company" 
                        name="companies[]" 
                        value="<?php echo htmlspecialchars($row->client_id); ?>" 
                        onclick="filters_all_ajax()">
-                <label for="company_<?php echo htmlspecialchars($row->client_id); ?>">
+                <label for="company">
                     <p>
                         <span><?php echo htmlspecialchars($row->client_name); ?></span> 
                     </p>
@@ -527,11 +498,9 @@
             foreach ($sliced_array as $row): 
         ?>
             <div class="chckBoxCont">
-                <input type="checkbox" id="location_<?php echo htmlspecialchars($row['name']); ?>" 
-                       name="location[]" 
-                       value="<?php echo htmlspecialchars($row['name']); ?>" 
+                <input type="checkbox" id="location" name="location[]" value="<?php echo htmlspecialchars($row['name']); ?>" 
                        onclick="filters_all_ajax()">
-                <label for="location_<?php echo htmlspecialchars($row['name']); ?>">
+                <label for="location">
                     <p>
                         <span><?php echo htmlspecialchars($row['name']); ?></span> 
                         <span><?php echo htmlspecialchars(explode(' ', $row['job_location_with_count'])[1]); ?></span>
@@ -601,28 +570,22 @@
                             
                       <?php
                         if ($row->job_id) {
-                            // Fetch the company details based on company_name
                             $query = $this->db->query("SELECT * FROM client WHERE client_id = $row->job_id");
                             $company_details = $query->row();
 
-                            // Check if the company details and logo are valid
                             if (isset($company_details->client_logo) && !empty($company_details->client_logo)) {
-                                // Check if the logo file exists on the server before displaying it
                                 $logo_path = base_url($company_details->client_logo);
                                 if (@getimagesize($logo_path)) {
-                                    // Only render the <img> tag if the file exists
                                     echo '<img width="70" height="auto" src="' . $logo_path . '" alt="Company Logo" />';
                                 }
                             }
                         }
-                        ?>
- 
+                        ?> 
                           <h4><?php echo $row->profile; ?></h4>
                         <div class="compname_review">
                         <?php  
                         if($row->company_name)
                         {
-                          //  echo $company_details->client_name;
                            
                         }?>
                         <span class="star"><i class="fa fa-star"></i>3.9</span>  <span class="frreview">9 Reviews</span></div>
@@ -664,11 +627,9 @@
                             echo $days . " DAY AGO";
                             ?></span><span class="right"><i class="fa fa-bookmark"></i>Save</span>
                         </div>
-
                 </div>
                  </a>
-            <?php }} ?>
-           
+            <?php }} ?>           
         </div>
        
         <div class="col-lg-3 col-sm-12">
@@ -699,8 +660,8 @@
              <div class="jobFilterRight">
                 <h6>Filter Jobs By Location</h6>
                 <ul>
-                    <?php if (!empty($jobs_by_location)): ?>
-                        <?php foreach ($jobs_by_location as $job): ?>
+                    <?php if (!empty($jobs_by_locations)): ?>
+                        <?php foreach ($jobs_by_locations as $job): ?>
                             <?php 
                                 // Get the location name from the mapping
                                 $location_name = isset($location_names[$job->job_location]) ? $location_names[$job->job_location] : "Unknown Location";
@@ -717,9 +678,6 @@
                     <?php endif; ?>
                 </ul>
             </div>
-
-
-
         </div>
     </div>
 </div>
@@ -731,6 +689,4 @@
         $("#filterform").submit();z
     });
 });
-
-
 </script>
