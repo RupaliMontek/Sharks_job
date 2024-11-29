@@ -419,10 +419,13 @@ class Candidate_profile extends CI_Controller
         $data["get_Profiles_Count"] = $this->M_Candidate_profile->getAllProfilesWithCount();
         $data["get_location_Count"] = $this->M_Candidate_profile->getAllLocationWithCount();
         $data["get_education_Count"] = $this->M_Candidate_profile->getAllEducationWithCount();
-        // print_r($data["get_location_Count"]); die();
+        $data["get_department_Count"] = $this->M_Candidate_profile->getAllDepartmentWithCount();
+        $data["get_work_mode_Count"] = $this->M_Candidate_profile->getAllWorkModeWithCount();
+        $data["get_salary_Count"] = $this->M_Candidate_profile->getAllSalaryWithCount();
+        // print_r($data["get_salary_Count"]); die();
         $location_ids = [2763, 2707, 48315, 3659];
     
-        $data["jobs_by_location"] = $this->M_Candidate_profile->get_jobs_count_by_job_location_ids($location_ids);
+        // $data["jobs_by_location"] = $this->M_Candidate_profile->get_jobs_count_by_job_location_ids($location_ids);
 // print_r($data["jobs_by_location"]); die();   
         $data["location_names"] = [
             2763 => "Pune",

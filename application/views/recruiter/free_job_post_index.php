@@ -89,7 +89,7 @@
         <label class="form-label"  for="mode">Work Mode<span style="color: red;">*</span></label>
         <select class="form-control" name="mode" id="mode" required>
             <option  value="" selected>Select Work Mode</option>
-            <option value="work_from_home">Work from Home/Remote</option>
+            <option value="Work_from_home">Work from Home/Remote</option>
             <option value="Work_from_office">Work from Office</option>
             <option value="Hybrid">Hybrid</option>
          </select>

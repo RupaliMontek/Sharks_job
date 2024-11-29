@@ -1,6 +1,6 @@
 # Ignore database.php file (e.g., typically located in application/config)
 application/config/database.php
-application/config/cofig.php
+# application/config/config.php
 
 # Ignore .htaccess file in the public directory
-public/.htaccess
+# public/.htaccess
