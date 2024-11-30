@@ -482,7 +482,9 @@ public function filter_all()
 {
     $post = $this->input->post();
 
-    $salary = !empty($post['salary']) ? implode(",", $post['salary']) : null;
+    // $salary = !empty($post['salary']) ? implode(",", $post['salary']) : null;
+    $salary_ranges = !empty($salary) ? explode(",", $salary) : [];
+
     $educations = !empty($post['educations']) ? implode(",", $post['educations']) : null;
     $companies = !empty($post['companies']) ? implode(",", $post['companies']) : null;
     $location = !empty($post['location']) ? implode(",", $post['location']) : null;
@@ -493,14 +495,27 @@ public function filter_all()
     $this->db->select("tcjp.*, c.*, cs.*, cl.*");
     $this->db->from("tbl_candidate_job_post as tcjp");
 
+    // if (!empty($salary_ranges)) {
+    //     $this->db->group_start();
+    //     foreach ($salary_ranges as $range) {
+    //         [$comany_min_package_offer, $comany_max_package_offer] = explode('-', $range);
+    //         $this->db->or_where("(tcjp.comany_min_package_offer >= $comany_min_package_offer AND tcjp.comany_max_package_offer <= $comany_max_package_offer)");
+    //     }
+    //     $this->db->group_end();
+    // }
     if (!empty($salary_ranges)) {
         $this->db->group_start();
         foreach ($salary_ranges as $range) {
-            [$comany_min_package_offer, $comany_max_package_offer] = explode('-', $range);
-            $this->db->or_where("(tcjp.salary_min >= $comany_min_package_offer AND tcjp.salary_max <= $comany_max_package_offer)");
+            $range_parts = explode('-', $range);
+            if (count($range_parts) == 2) {
+                $min = (float) $range_parts[0];
+                $max = (float) $range_parts[1];
+                $this->db->or_where("(tcjp.comany_min_package_offer >= $min AND tcjp.comany_max_package_offer <= $max)");
+            }
         }
         $this->db->group_end();
     }
+    
     if (!empty($companies)) {
         $this->db->where("company_name IN ($companies)");
     }
@@ -513,7 +528,7 @@ public function filter_all()
     if (!empty($work_mode)) {
         $this->db->where_in("mode", $work_mode);
     }
-    if (!empty($department)) {
+    if (!empty($department)) { 
         $this->db->where_in("department", $department); // Use department filter
     }
     if (!empty($profile)) {

@@ -11,21 +11,22 @@
     if (!empty($get_work_mode_Count)) {
         foreach ($get_work_mode_Count as $row) {
             // Extract and sanitize data
+           
             $mode = !empty($row['mode']) ? htmlspecialchars($row['mode']) : 'Work from office';
             $count = !empty($row['mode_with_count']) ? htmlspecialchars($row['mode_with_count']) : 0;
-
-            // Generate unique ID and value
-            $mode_id = str_replace(' ', '_', strtolower(trim($mode))); 
+            
+            // $mode_id = str_replace(' ', '_', strtolower(trim($mode))); 
+            // print_r($mode); die();
     ?>
             <div class="chckBoxCont">
-                <input onclick="filters_all_ajax()" type="checkbox" id="work_mode" name="work_mode[]" value="<?php echo $mode_id; ?>">
-                <label for="work_mode">
-                    <p>
-                        <span class=""><?php echo $mode; ?></span>
-                        <span class="count">(<?php echo $count; ?>)</span>
-                    </p>
-                </label>
-            </div>
+    <input onclick="filters_all_ajax()" type="checkbox" id="work_mode_<?php echo $mode; ?>" name="work_mode[]" value="<?php echo $mode; ?>">
+    <label for="work_mode_<?php echo $mode; ?>">
+        <p>
+            <span class=""><?php echo $mode; ?></span>
+            <span class="count">(<?php echo $count; ?>)</span>
+        </p>
+    </label>
+</div>
     <?php 
         } 
     } else {
@@ -55,27 +56,6 @@
         <input onclick="filters_all_ajax()" type="checkbox" id="department" name="department" value="IT">
         <label for="">
             <p><span>Engineering - Software & QA</span>
-        </label>
-    </div>
-
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" id="department" name="department" value="Non_IT">
-        <label for="">
-            <p><span>UX, Design & Architecture</span>
-        </label>
-    </div>
-
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" id="department" name="department" value="sales">
-        <label for="">
-            <p><span>Marketing & Communication</span>
-        </label>
-    </div>
-
-    <div class="chckBoxCont">
-        <input onclick="filters_all_ajax()" type="checkbox" id="department" name="department" value="All">
-        <label for="">
-            <p><span>Other</span>
         </label>
     </div>
 
@@ -115,6 +95,7 @@
         if (!empty($get_salary_Count)) {
             $sliced_array = array_slice($get_salary_Count, 0, 4);
             foreach ($sliced_array as $row): 
+                // print_r($row['salary_range']); die();
         ?>
             <div class="chckBoxCont">
                 <input type="checkbox" id="salary" name="salary[]" value="<?php echo htmlspecialchars($row['salary_range']); ?>" 
@@ -142,7 +123,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Salary</h5>
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -267,9 +248,10 @@
     if (!empty($get_Profiles_Count)) {
         $display_profiles = array_slice($get_Profiles_Count, 0, 4); // Get the first 4 profiles
         foreach ($display_profiles as $profile): 
+            // print_r($display_profiles); die();
     ?>
         <div class="chckBoxCont">
-            <input onclick="filters_all_ajax()" type="checkbox" value="<?= htmlspecialchars($profile['profile']) ?>" name="profile" id="profile">
+            <input onclick="filters_all_ajax()" type="checkbox" value="<?= htmlspecialchars($profile['profile']) ?>" name="profile[]" id="profile">
             <label for="profile">
                 <p>
                     <span><?= htmlspecialchars($profile['profile']) ?></span>
@@ -305,7 +287,7 @@
             foreach ($get_Profiles_Count as $profile): 
         ?>
             <div class="chckBoxCont">
-                <input onclick="filters_all_ajax()" type="checkbox" value="<?= htmlspecialchars($profile['profile']) ?>" name="profile" id="profile">
+                <input onclick="filters_all_ajax()" type="checkbox" value="<?= htmlspecialchars($profile['profile']) ?>" name="profile[]" id="profile">
                 <label for="profile">
                     <p>
                         <span><?= htmlspecialchars($profile['profile']) ?></span>
