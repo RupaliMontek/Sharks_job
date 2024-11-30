@@ -528,7 +528,7 @@ public function filter_all()
     if (!empty($work_mode)) {
         $this->db->where_in("mode", $work_mode);
     }
-    if (!empty($department)) {
+    if (!empty($department)) { 
         $this->db->where_in("department", $department); // Use department filter
     }
     if (!empty($profile)) {
