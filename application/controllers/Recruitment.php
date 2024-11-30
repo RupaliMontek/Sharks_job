@@ -1066,7 +1066,9 @@ if(isset($_GET['code']))
    public function  ajax_job_filter()
    {
      $post=$this->input->post();
+     
      $data["job_latest"]=$this->M_Candidate_profile->filter_all();
+    //  print_r($post); exit;
      $this->load->view('recruiter/candidate_job_filter',$data);
    }
 public function filter_company()

@@ -558,7 +558,6 @@ $.ajax({
 function filters_all_ajax() {
     var base_url = "<?php echo base_url(); ?>";
 
-    var work_mode = [];
     var location = [];
     var experience = [];
     var educations = [];
@@ -568,7 +567,7 @@ function filters_all_ajax() {
     var department = [];
     var profile = [];
 
-    $("input[name=location]:checked").each(function () {
+    $("input[name='location[]']:checked").each(function () {
         location.push($(this).val());
     });
 
@@ -580,24 +579,25 @@ function filters_all_ajax() {
         companies.push($(this).val());
     });
 
-    $("input[name=education_filter]:checked").each(function () {
+    $("input[name='education_filter[]']:checked").each(function () {
         educations.push($(this).val());
     });
 
-    $("input[name=salary]:checked").each(function () {
+    $("input[name='salary[]']:checked").each(function () {
         salary.push($(this).val());
     });
-
-    $("input[name=work_mode]:checked").each(function () {
+    console.log(salary); 
+    $("input[name='work_mode[]']:checked").each(function () {
     work_mode.push($(this).val());
     });
-
+    
     $("input[name=department]:checked").each(function () {
         department.push($(this).val());
     });
-    $("input[name=profile]:checked").each(function () {
+    $("input[name='profile[]']:checked").each(function () {
       profile.push($(this).val());
     });
+    console.log(profile); 
 
     $.ajax({
         url: base_url + 'recruitment/ajax_job_filter',

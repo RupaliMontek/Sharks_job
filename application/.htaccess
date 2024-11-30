@@ -1,8 +1,9 @@
-# Deny all access to the application folder
-<IfModule mod_authz_core.c>
+<IfModule authz_core_module>
     Require all denied
 </IfModule>
-
-<IfModule !mod_authz_core.c>
+<IfModule !authz_core_module>
     Deny from all
 </IfModule>
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+</IfModule> 
