@@ -25,8 +25,7 @@ class Candidate_profile_login extends CI_Controller
 	}
 	
 	public function check_user_login_check_candidate()
-	{
-         
+	{ 
 		$this->form_validation->set_rules('email', 'Email','required');
         $this->form_validation->set_rules('password', 'Password','required');
         

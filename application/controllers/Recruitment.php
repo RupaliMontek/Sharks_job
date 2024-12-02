@@ -1131,7 +1131,10 @@ return  $this->db->get()->result();
         
         $get_details_jobprofile = $this->M_Candidate_profile->get_details_job_selected($id);
         $similiar_profile = $get_details_jobprofile->profile;
-          //print_r($get_details_job); die();
+        $data["candidate_count"] = $this->M_Candidate_profile->get_candidate_count_by_job_id($id);
+        //   print_r($data["candidate_count"]); die();
+        $this->M_Candidate_profile->update_visit_count($id);
+        $data['visit_count'] = $this->M_Candidate_profile->get_visit_count($id);
         $db_name1 = "sharksjob_backend";
         $this->db->query("use " .$db_name1. "");
 	    $data['recent_blogs'] = $this->M_blog->list_recent_blogs(4);
