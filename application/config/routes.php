@@ -50,6 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'Recruitment';
+$route['job_description/(:num)'] = 'recruitment/job_description/$1';
 $route['registration/candidate'] = 'recruitment/create_account_candidate/';
 $route['privacy-policy'] = 'recruitment/privacy_policy/';
 $route['resume-test'] = 'recruitment/resume_test/';

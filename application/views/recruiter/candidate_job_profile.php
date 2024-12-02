@@ -36,7 +36,8 @@
                 }
                  ?></a></li>
                 <li><a><i class="fa fa-briefcase"></i><?php echo $row->min_exp_candidate."-".$row->max_exp_candidate." Years" ?></a></li>
-                <li><a><i class="fa fa-eye"></i>440 <i class="fa fa-paper-plane-o"></i>17 Applied</a></li>
+                <li><a><i class="fa fa-eye"></i><?php echo $visit_count; ?> <i class="fa fa-paper-plane-o"></i><?php echo $candidate_count; ?> Applied
+                </a></li>
             </ul>
 
             <div id="jobdescription" class="frJD">

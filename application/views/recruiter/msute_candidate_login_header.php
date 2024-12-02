@@ -157,7 +157,7 @@
 <div class="right mnuserhomeright">
   <ul>
     <li><a href="#"><i class="fa fa-bell-o"></i></a></li>
-    <li><a type="button" class="" data-toggle="modal" data-target="#userProfile" href="#"><i class="fa fa-user-circle-o"></i></a>
+    <li><a type="button" class="" data-toggle="modal" data-target="#userProfile" href="<?php echo base_url('Setting/account'); ?>"><i class="fa fa-user-circle-o"></i></a>
 
 <!-- Button trigger modal -->
 

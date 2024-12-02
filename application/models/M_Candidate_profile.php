@@ -600,6 +600,32 @@ public function search_job($search, $category, $location, $pin_code, $skills, $w
     
     return $query->result();
 }
+public function get_candidate_count_by_job_id($id)
+{
+    $this->db->from('tbl_candidate_job_apply');
+    $this->db->where('job_id', $id);
+    return $this->db->count_all_results(); // This returns the count directly
+}
+public function update_visit_count($job_id)
+{
+    // Increment visit count
+    $this->db->set('visit_count', 'visit_count + 1', FALSE);
+    $this->db->where('id', $job_id);
+    $this->db->update('tbl_job_visits');
+}
+
+public function get_visit_count($job_id)
+{
+    $this->db->select('visit_count');
+    $this->db->from('tbl_job_visits');
+    $this->db->where('id', $job_id);
+    $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+        return $query->row()->visit_count;
+    }
+    return 0;
+}
 
 
 // old
