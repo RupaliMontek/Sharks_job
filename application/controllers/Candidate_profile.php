@@ -378,7 +378,7 @@ class Candidate_profile extends CI_Controller
 	    $data['it_skills'] = $this->M_Candidate_profile->getCandidate_it_skills_details($candidate_id);
 	    $data['know_language'] = $this->M_Candidate_profile->getCandidate_know_languages_details($candidate_id);
 	    $data['personal_details'] = $this->M_Candidate_profile->getCandidate_personal_details($candidate_id);
-	//    print_r($data['personal_details']);exit;
+	//    print_r($data['user_details']);exit;
 	    $data['social_platform'] = $this->M_Candidate_profile->get_social_platform($candidate_id);
 	    $data['work_samples'] = $this->M_Candidate_profile->get_work_samples($candidate_id);
 	    $data['certifications'] = $this->M_Candidate_profile->get_certifications($candidate_id);

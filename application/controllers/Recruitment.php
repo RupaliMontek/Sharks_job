@@ -686,57 +686,94 @@ public function update_candidate_key_skills()
         $data["canidate_skill"] = $this->M_Candidate_profile->get_candidate_skills($candidate_id);
         $this->load->view("recruiter/edit_skills",$data);
     }
-
+// old code
+    // public function update_resume()
+    // {
+    //     $candidate_id = $this->session->userdata["candidate_id"];
+    //     $user_details= $this->M_Candidate_profile->get_user_details_by_id_admin($candidate_id);
+        
+    //     $email = $user_details->email;
+    //     $resume = $this->input->post("resume_candidate");
+    //     print_r($resume); exit;
+    //     if(!empty($_FILES["resumes_upload"]["name"]))
+    //     {
+    //     $config["upload_path"] = "./uploads/resume/";
+    //     $config["allowed_types"] = "pdf|doc|docx";
+    //     $config["max_size"] = "0";
+    //     $config["max_width"] = "0";
+    //     $config["max_height"] = "0";
+    //     $this->upload->initialize($config);
+    //     $new_resume_path = '/home/msuite/public_html/uploads/resume/';
+    //     $file_name = "resumes_upload";
+    //     $resume = $this->transfer_resume($_FILES["resumes_upload"],$config,$new_resume_path,$file_name);
+    //     }
+    //     $data = 
+    //     [
+    //         "resume" => $resume,
+    //         "updated_at" => date("d-m-Y")
+    //     ];
+    //      $result = $this->M_Candidate_profile->update_candidate_details(
+    //         $candidate_id,
+    //         $data
+    //     );
+        
+    //     $para = array
+    //     (
+    //         "resume"  => $resume
+    //     );
+    //     $data= array
+    //     (
+    //      "last_update_profile_date" => date("d-m-Y h:i:s"),   
+    //     );
+    //     $last_update_profile_update_date =  $this->M_Candidate_profile->update_candidate_details($candidate_id,$data);
+    //     $update_job_profile = $this->M_Candidate_profile->update_profile($email,$para);
+    //     if ($result) 
+    //     {
+    //         $this->session->set_flashdata(
+    //             "success",
+    //             "update Sucessfully Resume"
+    //         );
+    //     } else {
+    //         $this->session->set_flashdata("error", "Record Update Resume!");
+    //     }
+    //     redirect("candidate_profile/fill_candidate_profile");
+    // }
     public function update_resume()
     {
         $candidate_id = $this->session->userdata["candidate_id"];
-        $user_details= $this->M_Candidate_profile->get_user_details_by_id_admin($candidate_id);
+        $user_details = $this->M_Candidate_profile->get_user_details_by_id_admin($candidate_id);
         $email = $user_details->email;
-        $resume = $this->input->post("resume_candidate");
-        if(!empty($_FILES["resumes_upload"]["name"]))
-        {
-        $config["upload_path"] = "./uploads/resume/";
-        $config["allowed_types"] = "pdf|doc|docx";
-        $config["max_size"] = "0";
-        $config["max_width"] = "0";
-        $config["max_height"] = "0";
-        $this->upload->initialize($config);
-        $new_resume_path = '/home/msuite/public_html/uploads/resume/';
-        $file_name = "resumes_upload";
-        $resume = $this->transfer_resume($_FILES["resumes_upload"],$config,$new_resume_path,$file_name);
+    
+        if (!empty($_FILES["resumes_upload"]["name"])) {
+            $config["upload_path"] = "./uploads/resume/";
+            $config["allowed_types"] = "pdf|doc|docx";
+            $config["max_size"] = "0";
+            $this->upload->initialize($config);
+    
+            if (!$this->upload->do_upload("resumes_upload")) {
+                $error = $this->upload->display_errors();
+                $this->session->set_flashdata("error", "Resume upload failed: $error");
+                redirect("candidate_profile/fill_candidate_profile");
+            } else {
+                $resume_data = $this->upload->data();
+                $resume = $resume_data["file_name"];
+            }
         }
-        $data = 
-        [
+    
+        $data = [
             "resume" => $resume,
-            "updated_at" => date("d-m-Y")
+            "updated_at" => date("Y-m-d H:i:s"),
         ];
-         $result = $this->M_Candidate_profile->update_candidate_details(
-            $candidate_id,
-            $data
-        );
-        
-        $para = array
-        (
-            "resume"  => $resume
-        );
-        $data= array
-        (
-         "last_update_profile_date" => date("d-m-Y h:i:s"),   
-        );
-        $last_update_profile_update_date =  $this->M_Candidate_profile->update_candidate_details($candidate_id,$data);
-        $update_job_profile = $this->M_Candidate_profile->update_profile($email,$para);
-        if ($result) 
-        {
-            $this->session->set_flashdata(
-                "success",
-                "update Sucessfully Resume"
-            );
+        $result = $this->M_Candidate_profile->update_candidate_details($candidate_id, $data);
+    
+        if ($result) {
+            $this->session->set_flashdata("success", "Resume updated successfully!");
         } else {
-            $this->session->set_flashdata("error", "Record Update Resume!");
+            $this->session->set_flashdata("error", "Failed to update resume!");
         }
         redirect("candidate_profile/fill_candidate_profile");
     }
-
+    
 
 public function index(){
     $client = new oauth_client_class();
@@ -1125,16 +1162,19 @@ return  $this->db->get()->result();
     public function job_description($id)
     {
         @$candidate_id = $_SESSION["candidate_id"];
+        if ($candidate_id) {
+            $this->M_Candidate_profile->update_visit_count($candidate_id,$id);
+        }
         $data["row"] = $this->M_Candidate_profile->get_job_description($id);
-        // print_r($data["row"]); die();
+        // print_r($data['visit_count']); die();
         $data["job_apply_status"] = $this->M_Candidate_profile->check_job_apply_status($id,$candidate_id);
         
         $get_details_jobprofile = $this->M_Candidate_profile->get_details_job_selected($id);
         $similiar_profile = $get_details_jobprofile->profile;
         $data["candidate_count"] = $this->M_Candidate_profile->get_candidate_count_by_job_id($id);
         //   print_r($data["candidate_count"]); die();
-        $this->M_Candidate_profile->update_visit_count($id);
         $data['visit_count'] = $this->M_Candidate_profile->get_visit_count($id);
+        // print_r($data["visit_count"]); die();
         $db_name1 = "sharksjob_backend";
         $this->db->query("use " .$db_name1. "");
 	    $data['recent_blogs'] = $this->M_blog->list_recent_blogs(4);

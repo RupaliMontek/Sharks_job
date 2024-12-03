@@ -196,7 +196,7 @@
 <div class="line"></div>  
 <ul class="userprofilepopup">
 <li><a class="hvr-wobble-bottom" href="<?php echo base_url('recruitment/blog'); ?>"><i class="fa fa-list-ul"></i>SHARKS JOB Blog</a></li>
-<li><a class="hvr-wobble-bottom" href="#"><i class="fa fa-gear"></i>Settings</a></li>
+<li><a class="hvr-wobble-bottom" href="<?php echo base_url('settings/account'); ?>"><i class="fa fa-gear"></i>Settings</a></li>
 <li><a class="hvr-wobble-bottom" href="#"><i class="fa fa-question-circle-o"></i>FAQ's</a></li>
 <li><a class="hvr-wobble-bottom" href="<?php echo base_url();?>Candidate_profile_login/logout"><i class="fa fa-sign-out"></i>logout</a></li>    
 </ul>   
