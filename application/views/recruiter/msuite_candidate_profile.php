@@ -432,6 +432,7 @@ Array.from(circularProgress).forEach((progressBar) => {
                         Your resume is most important document, without resume recruiters not noticed that candidate. So, create your resume first.
                     </p>
                     <h6><?php if(!empty($user_details[0]->resume))
+                    // print_r($user_details[0]->resume); die();
                     { 
                         $cleaned_resume_path = str_replace("uploads/resume/", "", $user_details[0]->resume);
                       echo $cleaned_resume_path;  ?>
@@ -444,7 +445,7 @@ Array.from(circularProgress).forEach((progressBar) => {
                     ?></span><?php } ?></h6>
                     <p class="resumelinkss">
                     <?php if(!empty($user_details[0]->resume)){ ?>
-                    <a class="" target="_blank" href="<?php echo    "https://msuite.work/".$user_details[0]->resume;?>">
+                    <a class="" target="_blank" href="<?php echo base_url('uploads/resume/').$user_details[0]->resume;?>">
                         <i class="fa fa-download"></i></a> 
                         <i onclick="deleteConfirm(<?php echo $user_details[0]->user_admin_id ;?>)" style="color:red;" class="fa fa-trash" aria-hidden="true"></i>
                     <?php } ?> </p>

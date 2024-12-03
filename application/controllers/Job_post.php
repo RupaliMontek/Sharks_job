@@ -541,16 +541,18 @@ public function company_login()
     
 public function company_registration()
 {
-    $companyId = $this->session->userdata('company');
+    $this->session->set_userdata('company', $companyId);
+    $companyId = $this->session->all_userdata('company'); 
     $user_admin_id = $this->input->post('user_admin_id');
-
+    // print_r($companyId); die();
     if (empty($companyId)) {
         $companyId = $user_admin_id;
+        // print_r($companyId); die();
     }
-
+    
     $this->load->model('modelbasic');
     $jobCount = $this->modelbasic->get_job_count_by_company($companyId);
-
+    // print_r($jobCount); die();
     if ($jobCount == 0) {
         // Set up job data only once for first-time entry
         $jobData = $this->prepareJobData($companyId);
@@ -600,7 +602,7 @@ private function prepareJobData($companyId, $file_name = null)
 {
     $selectedPlatforms = $this->input->post('social_media');
     $social_media_string = is_array($selectedPlatforms) ? implode(',', $selectedPlatforms) : '';
-
+print_r($companyId); exit;
     return array(
             'added_by'                      => $companyId,
             "profile"                       => $this->input->post('profile'),
