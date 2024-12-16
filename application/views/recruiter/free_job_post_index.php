@@ -74,7 +74,7 @@
         <form action="<?php echo base_url("job_post/company_registration"); ?>" method="POST" id="form_job_postss" name="form_job_post" >
         
         <input type="hidden" name="company_id" id="company_id" value="<?php echo $companyId; ?>"/>  
-        <input type="hidden" name="user_admin_id" value="<?php echo $user_admin_id; ?>">
+        <input type="hidden" name="user_admin_id" id="user_admin_id" value="<?php echo $user_admin_id; ?>">
         
         <div class="mb-3">
         <label class="form-label"  for="profile">Job Title<span style="color: red;">*</span></label>

@@ -162,7 +162,7 @@
     <small id="emailHelp" class="form-text text-muted">DOC, DOCx, PDF, RTF | Max: 2 MB</small>
  </div> 
  <div class="form-group">
-    <label for="exampleFormControlFile1">Upload Video<span class="requireddd">*</span></label>
+    <label for="exampleFormControlFile1">Upload Video<span class="requireddd"></span></label>
     <label for="video">Record Video:</label>
      <label for="recordedVideo">Record Video</label>
          <label for="recordedVideo">Record Video</label>

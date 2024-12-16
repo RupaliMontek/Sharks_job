@@ -633,13 +633,11 @@ public function get_candidate_count_by_job_id($id)
 
 public function update_visit_count($candidate_id, $job_id)
 {
-    // Check if the candidate has already visited the job
     $this->db->where('candidate_id', $candidate_id);
     $this->db->where('job_id', $job_id);
     $query = $this->db->get('tbl_job_visits');
 
     if ($query->num_rows() == 0) {
-        // Insert a new row for the candidate and job
         $this->db->insert('tbl_job_visits', [
             'candidate_id' => $candidate_id,
             'job_id' => $job_id,
@@ -648,26 +646,6 @@ public function update_visit_count($candidate_id, $job_id)
     }
 }
 
-
-// public function update_visit_count($candidate_id)
-// {
-//     // Check if an entry exists for the candidate
-//     $this->db->where('candidate_id', $candidate_id);
-//     $query = $this->db->get('tbl_job_visits');
-
-//     if ($query->num_rows() > 0) {
-//         // Increment the visit count
-//         $this->db->set('visit_count', 'visit_count + 1', FALSE);
-//         $this->db->where('candidate_id', $candidate_id);
-//         $this->db->update('tbl_job_visits');
-//     } else {
-//         // Insert a new row for the candidate
-//         $this->db->insert('tbl_job_visits', [
-//             'candidate_id' => $candidate_id,
-//             'visit_count' => 1
-//         ]);
-//     }
-// }
 public function get_visit_count($job_id)
 {
     $this->db->select('SUM(visit_count) as total_visits');
@@ -680,20 +658,32 @@ public function get_visit_count($job_id)
     }
     return 0;
 }
-// public function get_visit_count($candidate_id)
+
+public function update_search_appearance_count($candidate_id)
+{
+    $this->db->where('candidate_id', $candidate_id);
+    $query = $this->db->get('tbl_profile_search_appearance');
+
+    if ($query->num_rows() == 0) {
+        $this->db->insert('tbl_profile_search_appearance', [
+            'candidate_id' => $candidate_id,
+            'visit_count' => 1
+        ]);
+    }
+}
+
+// public function get_search_appearance_count($candidate_id)
 // {
-//     $this->db->select('visit_count');
-//     $this->db->from('tbl_job_visits');
+//     $this->db->select('SUM(search_count) as total_search');
+//     $this->db->from('tbl_profile_search_appearance');
 //     $this->db->where('candidate_id', $candidate_id);
 //     $query = $this->db->get();
 
 //     if ($query->num_rows() > 0) {
-//         return $query->row()->visit_count;
+//         return $query->row()->total_visits;
 //     }
 //     return 0;
 // }
-
-
 
 // old
 // public function search_job($search,$category,$location,$pin_code)

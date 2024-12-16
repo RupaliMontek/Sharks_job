@@ -185,7 +185,7 @@ if (isset($blogs_meta) && $blogs_meta && isset($is_blog_details_page) && $is_blo
             </a>
  </button>
 </div>
-<form class="getotpform" action="<?php echo base_url(); ?>Candidate_profile_login/check_user_login_by_mobile_otp_candidate"  method="post">
+<!-- <form class="getotpform" action="<?php echo base_url(); ?>Candidate_profile_login/check_user_login_by_mobile_otp_candidate"  method="post">
   <div class="form-group">
     <label for="mobile">Mobile Number</label>
     <div class="frEmailAndOtp">
@@ -201,7 +201,7 @@ if (isset($blogs_meta) && $blogs_meta && isset($is_blog_details_page) && $is_blo
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Login</button>
             </div> 
-</form>
+</form> -->
       </div>    
     </div>
   </div>

@@ -64,7 +64,16 @@ public function send_reset_link()
 
             $resetLink = base_url("job_post/reset_password_form?token=$token");
 
-            $message = "Click on the link to reset your password: <a href='$resetLink'>$resetLink</a>";
+            $message = "
+            <p>Hello, " . $user['name'] . "</p>
+            <p>We received a request to reset your password. Click the link below to reset your password:</p>
+            <p><a href='$resetLink'>$resetLink</a></p>
+            <p>If you did not request a password reset, please ignore this email.</p>
+            <p>Best regards,</p>
+            <p>The Sharks Job Team</p>
+        ";
+
+            // $message = "Click on the link to reset your password: <a href='$resetLink'>$resetLink</a>";
 
         // Send the email using the custom function
         $subject = 'Password Reset Request';
@@ -79,7 +88,7 @@ public function send_reset_link()
     {
         $this->load->database();
     
-        $query = $this->db->get_where('smtp_user_password', ['id' => 1]);
+        $query = $this->db->get_where('smtp_user_password', ['id' => 3]);
         $smtp_credentials = $query->row();
     // print_r($smtp_credentials); die();
         if (!$smtp_credentials) {
@@ -88,21 +97,22 @@ public function send_reset_link()
     
         $this->load->library("email");
     
-        $config["smtp_host"] = "smtp.office365.com";
-        $config["smtp_port"] = "587";
-        $config["smtp_user"] = $smtp_credentials->smtp_user;
-        $config["smtp_pass"] = $smtp_credentials->smtp_pass;
-        $config["smtp_crypto"] = "tls";
+        $config["smtp_host"] = "mail.sharksjob.com";  // Corrected the SMTP host to match the provided details
+        $config["smtp_port"] = 465;  // Correct port for SSL is 465
+        $config["smtp_user"] = $smtp_credentials->smtp_user;  // Using username from DB
+        $config["smtp_pass"] = $smtp_credentials->smtp_pass;  // Using password from DB
+        $config["smtp_crypto"] = "ssl";  // Changed to SSL as you provided port 465, which is typically for SSL
         $config["mailtype"] = "html";
         $config["protocol"] = "smtp";
         $config["send_multipart"] = false;
-        $config["smtp_timeout"] = "60";
+        $config["smtp_timeout"] = 60;
         $config["charset"] = "utf-8"; 
         $config["newline"] = "\r\n"; 
         $config["crlf"] = "\r\n";
-    
-        $from = "Sharks Job";
-        $this->email->initialize($config);
+
+    // Initialize the email library
+    $this->email->initialize($config);
+
     
         // Set email details
         $this->email->from($smtp_credentials->smtp_user, $from);
@@ -245,6 +255,8 @@ public function view_applications($job_id)
     $user = $this->session->userdata('user_admin_id');
     $data["job_application"] = $this->m_admin_user->get_candidate_job_application_with_employment_details($job_id);
     $job_data = $this->m_admin_user->application_count($job_id);
+//     echo $this->db->last_query();
+// die();
 // print_r($data["job_application"]); die();
     $data['siderbar_menus'] = $this->M_permission->list_labels('internal user');
 
@@ -406,21 +418,20 @@ public function send_otp()
 public function send_otp_to_mobile()
 {
     $mobile = $this->input->post("mobile");
-    
     if ($mobile != NULL) {
         $otp = rand(100000, 999999);
         // $otp = random_string("numeric", 6);
-        
         $sms_url = "https://api.msg91.com/api/v5/otp?template_id=6229cf167567d70749562aae&mobile=91" .
                    $mobile . "&authkey=374123A5ieHib0FG6226eca8P1&otp=" . $otp;
-        
+        // $sms_url = "https://api.msg91.com/api/v5/otp?template_id=675be001d6fc052b1f197193&mobile=91" .
+        //            $mobile . "&authkey=436435ACDDoalS69675bdc7dP1&otp=" . $otp;
         $response = $this->send_sms($sms_url);
         
         $response_data = json_decode($response, true);
         // print_r($response_data); die();
         if (isset($response_data['type']) && $response_data['type'] === "success") {
             $this->session->set_userdata('verify_login_otp', $otp);  // Store OTP correctly
-            $this->session->set_userdata('otp_mobile', $mobile);
+            $this->session->set_userdata('mobile', $mobile);
 
             echo json_encode(['success' => true, 'message' => 'OTP sent successfully.']);
         } else {
@@ -438,7 +449,7 @@ public function send_sms($sms_url)
         CURLOPT_URL => $sms_url,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_MAXREDIRS => 100,
         CURLOPT_TIMEOUT => 0,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
@@ -452,30 +463,31 @@ public function send_sms($sms_url)
     {
         $this->load->database();
     
-        $query = $this->db->get_where('smtp_user_password', ['id' => 1]);
+        $query = $this->db->get_where('smtp_user_password', ['id' => 3]);
         $smtp_credentials = $query->row();
     // print_r($smtp_credentials); die();
         if (!$smtp_credentials) {
             throw new Exception("SMTP credentials not found in the database for ID: 1");
         }
         $this->load->library("email");
-        $config["smtp_host"] = "smtp.office365.com";
-        $config["smtp_port"] = "587";
-        $config["smtp_user"] = $smtp_credentials->smtp_user;
-        $config["smtp_pass"] = $smtp_credentials->smtp_pass;
-        $config["smtp_crypto"] = "tls";
+        $config["smtp_host"] = "mail.sharksjob.com";  // Corrected the SMTP host to match the provided details
+        $config["smtp_port"] = 465;  // Correct port for SSL is 465
+        $config["smtp_user"] = $smtp_credentials->smtp_user;  // Using username from DB
+        $config["smtp_pass"] = $smtp_credentials->smtp_pass;  // Using password from DB
+        $config["smtp_crypto"] = "ssl";  // Changed to SSL as you provided port 465, which is typically for SSL
         $config["mailtype"] = "html";
         $config["protocol"] = "smtp";
         $config["send_multipart"] = false;
-        $config["smtp_timeout"] = "60";
+        $config["smtp_timeout"] = 60;
         $config["charset"] = "utf-8"; 
         $config["newline"] = "\r\n"; 
         $config["crlf"] = "\r\n";
 
-        $from = "Sharks Job";
+        // Initialize the email library
         $this->email->initialize($config);
 
-        $this->email->from("vinita@montekservices.com", $from);
+
+        $this->email->from("$smtp_credentials->smtp_user", $from);
         $this->email->to($email_id);
         $this->email->subject($subject);
         $this->email->message($message);
@@ -541,22 +553,20 @@ public function company_login()
     
 public function company_registration()
 {
-    $this->session->set_userdata('company', $companyId);
-    $companyId = $this->session->all_userdata('company'); 
+    $companyId = $this->input->post('company'); 
     $user_admin_id = $this->input->post('user_admin_id');
-    // print_r($companyId); die();
+    // print_r($user_admin_id); die();
+
     if (empty($companyId)) {
         $companyId = $user_admin_id;
-        // print_r($companyId); die();
     }
-    
     $this->load->model('modelbasic');
     $jobCount = $this->modelbasic->get_job_count_by_company($companyId);
+    
     // print_r($jobCount); die();
     if ($jobCount == 0) {
         // Set up job data only once for first-time entry
         $jobData = $this->prepareJobData($companyId);
-
         $data['companyData'] = json_encode($jobData, JSON_PRETTY_PRINT);
         $data['siderbar_menus'] = $this->M_permission->list_labels('internal user');
         $data["job_post_list"] = $this->modelbasic->get_list_job_post();
@@ -585,7 +595,7 @@ public function company_registration()
         }
 
         $jobData = $this->prepareJobData($companyId);
-
+        
         if ($jobCount >= 5) {
             $this->session->set_flashdata('error_message', 'You have reached the maximum limit of job posts. Please proceed to paid posting.');
             redirect('job_post/paid_posting');
@@ -596,13 +606,47 @@ public function company_registration()
         }
     }
 }
+public function edit_company_registration()
+{
+    $companyId = $this->input->post('company'); 
+    $user_admin_id = $this->input->post('user_admin_id');
+    $job_id = $this->input->post('job_id'); 
+
+    if (empty($companyId)) {
+        $companyId = $user_admin_id;
+    }
+    $jobData = $this->prepareJobDataEdit($companyId);
+
+    if ($this->input->post()) {
+        $this->load->library('upload');
+        $config['upload_path'] = './uploads/video_introducation/'; 
+        $config['allowed_types'] = 'mp4|avi|wmv|flv|mov|mkv';
+        $config['max_size'] = 2048;
+        $this->upload->initialize($config);
+
+        $file_name = null;
+        if ($this->upload->do_upload('compavideo')) {
+            $uploadData = $this->upload->data();
+            $file_name = $uploadData['file_name'];
+        }
+
+        $jobData = $this->prepareJobDataEdit($companyId, $file_name);
+
+        // Update the database with job_id
+        $this->db->where('job_id', $job_id);
+        $this->db->update('tbl_candidate_job_post', $jobData);
+
+        redirect('job_post/comp_dashboard');
+    }
+}
+
 
 // Helper function to generate job data
 private function prepareJobData($companyId, $file_name = null)
 {
     $selectedPlatforms = $this->input->post('social_media');
     $social_media_string = is_array($selectedPlatforms) ? implode(',', $selectedPlatforms) : '';
-print_r($companyId); exit;
+// print_r($companyId); exit;
     return array(
             'added_by'                      => $companyId,
             "profile"                       => $this->input->post('profile'),
@@ -614,7 +658,7 @@ print_r($companyId); exit;
             "country_id"                    => $this->input->post("job_country"),
             "state_id"                      => $this->input->post("job_state"),
             "job_location"                  => $this->input->post("job_location"),
-            // "job_pincode"                   => $this->input->post("job_pin"),
+            "job_pincode"                   => $this->input->post("job_pin"),
             "shift_type"                    => $this->input->post("shift_type"),
             "job_descriptions"              => $this->input->post("job_descriptions"),
             "industry_type"                 => $this->input->post("industry_type"),
@@ -625,7 +669,8 @@ print_r($companyId); exit;
             "no_of_vacancies"               => $this->input->post("no_of_vacancies"),
             "work_mode"                     => $this->input->post("work_mode"),
             "mode"                          => $this->input->post("mode"),
-            "education"                     => $this->input->post("education"),
+            "education"                     => implode(',', $this->input->post("education")),
+            // "education"                     => $this->input->post("education"),
             "new_company_name"              => $this->input->post("new_company_name"),
             "company_telephone"             => $this->input->post("company_telephone"),
             "company_email"                 => $this->input->post("company_email"),
@@ -634,6 +679,43 @@ print_r($companyId); exit;
             "social_media"                  => $social_media_string
         );
 }
+private function prepareJobDataEdit($companyId, $file_name = null)
+{
+    $selectedPlatforms = $this->input->post('social_media');
+    $social_media_string = is_array($selectedPlatforms) ? implode(',', $selectedPlatforms) : '';
+
+    return array(
+        'added_by'                      => $companyId,
+        "profile"                       => $this->input->post('profile'),
+        "key_skills"                    => $this->input->post("key_skills"),
+        "min_exp_candidate"             => $this->input->post("min_exp_candidate"),
+        "max_exp_candidate"             => $this->input->post("max_exp_candidate"),
+        "comany_min_package_offer"      => $this->input->post("min_salary"),
+        "comany_max_package_offer"      => $this->input->post("max_salary"),
+        "country_id"                    => $this->input->post("job_country"),
+        "state_id"                      => $this->input->post("job_state"),
+        "job_location"                  => $this->input->post("job_location"),
+        "job_pincode"                   => $this->input->post("job_pin"),
+        "shift_type"                    => $this->input->post("shift_type"),
+        "job_descriptions"              => $this->input->post("job_descriptions"),
+        "industry_type"                 => $this->input->post("industry_type"),
+        "department"                    => $this->input->post("department"),
+        "job_opening_address"           => $this->input->post("job_opening_address"),
+        "job_opening_area_pincode"      => $this->input->post("job_opening_area_pincode"),
+        "job_type"                      => $this->input->post("job_type"),
+        "no_of_vacancies"               => $this->input->post("no_of_vacancies"),
+        "work_mode"                     => $this->input->post("work_mode"),
+        "mode"                          => $this->input->post("mode"),
+        "education"                     => implode(',', $this->input->post("education")),
+        "new_company_name"              => $this->input->post("new_company_name"),
+        "company_telephone"             => $this->input->post("company_telephone"),
+        "company_email"                 => $this->input->post("company_email"),
+        "company_about"                 => $this->input->post("company_about"),
+        "created_at"                    => date("Y-m-d H:i:s"), 
+        "social_media"                  => $social_media_string
+    );
+}
+
 
 
 public function saveRegistration() {

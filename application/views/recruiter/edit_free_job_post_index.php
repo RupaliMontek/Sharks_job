@@ -71,11 +71,11 @@
     <div class="box">
         <div class="box-body">
             <div class="box box-warning">
-        <form action="<?php echo base_url("job_post/company_registration"); ?>" method="POST" id="form_job_postss" name="form_job_post" >
+        <form action="<?php echo base_url("job_post/edit_company_registration"); ?>" method="POST" id="form_job_postss" name="form_job_post" >
         <?php if (!empty($job_data) && isset($job_data[0])): ?>
     <input type="hidden" name="company_id" id="company_id" value="<?php echo htmlspecialchars($companyId); ?>"/>  
-    <input type="hidden" name="user_admin_id" value="<?php echo htmlspecialchars($user_admin_id); ?>">
-    
+    <input type="hidden" name="user_admin_id" id="user_admin_id" value="<?php echo htmlspecialchars($user_admin_id); ?>">
+    <input type="hidden" name="job_id" id="job_id" value="<?php echo htmlspecialchars($job_data[0]['job_id']); ?>">
     <div class="mb-3">
         <label class="form-label" for="profile">Job Title<span style="color: red;">*</span></label>
         <input type="text" class="form-control" name="profile" id="profile" value="<?php echo htmlspecialchars($job_data[0]['profile']); ?>" required>
