@@ -1,10 +1,44 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 class Candidate_profile extends CI_Controller
 {
-	public function __construct()
+    // public $benchmark;
+    // public $hooks;
+    // public $config;
+    // public $log;
+    // public $utf8;
+    // public $uri;
+    // public $router;
+    // public $output;
+    // public $security;
+    // public $input;
+    // public $lang;
+    // public $db;
+    // public $failover;
+    // public $email;
+    // public $session;
+    // public $form_validation;
+    // public $upload;
+    // public $image_lib;
+    // public $pagination;
+    // public $encryption;
+    // public $agent;
+    // public $m_recruiter;
+    // public $m_dailyreport;
+    // public $m_admin_user;
+    // public $m_blog;
+    // public $M_blog;
+    // public $modelbasic;
+    // public $commen_model;
+    // public $M_Candidate_profile;
+    // public $M_permission;
+
+    public function __construct()
     // shweta testingsssss
 	{
 		if( ! ini_get('date.timezone') )
@@ -152,7 +186,9 @@ class Candidate_profile extends CI_Controller
     $data["departments"]=$this->M_Candidate_profile->get_all_department();
     $data["educations"]=$this->M_Candidate_profile->get_all_education();
     $data["candidate_white_paper_journal_entry"]=$this->M_Candidate_profile->get_candidate_white_paper_journal_entry($candidate_id);
-    //print_r($data["educations"]); die();
+    $this->M_Candidate_profile->update_search_appearance_count($candidate_id);
+    // $data['search_appearance_count'] = $this->M_Candidate_profile->get_search_appearance_count($candidate_id);
+    // print_r($data["search_appearance_count"]); die();
     // $candidate_skils = $this->M_Candidate_profile->get_candidates_keyskill($candidate_id);
     // print_r($candidate_id); die();
     // $data["result_companies"] =$this->M_Candidate_profile->candidate_skills_fill_for_job_recommendtion($candidate_skils);

@@ -143,7 +143,7 @@
     <?php if (!empty($application['resume'])): ?>
         <a href="#" 
            class="view-resume" 
-           data-resume-url="<?php echo base_url($application['resume']); ?>" 
+           data-resume-url="<?php echo base_url('uploads/resume/' . $application['resume']); ?>" 
            data-toggle="modal" 
            data-target="#resumeModal">
            Resume

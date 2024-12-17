@@ -536,7 +536,7 @@ public function send_password_mail($message, $email_id, $subject)
 {
     $this->load->database();
     
-    $query = $this->db->get_where('smtp_user_password', ['id' => 1]);
+    $query = $this->db->get_where('smtp_user_password', ['id' => 3]);
     $smtp_credentials = $query->row();
 // print_r($smtp_credentials); die();
     if (!$smtp_credentials) {
@@ -545,17 +545,15 @@ public function send_password_mail($message, $email_id, $subject)
     $this->load->library("email");
     
     // Email configuration
-    $config["smtp_host"] = "smtp.office365.com";
-    $config["smtp_port"] = "587";
-    $config["smtp_user"] = $smtp_credentials->smtp_user;
-    $config["smtp_pass"] = $smtp_credentials->smtp_pass;
-    // $config["smtp_user"] = "vinita@montekservices.com";
-    // $config["smtp_pass"] = "hlfsdhdkjyhfhfpq"; // Ensure this is handled securely
-    $config["smtp_crypto"] = "tls";
+    $config["smtp_host"] = "mail.sharksjob.com";  // Corrected the SMTP host to match the provided details
+    $config["smtp_port"] = 465;  // Correct port for SSL is 465
+    $config["smtp_user"] = $smtp_credentials->smtp_user;  // Using username from DB
+    $config["smtp_pass"] = $smtp_credentials->smtp_pass;  // Using password from DB
+    $config["smtp_crypto"] = "ssl";  // Changed to SSL as you provided port 465, which is typically for SSL
     $config["mailtype"] = "html";
     $config["protocol"] = "smtp";
     $config["send_multipart"] = false;
-    $config["smtp_timeout"] = "60";
+    $config["smtp_timeout"] = 60;
     $config["charset"] = "utf-8"; 
     $config["newline"] = "\r\n"; 
     $config["crlf"] = "\r\n";
@@ -564,7 +562,7 @@ public function send_password_mail($message, $email_id, $subject)
     $this->email->initialize($config);
 
     // Set email details
-    $this->email->from("vinita@montekservices.com", $from);
+    $this->email->from("$smtp_credentials->smtp_user", $from);
     $this->email->to($email_id);
     $this->email->subject($subject);
     $this->email->message($message);
@@ -1782,58 +1780,31 @@ public function transfer_resume($file_array, $file_upload_config, $new_resume_pa
     {
         $this->load->database();
     
-        $query = $this->db->get_where('smtp_user_password', ['id' => 1]);
+        $query = $this->db->get_where('smtp_user_password', ['id' => 3]);
         $smtp_credentials = $query->row();
     // print_r($smtp_credentials); die();
         if (!$smtp_credentials) {
             throw new Exception("SMTP credentials not found in the database for ID: 1");
         }
         $this->load->library("email");
-        /*$config['smtp_host'] = 'smtp.office365.com';
-            $config['smtp_port'] = '587';
-            $config['smtp_user'] = 'vinita@montekservices.com';
-            $config['smtp_pass'] = 'kwzzjxxsjskyrvrg';
-            $config['smtp_crypto'] = 'tls'; //FIXED
-            $config['protocol'] = 'smtp'; //FIXED
-            $config['mailtype'] = 'html'; //FIXED
-            $config['send_multipart'] = FALSE;*/
 
-        /* $config['smtp_crypto'] = 'tls'; 
-            $config['protocol'] = 'smtp'; 
-            $config['smtp_host'] = 'tls://smtp.office365.com';
-            $config['smtp_user'] = 'vinita@montekservices.com'; 
-            $config['smtp_pass'] = 'kwzzjxxsjskyrvrg'; 
-            $config['smtp_port'] = '587'; 
-            $config['charset']='utf-8'; // Default should be utf-8 (this should be a text field) 
-            $config['newline']="\r\n"; //"\r\n" or "\n" or "\r". DEFAULT should be "\r\n" 
-            $config['crlf'] = "\r\n"; //"\r\n" or "\n" or "\r" DEFAULT should be "\r\n"*/
+            $config["smtp_host"] = "mail.sharksjob.com";  // Corrected the SMTP host to match the provided details
+            $config["smtp_port"] = 465;  // Correct port for SSL is 465
+            $config["smtp_user"] = $smtp_credentials->smtp_user;  // Using username from DB
+            $config["smtp_pass"] = $smtp_credentials->smtp_pass;  // Using password from DB
+            $config["smtp_crypto"] = "ssl";  // Changed to SSL as you provided port 465, which is typically for SSL
+            $config["mailtype"] = "html";
+            $config["protocol"] = "smtp";
+            $config["send_multipart"] = false;
+            $config["smtp_timeout"] = 60;
+            $config["charset"] = "utf-8"; 
+            $config["newline"] = "\r\n"; 
+            $config["crlf"] = "\r\n";
 
-        /*   $config['protocol'] = 'smtp';
-            $config['smtp_host'] = 'smtp.office365.com';//change this
-            $config['smtp_user'] = 'vinita@montekservices.com';
-            $config['smtp_pass'] = 'kwzzjxxsjskyrvrg';
-            $config['smtp_port'] = '587';
-            $config['smtp_timeout'] = '60';
-            $config['smtp_crypto'] = 'tls';*/
-        $config["smtp_host"] = "smtp.office365.com";
-        $config["smtp_port"] = "587"; //change this
-        $config["smtp_user"] = $smtp_credentials->smtp_user;
-        $config["smtp_pass"] = $smtp_credentials->smtp_pass;
-        // $config["smtp_user"] = "vinita@montekservices.com";
-        // $config["smtp_pass"] = "hlfsdhdkjyhfhfpq";
-        $config["smtp_crypto"] = "tls";
-        $config["mailtype"] = "html";
-        $config["protocol"] = "smtp";
-        $config["send_multipart"] = false;
-        $config["smtp_timeout"] = "60";
-        $config["charset"] = "utf-8"; // Default should be utf-8 (this should be a text field)
-        $config["newline"] = "\r\n"; //"\r\n" or "\n" or "\r". DEFAULT should be "\r\n"
-        $config["crlf"] = "\r\n"; //"\r\n" or "\n" or "\r" DEFAULT should be "\r\n"
-
-        $from = "Montekservices";
+        $from = "Sharks Job";
         $this->email->initialize($config);
 
-        $this->email->from("vinita@montekservices.com", $from);
+        $this->email->from("$smtp_credentials->smtp_user", $from);
         $this->email->to($email_id);
         $this->email->subject($subject_data);
         $this->email->message($message);
@@ -1969,6 +1940,8 @@ return $response;
         $email_id,
         $subject_data
     ) {
+        $query = $this->db->get_where('smtp_user_password', ['id' => 3]);
+        $smtp_credentials = $query->row();
         $this->load->library("email");
         $config["smtp_host"] = "smtp.gmail.com";
         $config["smtp_port"] = "587";
@@ -1978,10 +1951,10 @@ return $response;
         $config["protocol"] = "smtp"; //FIXED
         $config["mailtype"] = "html"; //FIXED
         $config["send_multipart"] = false;
-        $from = "Montekservices";
+        $from = "Sharks Job";
         $this->email->initialize($config);
         $this->email->set_newline("\r\n");
-        $this->email->from("vinita@montekservices.com", $from);
+        $this->email->from("$smtp_credentials->smtp_user", $from);
         $this->email->to($email_id);
         $this->email->subject($subject_data);
         $this->email->message($message);

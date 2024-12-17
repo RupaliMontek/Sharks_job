@@ -27,7 +27,7 @@
             <div class="form-group">
                 <label for="email">Email<span style="color: red;">*</span></label>
                 <input type="email" name="email_id" id="email_id" class="form-control" placeholder="Enter your email" required>
-                <button type="button" class="frSendOTP" id="send_otp" class="btn btn-secondary">Send OTP</button>
+                <button type="button" class="frSendOTP" id="send_otp" name="send_otp" class="btn btn-secondary">Send OTP</button>
             </div>
             <!--for offcial mail id-->
             <!--<div class="form-group">-->
@@ -99,7 +99,8 @@
     $('#send_otp').on('click', function() {
         var email_id = $('#email_id').val();
         var company_name = $('#company_name').val();
-        
+        console.log("Email ID: " + email_id);  // Log email ID
+        console.log("Company Name: " + company_name);  // Log company name
         if (email_id === "" || company_name === "") {
             alert("Please fill in your company name and email.");
             return;
@@ -110,6 +111,7 @@
             type: "POST",
             data: { company_name: company_name, email_id: email_id },
             success: function(response) {
+                console.log("Server Response: ", response);
                 var res = JSON.parse(response);
                 if (res.success) {
                     alert("Please check your email for OTP.");
