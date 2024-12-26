@@ -262,7 +262,7 @@ function myFunction() {
             work_status: 
             {
                 required:true,
-                alpha:true
+                //alpha:true
             },
              candidate_resume: 
             {
@@ -540,6 +540,10 @@ $.ajax({
       success:function(msg)
         { 
          console.log(msg);    
+         $('#myModal_email_verification').modal({
+  backdrop: false,  // Disables the backdrop
+  keyboard: false    // Disables closing on pressing 'Esc'
+});
           $('#candidate_resume').val('');
          if(msg['status']=="true")
          {

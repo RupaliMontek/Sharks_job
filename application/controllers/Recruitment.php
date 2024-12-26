@@ -1253,6 +1253,7 @@ return  $this->db->get()->result();
 	    $data['recent_blogs'] = $this->M_blog->list_recent_blogs(4);
         $this->load->view("recruiter/candidate_header");
         $this->load->view("recruiter/create_account_candidate",$data);
+        // $this->load->view("recruiter/candidate_register",$data);
         $this->load->view("recruiter/candidate_footer", $data);
     }
     
@@ -1529,7 +1530,6 @@ public function transfer_resume($file_array, $file_upload_config, $new_resume_pa
         {
            
            $uploadFolder = '/home/msuite/public_html/uploads/candidate_resume/';
-  
            if (!file_exists($uploadFolder)) 
            {
                mkdir($uploadFolder, 0777, true);
@@ -1557,9 +1557,10 @@ public function transfer_resume($file_array, $file_upload_config, $new_resume_pa
         $this->load->view("recruiter/candidate_footer", $data); 
     }
 
-    public function Save_Candidate_register()
+    public function Save_Candidate_register_old()
     {
         $post = $this->input->post();
+
         if (file_exists($post["previous_recording"]))
         {
             unlink($post["previous_recording"]);
@@ -1576,14 +1577,15 @@ public function transfer_resume($file_array, $file_upload_config, $new_resume_pa
         if(!empty($_FILES['candidate_resume']['name']))
         {
            $config["upload_path"] = "./uploads/resume/";
-           $config["allowed_types"] = "pdf|doc|docx";
-           $config["max_size"] = "0";
+           $config["allowed_types"] = "pdf|doc|docx|rtf";
+           $config["max_size"] = "2048";
            $config["max_width"] = "0";
            $config["max_height"] = "0";
            $this->upload->initialize($config);
-           $new_resume_path = '/home/msuite/public_html/uploads/resume/';
+           $new_resume_path = './uploads/resume/';
            $file_name = "candidate_resume";
            $resume = $this->transfer_resume($_FILES["candidate_resume"],$config,$new_resume_path,$file_name);
+        // print_r($resume); die();
         }
         
         if(!empty($_FILES['profile_picture']['name'])){
@@ -1656,9 +1658,9 @@ public function transfer_resume($file_array, $file_upload_config, $new_resume_pa
             "email"                  => $post["candidate_email"],
             "password"               => md5($post["passwords"]),
             "contact"                => $post["phone"],
-            "role"                   => $post["role_id"],
-            "subject"                => "Welcome to Msuite ",
-            "camera_recording"       => $post["camera_recording"],
+            "departments"                   => $post["departments"],
+            // "subject"                => "Welcome to Msuite ",
+            "camera_recording"       => $post["recordedVideo"],
             "candidate_work_status"  => $post["work_status"],
             "resume"                 => $resume,
             "image"                  => @$candidate_profile_pic,
@@ -1701,6 +1703,229 @@ public function transfer_resume($file_array, $file_upload_config, $new_resume_pa
         }
     }
 
+}
+public function Save_Candidate_register()
+{
+    $post = $this->input->post();
+    //print_r($post);exit;
+    // Check if the email already exists
+    $email_allready_exist_check = $this->M_Candidate_profile->check_if_email_exists($post["candidate_email"]);
+    if (!empty($email_allready_exist_check)) {
+        echo json_encode(["status" => "false", "message" => "Email already exists."]);
+        return;
+    }
+
+    // Validate form data
+    $this->form_validation->set_rules('candidate_name', 'Candidate Name', 'required');
+    $this->form_validation->set_rules('candidate_email', 'Candidate Email', 'required|valid_email');
+    $this->form_validation->set_rules('passwords', 'Password', 'required');
+    $this->form_validation->set_rules('phone', 'Phone', 'required');
+    $this->form_validation->set_rules('work_status', 'Work Status', 'required');
+
+    if ($this->form_validation->run() == FALSE) {
+        echo json_encode(["status" => "false", "message" => validation_errors()]);
+        return;
+    }
+if (!empty($_FILES['video']['name'])) {
+            $video_path = $this->upload_video('video'); // Pass the input name
+            print_r($video_path); die();
+            if ($video_path) {
+                $candidate_data['video_path'] = $video_path; // Save video path to the candidate data
+            } else {
+                $this->session->set_flashdata('error', 'Video upload failed.');
+                redirect('path_to_redirect'); // Redirect with error
+                return;
+            }
+        }
+
+    // Prepare file upload configuration
+    $upload_config = [
+        'allowed_types' => 'pdf|doc|docx|jpg|jpeg|png|gif|mp4|webm',  // Include video types like mp4 and webm
+        'max_size' => 2048, // 2MB
+        'max_width' => 0,
+        'max_height' => 0
+    ];
+
+    // Handle file uploads (generic function for multiple files)
+    $uploads = [];
+    $upload_fields = [
+        'candidate_resume' => './uploads/resume/',
+        'profile_picture' => './uploads/candidate_profile_pic/',
+        'portfolio_upload' => './uploads/portfolio/',
+        'experiment_doc' => './uploads/experiment_doc/',
+        'video_introducation' => './uploads/video_introducation/'
+    ];
+    
+    foreach ($upload_fields as $field_name => $upload_path) {
+        if (!empty($_FILES[$field_name]['name'])) {
+            $upload_config['upload_path'] = $upload_path;
+            $this->upload->initialize($upload_config);
+
+            if ($this->upload->do_upload($field_name)) {
+                $upload_data = $this->upload->data();
+                $uploads[$field_name] = $upload_data['file_name']; // Store file name
+            } else {
+                echo json_encode(["status" => "false", "message" => $this->upload->display_errors()]);
+                return;
+            }
+        }
+    }
+
+    // Prepare candidate data
+    $data = [
+        "emp_off_id" => mt_rand(5000, 200000),
+        "name" => $post["candidate_name"],
+        "email" => $post["candidate_email"],
+        "password" => md5($post["passwords"]),
+        "contact" => $post["phone"],
+        "dept" => $post["departments"],
+        "role" => $post["role_id"],
+        "camera_recording" => $post["recordedVideo"],
+        "candidate_work_status" => $post["work_status"],
+        "resume" => isset($uploads['candidate_resume']) ? $uploads['candidate_resume'] : null,
+        "image" => isset($uploads['profile_picture']) ? $uploads['profile_picture'] : null,
+        "status" => 1,  // Active status
+        "video_introducation" => isset($uploads['video_introducation']) ? $uploads['video_introducation'] : null,  // Save the video
+        "experiment_doc" => isset($uploads['experiment_doc']) ? $uploads['experiment_doc'] : null,
+        "portfolio" => isset($uploads['portfolio_upload']) ? $uploads['portfolio_upload'] : null,
+        'camera_recording'=>$post["save_record_path"],
+        "created_at" => date("Y-m-d H:i:s")
+    ];
+    // Insert candidate data into the database
+    $result = $this->M_Candidate_profile->insert_candidate_registration($data);
+    $para_videos = [
+        "user_id" => $result,
+        
+    ];
+    $this->load->model('Video_model');
+    $this->Video_model->update_video($para_videos,$post["save_record_id"]);
+    //$this->M_Candidate_profile->insert_candidate_tbl_recruiter($para);
+    // Log the data into recruiter table (if necessary)
+    $para = [
+        "sheetid" => mt_rand(5000, 200000),
+        "sheetname" => "Shraks Job",
+        "company_client" => "Sharks Job",
+        "candidate_name" => $post["candidate_name"],
+        "contact_no" => $post["phone"],
+        "email_id" => $post["candidate_email"],
+        "resume" => isset($uploads['candidate_resume']) ? $uploads['candidate_resume'] : null,
+        "date" => date("Y/m/d"),
+        "record_added_datetime" => date("Y-m-d H:i:s")
+    ];
+    $this->M_Candidate_profile->insert_candidate_tbl_recruiter($para);
+
+    // Return success or failure response
+    if ($result) {
+        echo json_encode([
+            "status" => "true",
+            "email" => $post["candidate_email"]
+        ]);
+    } else {
+        echo json_encode([
+            "status" => "false",
+            "message" => "Registration failed. Please try again."
+        ]);
+    }
+}
+
+
+public function upload() {
+    $upload_dir = FCPATH . 'uploads' . DIRECTORY_SEPARATOR . 'videos' . DIRECTORY_SEPARATOR;
+
+    // Create the directory if it doesn't exist
+    if (!is_dir($upload_dir)) {
+        mkdir($upload_dir, 0777, true); // Create with permissions
+    }
+    
+    // Configure the upload settings
+    $config['upload_path'] = $upload_dir;
+    // $config['allowed_types'] = 'webm|mp4|avi';
+    // $config['allowed_types'] = 'webm|mp4|avi|x-matroska';
+    $config['allowed_types'] = '*'; 
+    $config['max_size'] = 102400;  // Max size in KB (100MB)
+
+    // Get the file extension of the uploaded file
+    $file_extension = pathinfo($_FILES['video']['name'], PATHINFO_EXTENSION);
+    
+    // Generate a unique file name with the original extension
+    $config['file_name'] = uniqid('video_', true) . '.' . $file_extension;
+    
+    // Load the upload library with the new configuration
+    $this->load->library('upload', $config);
+    $this->upload->initialize($config);
+
+    // Check if the file upload is successful
+    // if ($this->upload->do_upload('video')) {
+        $file_data = $this->upload->data();
+
+        // Create the file path
+        $file_path = base_url('uploads/videos/' . $file_data['file_name']);
+        
+        $video_data = [
+            'file_name' => $file_data['file_name'],
+            'file_path' => $file_path,
+            'file_size' => $file_data['file_size'],
+            'file_type' => $file_data['file_type'],
+            'upload_time' => date('Y-m-d H:i:s'),
+        ];
+        
+        // Load the model to insert the video data into the database
+        $this->load->model('Video_model');
+        $video_id=$this->Video_model->insert_video($video_data);
+        // echo "Last Executed Query: " . $this->db->last_query();
+        // exit;
+        if($video_id) {
+            // Send a success response
+            $response = [
+                'status' => 'success',
+                'file_path' => $file_path,
+                'message' => 'File uploaded and saved successfully.',
+                'video_id' => $video_id
+            ];
+        } else {
+            // Send an error response if saving to the database fails
+            $response = [
+                'status' => 'error1',
+                'file_path' => '',
+                'message' => 'File uploaded, but failed to save in the database.',
+                'video_id' => '0'
+            ];
+        }
+    // } 
+    // else {
+    //     // Send an error response if file upload fails
+    //     $response = [
+    //         'status' => 'error2',
+    //         'file_path' => '',
+    //         'message' => $this->upload->display_errors('', ''),
+    //         'video_id' => '0'
+    //     ];
+    // }
+
+    // Return the response as JSON
+    echo json_encode($response);
+}
+
+public function get_video($id) {
+    // Get the video path from the database based on the video ID
+    $video_path = $this->Video_model->get_video_path($id);
+
+    // Check if the path exists
+    if ($video_path) {
+        // Return the file path as JSON
+        $response = [
+            'status' => 'success',
+            'file_path' => base_url($video_path)
+        ];
+        echo json_encode($response);
+    } else {
+        // Return an error if the video doesn't exist
+        $response = [
+            'status' => 'error',
+            'message' => 'Video not found.'
+        ];
+        echo json_encode($response);
+    }
 }
     /*		function send_mail($message,$email,$subject_data)
 	{

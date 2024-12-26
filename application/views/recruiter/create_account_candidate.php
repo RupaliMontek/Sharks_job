@@ -8,6 +8,28 @@
             justify-content: center;
             height: 100vh;
         }*/
+        .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+        padding-top: 60px;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        text-align: center;
+    }
         #videoContainer {
             position: relative;
             width: 640px;
@@ -90,11 +112,11 @@
          <h1>Find a job & grow your career</h1>
   <div class="form-group">
     <label class="" for="exampleInputName">Name<span class="requireddd">*</span></label>
-      <input type="text" class="form-control" name="candidate_name" id="candidate_name" placeholder="What is your name?">
+      <input type="text" class="form-control" name="candidate_name" id="candidate_name" placeholder="What is your name?" required>
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Email ID / Username<span class="requireddd">*</span></label>
-    <input type="email" class="form-control" name="candidate_email" id="candidate_email4" >
+    <input type="email" class="form-control" name="candidate_email" id="candidate_email4" required>
     <!--<div id="custom-error-message" style="display: none;">-->
     <!--<a id="canonicalLink" rel="canonical" href="#">-->
     <!--     Email Id Allready Register Please Click Here Profile View..</a>-->
@@ -112,13 +134,13 @@
   
   <div class="form-group">
     <label for="exampleInputEmail1">Mobile Number<span class="requireddd">*</span></label>
-  <input type="phone" class="form-control" name="phone" id="phone" aria-describedby="emailHelp" placeholder="Enter your 10 digit mobile no.">
+  <input type="phone" class="form-control" name="phone" id="phone" aria-describedby="emailHelp" placeholder="Enter your 10 digit mobile no." required>
     <small id="emailHelp" class="form-text text-muted">You will receive an OTP on this number.</small>
   </div>
   
    <div class="form-group">
     <label for="exampleInputEmail1">Department<span class="requireddd">*</span></label>
-    <select onchange="get_role_select_department(this.value)" class="form-control" id="departments" name="departments">
+    <select onchange="get_role_select_department(this.value)" class="form-control" id="departments" name="departments" required>
             <option value="" selected>Select Department</option> 
             <?php foreach($departments as $row)
             { ?>
@@ -144,7 +166,7 @@
 
 <div class="form-group">
     <label for="exampleFormControlFile1">Upload Resume<span class="requireddd">*</span></label>
-    <input type="file" class="form-control-file" name="candidate_resume" id="candidate_resume">
+    <input type="file" class="form-control-file" name="candidate_resume" id="candidate_resume" required>
     <small id="emailHelp" class="form-text text-muted">DOC, DOCx, PDF, RTF | Max: 2 MB</small>
     <p>Recruiters give first preference to candidates who have a resume</p>
   </div>
@@ -152,7 +174,7 @@
   
 <div class="form-group">
     <label for="exampleFormControlFile1">Portfolio Upload<span class="requireddd">*</span></label>
-    <input type="file" class="form-control-file" name="portfolio_upload" id="portfolio_upload">
+    <input type="file" class="form-control-file" name="portfolio_upload" id="portfolio_upload" required>
     <small id="emailHelp" class="form-text text-muted">DOC, DOCx, PDF, RTF | Max: 2 MB</small>
  </div>
 
@@ -162,21 +184,33 @@
     <small id="emailHelp" class="form-text text-muted">DOC, DOCx, PDF, RTF | Max: 2 MB</small>
  </div> 
  <div class="form-group">
+ <input type="text" class="form-control" name="save_record_path" id="save_record_path">
+ <input type="text" class="form-control" name="save_record_id" id="save_record_id">
     <label for="exampleFormControlFile1">Upload Video<span class="requireddd"></span></label>
+    
+    <!-- Labels for recording -->
     <label for="video">Record Video:</label>
-     <label for="recordedVideo">Record Video</label>
-         <label for="recordedVideo">Record Video</label>
-         <div id="videoContainer">
+    
+    <!-- Video preview and timer display -->
+    <div id="videoContainer">
         <video width="200" height="300" id="preview" autoplay muted></video>
         <div id="timerDisplay">00:00</div>
     </div>
+
     <div class="controls">
-        <button type="button" id="startButton">Start Recording</button>
-        <button type="button" id="stopButton" disabled>Stop Recording</button>
+        <!-- Start and Stop buttons for recording -->
+        <button type="button" id="buttonStart">Start Recording</button>
+        <button type="button" id="buttonStop" disabled>Stop Recording</button>
+        
+        <!-- Video element for showing the recorded video -->
+        <video id="recordedVideo" name="recordedVideo" width="200" height="300" controls style="display: none;"></video>
+        
+        <!-- Save button for saving the recorded video -->
         <button type="button" id="saveButton" disabled>Save Recording</button>
+        <!-- <div id="timerDisplay">Time Remaining: 02:00</div> -->
     </div>
-    <video id="recordedVideo" width="100" height="300" controls style="display: none;"></video>
-  </div>
+</div>
+
 
 <!--<div class="form-group">
     <label for="exampleFormControlFile1">Video Introduction<span class="requireddd">*</span></label>
@@ -187,7 +221,7 @@
   
 <div class="form-group">
     <label for="exampleFormControlFile1">Profile Picture<span class="requireddd">*</span></label>
-    <input type="file" class="form-control-file" name="profile_picture" id="profile_picture">
+    <input type="file" class="form-control-file" name="profile_picture" id="profile_picture" required>
     <small id="emailHelp" class="form-text text-muted">jpg,png,jpeg</small>
   </div>
 
@@ -205,192 +239,130 @@
     </div>
   </div>
 </div>
- <script>
-    function togglePasswordVisibility(inputId, iconId) {
-        var passwordInput = document.getElementById(inputId);
-        var toggleIcon = document.getElementById(iconId);
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            toggleIcon.classList.remove("fa-eye");
-            toggleIcon.classList.add("fa-eye-slash");
-        } else {
-            passwordInput.type = "password";
-            toggleIcon.classList.remove("fa-eye-slash");
-            toggleIcon.classList.add("fa-eye");
-        }
-    }
-</script>     
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.8.0/dist/camera_utils.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.8.0/dist/face_mesh.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic@0.8.0/dist/holistic.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.8.0/dist/pose.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.8.0/dist/pose.js"></script>     
 <script>
-let mediaRecorder;
-let recordedBlobs;
-let stream;
-let timerInterval;
-let recordingTime = 120; // 2 minutes in seconds
-const countdownDisplay = document.getElementById('timerDisplay');
-const preview = document.getElementById('preview');
-const startButton = document.getElementById('startButton');
-const stopButton = document.getElementById('stopButton');
-const saveButton = document.getElementById('saveButton');
-const recordedVideo = document.getElementById('recordedVideo');
+  async function main () {
+    const buttonStart = document.querySelector('#buttonStart');
+    const buttonStop = document.querySelector('#buttonStop');
+    const saveButton = document.querySelector('#saveButton'); // Save button
+    const preview = document.querySelector('#preview'); // Live preview video
+    const recordedVideo = document.querySelector('#recordedVideo'); // Recorded video
+    const videoContainer = document.querySelector('#videoContainer'); // Video container
+    const timerDisplay = document.querySelector('#timerDisplay'); // Timer display
 
-startButton.addEventListener('click', startRecording);
-stopButton.addEventListener('click', stopRecording);
-saveButton.addEventListener('click', saveRecording);
-function startRecording() {
-    recordedBlobs = [];
-    $("#camera_recording").val("");
-    // Request a new media stream if the previous one was stopped
-    if (!stream) {
-        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-            .then(localStream => {
-                preview.srcObject = localStream;
-                stream = localStream;
-                initializeRecorder();
-            })
-            .catch(error => {
-                console.error('Error accessing media devices.', error);
-            });
-    } else {
-        initializeRecorder();
-    }
-}
+    let mediaRecorder;
+    let recordedChunks = [];
+    let recordedBlob;  // Declare recordedBlob here so it's accessible in the entire scope
+    let recordingStartTime;
+    let timerInterval;
 
-function initializeRecorder() {
-    const mimeTypes = [
-        'video/webm;codecs=vp9',
-        'video/webm;codecs=vp8',
-        'video/webm',
-        'video/mp4'
-    ];
-
-    let options = mimeTypes.find(type => MediaRecorder.isTypeSupported(type));
-    if (!options) {
-        console.error('No supported MIME type found for MediaRecorder.');
-        return;
-    }
-
-    console.log(`Using MIME type: ${options}`);
-    try {
-        mediaRecorder = new MediaRecorder(stream, { mimeType: options });
-    } catch (e) {
-        console.error('Exception while creating MediaRecorder:', e);
-        return;
-    }
-
-    startButton.disabled = true;
-    stopButton.disabled = false;
-    saveButton.disabled = true;
-
-    mediaRecorder.onstop = (event) => {
-        console.log('Recorder stopped:', event);
-        clearInterval(timerInterval);
-        countdownDisplay.textContent = '00:00';
-
-        // Stop all media tracks to turn off the camera
-        stream.getTracks().forEach(track => track.stop());
-        stream = null; // Reset the stream to null
-
-        // Call save function when recording stops
-        saveRecording();
-    };
-    mediaRecorder.ondataavailable = handleDataAvailable;
-    mediaRecorder.start();
-    console.log('MediaRecorder started', mediaRecorder);
-
-    // Start countdown timer
-    startTimer();
-}
-
-function startTimer() {
-    let secondsLeft = recordingTime;
-    updateTimerDisplay(secondsLeft);
-
-    timerInterval = setInterval(() => {
-        secondsLeft--;
-        updateTimerDisplay(secondsLeft);
-
-        if (secondsLeft <= 0) {
-            stopRecording();
-        }
-    }, 1000);
-}
-
-function updateTimerDisplay(secondsLeft) {
-    const minutes = Math.floor(secondsLeft / 60);
-    const seconds = secondsLeft % 60;
-    const formattedTime = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-    countdownDisplay.textContent = formattedTime;
-}
-
-function stopRecording() {
-    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-        mediaRecorder.stop();
-    }
-    startButton.disabled = false;
-    stopButton.disabled = true;
-    saveButton.disabled = false;
-    console.log('Recorded Blobs:', recordedBlobs);
-
-    const superBuffer = new Blob(recordedBlobs, { type: 'video/webm' });
-    const videoURL = window.URL.createObjectURL(superBuffer);
-
-    // recordedVideo.src = videoURL;
-    // recordedVideo.style.display = 'block';
-
-    // Attempt to play the video
-    /*recordedVideo.onloadeddata = () => {
-        recordedVideo.play().catch(error => {
-            console.error('Error playing video:', error);
-        });
-    };*/
-
-    // Cleanup blob URL after use
-    recordedVideo.onended = () => {
-        window.URL.revokeObjectURL(videoURL);
-        recordedVideo.style.display = 'none';
-    };
-
-    clearInterval(timerInterval);
-    countdownDisplay.textContent = '00:00';
-}
-
-function handleDataAvailable(event) {
-    console.log('Data available:', event);
-    if (event.data && event.data.size > 0) {
-        recordedBlobs.push(event.data);
-        console.log('Blob added:', event.data);
-    }
-}
-
-function saveRecording() {
-    const blob = new Blob(recordedBlobs, { type: 'video/webm' });
-    const url = 'https://sharksjob.com/index.php/Registration/upload';
-    const previousRecording = $("#previous_recording").val(); // Correctly select the element by ID
-    const formData = new FormData();
-    formData.append('video', blob, 'recording.webm');
-    formData.append('previous_recording', previousRecording); // Append the previous recording value
-
-    fetch(url, {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        // Update preview with the saved video path
-        if (data.status === 'success' && data.file_path) {
-            $("#camera_recording").val(data.file_path);
-            $("#previous_recording").val(data.file_path);
-            preview.src = data.file_path;
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
+    // Accessing media devices (video and audio)
+    const stream = await navigator.mediaDevices.getUserMedia({ 
+      video: true,
+      audio: true,
     });
+
+    // Set up live video preview
+    preview.srcObject = stream;
+
+    // Initialize media recorder
+    mediaRecorder = new MediaRecorder(stream, { 
+      mimeType: 'video/webm',
+    });
+
+    // Handle start recording
+    buttonStart.addEventListener('click', () => {
+      mediaRecorder.start();
+      buttonStart.setAttribute('disabled', ''); // Disable start button
+      buttonStop.removeAttribute('disabled'); // Enable stop button
+      saveButton.setAttribute('disabled', ''); // Disable save button while recording
+      recordedChunks = []; // Reset chunks
+      timerDisplay.innerText = '02:00'; // Reset timer display
+      startTimer(120); // Start 2-minute countdown
+    });
+
+    // Handle stop recording
+    buttonStop.addEventListener('click', () => {
+      mediaRecorder.stop();
+      buttonStart.removeAttribute('disabled'); // Enable start button again
+      buttonStop.setAttribute('disabled', ''); // Disable stop button
+      clearInterval(timerInterval); // Stop the timer
+    });
+
+    // Store the recorded video chunks
+    mediaRecorder.addEventListener('dataavailable', (event) => {
+      recordedChunks.push(event.data);
+    });
+
+    mediaRecorder.addEventListener('stop', () => {
+      recordedBlob = new Blob(recordedChunks, { type: 'video/webm' });
+      const videoURL = URL.createObjectURL(recordedBlob);
+      recordedVideo.src = videoURL;
+      recordedVideo.style.display = "block";
+      console.log('Recorded Blob:', recordedBlob);
+      console.log('Blob Size:', recordedBlob.size);
+      saveButton.removeAttribute('disabled');
+    });
+
+    saveButton.addEventListener('click', () => {
+      if (!recordedBlob) {
+        alert('No video recorded.');
+        return;
+      }
+
+    const formData = new FormData();
+    console.log(formData);
+    formData.append('video', recordedBlob, 'recorded_video.webm');
+
+// Log form data for debugging (to check the data before sending)
+for (let [key, value] of formData.entries()) {
+  console.log(`${key}:`, value);
 }
+
+// const formData = new FormData();
+// formData.append('video', recordedBlob, 'recorded_video.webm');
+
+fetch('<?php echo base_url("Recruitment/upload"); ?>', {
+  method: 'POST',
+  body: formData, // Send FormData directly
+})
+.then(response => response.json())  // Parse the JSON response
+.then(data => {
+  if (data.status === 'success') {
+    alert('Video uploaded and saved successfully!');
+    $('#save_record_path').val(data.file_path);
+    $('#save_record_id').val(data.video_id);
+    console.log(data.file_path);
+    console.log(data.video_id);
+  } else {
+    alert('Error: ' + data.message);
+  }
+})
+.catch(error => {
+  alert('An error occurred while uploading the video.');
+  
+  console.error('Error:', error);
+});
+
+
+    });
+
+    // Function to start the timer countdown
+    function startTimer(duration) {
+      let remainingTime = duration;
+      timerInterval = setInterval(() => {
+        const minutes = Math.floor(remainingTime / 60);
+        const seconds = remainingTime % 60;
+        timerDisplay.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+        if (remainingTime <= 0) {
+          clearInterval(timerInterval);
+          buttonStop.click(); // Stop recording automatically when time is up
+        } else {
+          remainingTime--;
+        }
+      }, 1000);
+    }
+  }
+  main();
 </script>
+
